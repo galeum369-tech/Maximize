@@ -1,0 +1,460 @@
+fileFormatVersion: 2
+guid: b8b80edb582ba2445ada861810790272
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6796158517884153246
+    second: Archer Bandit-Vanish_0
+  - first:
+      213: -557582063791565017
+    second: Archer Bandit-Vanish_1
+  - first:
+      213: 5298359709150481076
+    second: Archer Bandit-Vanish_2
+  - first:
+      213: -4731110182480614181
+    second: Archer Bandit-Vanish_3
+  - first:
+      213: 261660070978795094
+    second: Archer Bandit-Vanish_4
+  - first:
+      213: 6139827139072153667
+    second: Archer Bandit-Vanish_5
+  - first:
+      213: 4241401607088751180
+    second: Archer Bandit-Vanish_6
+  - first:
+      213: 7976196625725284737
+    second: Archer Bandit-Vanish_7
+  - first:
+      213: -9182090193175139529
+    second: Archer Bandit-Vanish_8
+  - first:
+      213: 3233145621393704635
+    second: Archer Bandit-Vanish_9
+  - first:
+      213: -3563732926840044573
+    second: Archer Bandit-Vanish_10
+  - first:
+      213: -6619829039904594473
+    second: Archer Bandit-Vanish_11
+  - first:
+      213: 2247501046619453565
+    second: Archer Bandit-Vanish_12
+  - first:
+      213: 5593211983474129992
+    second: Archer Bandit-Vanish_13
+  - first:
+      213: 8515592002965425875
+    second: Archer Bandit-Vanish_14
+  - first:
+      213: 6471098177804313214
+    second: Archer Bandit-Vanish_15
+  - first:
+      213: 1481509963055785786
+    second: Archer Bandit-Vanish_16
+  - first:
+      213: 5938663310805169756
+    second: Archer Bandit-Vanish_17
+  - first:
+      213: 239567842521227017
+    second: Archer Bandit-Vanish_18
+  - first:
+      213: -1610791674301852340
+    second: Archer Bandit-Vanish_19
+  - first:
+      213: 8442955039379799838
+    second: Archer Bandit-Vanish_20
+  - first:
+      213: -5029796880818771063
+    second: Archer Bandit-Vanish_21
+  - first:
+      213: 5529125302567569743
+    second: Archer Bandit-Vanish_22
+  - first:
+      213: -877597550258779223
+    second: Archer Bandit-Vanish_23
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Archer Bandit-Vanish_0
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 0
+        width: 24
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2621548e5d13fa1a0800000000000000
+      internalID: -6796158517884153246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit-Vanish_1
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 0
+        width: 25
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 727139231121348f0800000000000000
+      internalID: -557582063791565017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit-Vanish_2
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 0
+        width: 27
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ba0824651e878940800000000000000
+      internalID: 5298359709150481076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit-Vanish_3
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 0
+        width: 35
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdc62040b58b75eb0800000000000000
+      internalID: -4731110182480614181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit-Vanish_4
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 0
+        width: 57
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 656389eb27a91a300800000000000000
+      internalID: 261660070978795094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit-Vanish_5
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 0
+        width: 60
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 348d2b6b04c053550800000000000000
+      internalID: 6139827139072153667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit-Vanish_6
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 0
+        width: 60
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c42cb4c2a4c7cda30800000000000000
+      internalID: 4241401607088751180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit-Vanish_22
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 0
+        width: 44
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f490a2a0b266bbc40800000000000000
+      internalID: 5529125302567569743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit-Vanish_23
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 0
+        width: 349
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ab82118da522d3f0800000000000000
+      internalID: -877597550258779223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archer Bandit-Vanish_24
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 0
+        width: 54
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ec6ed349f4fb4b4f80df7ff1a06b1c7
+      internalID: -664515147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 367b5531b9725c445b989797e8665d01
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Archer Bandit-Vanish_0: -6796158517884153246
+      Archer Bandit-Vanish_1: -557582063791565017
+      Archer Bandit-Vanish_10: -3563732926840044573
+      Archer Bandit-Vanish_11: -6619829039904594473
+      Archer Bandit-Vanish_12: 2247501046619453565
+      Archer Bandit-Vanish_13: 5593211983474129992
+      Archer Bandit-Vanish_14: 8515592002965425875
+      Archer Bandit-Vanish_15: 6471098177804313214
+      Archer Bandit-Vanish_16: 1481509963055785786
+      Archer Bandit-Vanish_17: 5938663310805169756
+      Archer Bandit-Vanish_18: 239567842521227017
+      Archer Bandit-Vanish_19: -1610791674301852340
+      Archer Bandit-Vanish_2: 5298359709150481076
+      Archer Bandit-Vanish_20: 8442955039379799838
+      Archer Bandit-Vanish_21: -5029796880818771063
+      Archer Bandit-Vanish_22: 5529125302567569743
+      Archer Bandit-Vanish_23: -877597550258779223
+      Archer Bandit-Vanish_24: -664515147
+      Archer Bandit-Vanish_3: -4731110182480614181
+      Archer Bandit-Vanish_4: 261660070978795094
+      Archer Bandit-Vanish_5: 6139827139072153667
+      Archer Bandit-Vanish_6: 4241401607088751180
+      Archer Bandit-Vanish_7: 7976196625725284737
+      Archer Bandit-Vanish_8: -9182090193175139529
+      Archer Bandit-Vanish_9: 3233145621393704635
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
