@@ -1191,7 +1191,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7732212587292825396, guid: 332f5ffb525c6b74d80e1f0de9ff885b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1247,10 +1247,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   jumpForce: 10
-  dashSpeed: 20
+  dashDistance: 0.5
   dashDuration: 0.2
-  dashCooldown: 0.5
-  dashStaminaCost: 20
+  maxDashCount: 2
+  currentDashCount: 0
+  dashRegenTime: 0.5
+  dashInterval: 0.1
   comboIndex: 0
   comboResetTime: 0.8
   bufferThreshold: 0.7
@@ -1271,6 +1273,7 @@ MonoBehaviour:
   frameSlot: {fileID: 0}
   gearSlot: {fileID: 0}
   chipSlot: {fileID: 0}
+  currentHp: 0
 --- !u!114 &6952127007529725000
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,7 +14,6 @@ public class PlayerData : ScriptableObject
     public int hpLevel = 1;
     public int defLevel = 1;
     public int spdLevel = 1;
-    public int staminaLevel = 1;
 
     [Header("기본 스텟")]
     public float baseAtk = 10f;
@@ -22,7 +21,6 @@ public class PlayerData : ScriptableObject
     public float baseHp = 100f;
     public float baseDef = 5f;
     public float baseSpd = 3f; //이동 속도
-    public float baseStamina = 10f; //스태미나 최대치
 
     [Header("스텟 레벨당 증가량")]
     public float atkIncr = 2f; //절대값 증가
@@ -30,7 +28,6 @@ public class PlayerData : ScriptableObject
     public float hpIncr = 20f;  //절대값 증가
     public float defIncr = 1f;  //절대값 증가
     public float spdIncr = 0.1f; //절대값 증가
-    public float staminaIncr = 0.5f;  //절대값 증가
 
     //스텟 레벨업 비용
     public int GetUpgradeCost(int currentLevel)
@@ -60,10 +57,4 @@ public class PlayerData : ScriptableObject
     {
         return baseSpd + (spdLevel - 1) * spdIncr;
     }
-    public float GetStamina()
-    {
-        return baseStamina + (staminaLevel - 1) * staminaIncr;
-    }
-
-
 }
