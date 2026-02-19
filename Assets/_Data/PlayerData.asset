@@ -18,16 +18,21 @@ MonoBehaviour:
   hpLevel: 1
   defLevel: 1
   spdLevel: 1
-  staminaLevel: 1
   baseAtk: 10
   baseCrit: 0.1
   baseHp: 100
   baseDef: 5
   baseSpd: 6
-  baseStamina: 10
+  mechaBaseHp: 500
+  mechaBaseAtk: 50
+  mechaBaseDef: 20
+  mechaBaseSpd: 8
+  mechaFuelMax: 100
   atkIncr: 2
   critIncr: 0.05
   hpIncr: 20
   defIncr: 1
   spdIncr: 0.1
-  staminaIncr: 0.5
+  mechaHpIncr: 50
+  mechaAtkIncr: 5
+  mechaDefIncr: 2

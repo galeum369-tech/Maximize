@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Hit 1 electric
+  m_Name: Hit 1 electric 1
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -66,33 +66,8 @@ AnimationClip:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   m_ClipBindingConstant:
-    genericBindings:
-    - serializedVersion: 2
-      path: 0
-      attribute: 3305885265
-      script: {fileID: 0}
-      typeID: 212
-      customType: 0
-      isPPtrCurve: 0
-      isIntCurve: 0
-      isSerializeReferenceCurve: 0
-    - serializedVersion: 2
-      path: 0
-      attribute: 0
-      script: {fileID: 0}
-      typeID: 212
-      customType: 23
-      isPPtrCurve: 1
-      isIntCurve: 0
-      isSerializeReferenceCurve: 0
-    pptrCurveMapping:
-    - {fileID: -5476010345155102336, guid: 65b34c199cbe0fb40b1b0587f662941f, type: 3}
-    - {fileID: -7849594311705869346, guid: 65b34c199cbe0fb40b1b0587f662941f, type: 3}
-    - {fileID: -1144259491365088565, guid: 65b34c199cbe0fb40b1b0587f662941f, type: 3}
-    - {fileID: -8343781919088780648, guid: 65b34c199cbe0fb40b1b0587f662941f, type: 3}
-    - {fileID: -6548758407868627647, guid: 65b34c199cbe0fb40b1b0587f662941f, type: 3}
-    - {fileID: -8056225378823719861, guid: 65b34c199cbe0fb40b1b0587f662941f, type: 3}
-    - {fileID: -8056225378823719861, guid: 65b34c199cbe0fb40b1b0587f662941f, type: 3}
+    genericBindings: []
+    pptrCurveMapping: []
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

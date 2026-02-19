@@ -31,7 +31,7 @@ public class Player : MonoBehaviour, IDamageable
     public float jumpForce = 12f;
 
     [Header("대시(충전식 거리 기반) 설정")]
-    public float dashDistance = 3f;    // 이제 스케일과 상관없이 정확히 3칸 이동!
+    public float dashDistance = 3f;
     public float dashDuration = 0.2f;
     public int maxDashCount = 2;
     public int currentDashCount;
@@ -72,16 +72,22 @@ public class Player : MonoBehaviour, IDamageable
     private void OnEnable()
     {
         inputHandler.OnMove += HandleMove;
+
+        // [수정] bool 매개변수를 받는 메서드 연결
         inputHandler.OnJump += HandleJump;
         inputHandler.OnAttack += HandleAttack;
+
         inputHandler.OnDodge += HandleDodge;
     }
 
     private void OnDisable()
     {
         inputHandler.OnMove -= HandleMove;
+
+        // [수정] 연결 해제
         inputHandler.OnJump -= HandleJump;
         inputHandler.OnAttack -= HandleAttack;
+
         inputHandler.OnDodge -= HandleDodge;
     }
 
@@ -158,28 +164,47 @@ public class Player : MonoBehaviour, IDamageable
 
     private void HandleMove(Vector2 dir) => moveInput = dir;
 
-    private void HandleJump()
+    // [수정] bool 값을 받도록 변경
+    private void HandleJump(bool pressed)
     {
+        if (!pressed) return; // 버튼을 뗐을 때는 무시 (기존 로직 유지)
+
         if (moveInput.y < -0.5f && currentPlatform != null) StartCoroutine(DownJump());
         else if (isGrounded && !isAttacking) mc.Jump(jumpForce);
     }
 
-    private void HandleAttack()
+    // [수정] bool 값을 받도록 변경 (핵심 로직 수정)
+    private void HandleAttack(bool pressed)
     {
+        // 1. 버튼을 뗄 때(false)는 동작 안 함 (단타 유지)
+        if (!pressed) return;
+
+        // 2. 공중 공격 처리 (단타)
         if (!isGrounded)
         {
             comboIndex = 0;
-            ExecuteAttack();
+            ExecuteAttack(); // 즉시 발동
             inputBuffered = false;
             return;
         }
-        if (!isAttacking) ExecuteAttack();
-        else inputBuffered = true;
+
+        // 3. 지상 콤보 처리
+        // 공격 중이 아니면 -> 바로 1타 발동
+        if (!isAttacking)
+        {
+            ExecuteAttack();
+        }
+        // 공격 중이면 -> 예약(Buffer)만 걸어둠 (CheckComboBuffer에서 처리)
+        else
+        {
+            inputBuffered = true;
+        }
     }
 
     private void CheckComboBuffer()
     {
         AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+        // 예약된 입력이 있고, 애니메이션이 충분히 진행되었을 때 다음 타격 발동
         if (stateInfo.IsTag("Attack") && stateInfo.normalizedTime >= bufferThreshold && inputBuffered)
         {
             ExecuteAttack();
@@ -211,7 +236,6 @@ public class Player : MonoBehaviour, IDamageable
         rb.gravityScale = 0f;
         spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0.5f);
 
-        // --- 버그 수정 포인트: Mathf.Sign을 사용하여 방향(+1/-1)만 추출 ---
         float dashDir = moveInput.x != 0 ? Mathf.Sign(moveInput.x) : Mathf.Sign(transform.localScale.x);
         float dashVel = dashDistance / dashDuration;
 

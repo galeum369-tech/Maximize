@@ -6,11 +6,11 @@ public class PlayerInputHandler : MonoBehaviour
 {
     Player_Actions input;
 
-    //이벤트
-    //플레이어 이벤트
+    // 이벤트
+    // 플레이어 이벤트
     public event Action<Vector2> OnMove;
-    public event Action OnJump;
-    public event Action OnAttack;
+    public event Action<bool> OnJump;    // [수정] bool 값 전달 (true: 누름, false: 뗌)
+    public event Action<bool> OnAttack;  // [수정] bool 값 전달 (true: 누름, false: 뗌)
     public event Action OnDodge;
     public event Action OnSkill1;
     public event Action OnSkill2;
@@ -21,7 +21,7 @@ public class PlayerInputHandler : MonoBehaviour
     public event Action OnUseItem2;
     public event Action OnUseItem3;
 
-    //UI 이벤트
+    // UI 이벤트
     public event Action<Vector2> OnNavigate;
     public event Action OnSubmit;
     public event Action OnCancel;
@@ -36,11 +36,18 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        //플레이어 
+        // 플레이어 
         input.Player.Move.performed += MoveCtx;
         input.Player.Move.canceled += MoveCtx;
+
+        // [수정] 점프: 누름(performed)과 뗌(canceled) 모두 구독
         input.Player.Jump.performed += JumpCtx;
+        input.Player.Jump.canceled += JumpCtx;
+
+        // [수정] 공격: 누름(performed)과 뗌(canceled) 모두 구독
         input.Player.Attack.performed += AttackCtx;
+        input.Player.Attack.canceled += AttackCtx;
+
         input.Player.Dodge.performed += DodgeCtx;
         input.Player.Skill1.performed += Skill1Ctx;
         input.Player.Skill2.performed += Skill2Ctx;
@@ -51,7 +58,7 @@ public class PlayerInputHandler : MonoBehaviour
         input.Player.UseItem2.performed += UseItem2Ctx;
         input.Player.UseItem3.performed += UseItem3Ctx;
 
-        //UI
+        // UI
         input.UI.Navigate.performed += NavigateCtx;
         input.UI.Navigate.canceled += NavigateCtx;
         input.UI.Submit.performed += SubmitCtx;
@@ -60,18 +67,24 @@ public class PlayerInputHandler : MonoBehaviour
         input.UI.NextTab.performed += NextTabCtx;
         input.UI.CloseUI.performed += CloseUICtx;
 
-
         input.Player.Enable();
         input.UI.Disable();
     }
 
     private void OnDisable()
     {
-        //플레이어 
+        // 플레이어 
         input.Player.Move.performed -= MoveCtx;
         input.Player.Move.canceled -= MoveCtx;
+
+        // [수정] 점프 구독 해제
         input.Player.Jump.performed -= JumpCtx;
+        input.Player.Jump.canceled -= JumpCtx;
+
+        // [수정] 공격 구독 해제
         input.Player.Attack.performed -= AttackCtx;
+        input.Player.Attack.canceled -= AttackCtx;
+
         input.Player.Dodge.performed -= DodgeCtx;
         input.Player.Skill1.performed -= Skill1Ctx;
         input.Player.Skill2.performed -= Skill2Ctx;
@@ -82,7 +95,7 @@ public class PlayerInputHandler : MonoBehaviour
         input.Player.UseItem2.performed -= UseItem2Ctx;
         input.Player.UseItem3.performed -= UseItem3Ctx;
 
-        //UI
+        // UI
         input.UI.Navigate.performed -= NavigateCtx;
         input.UI.Navigate.canceled -= NavigateCtx;
         input.UI.Submit.performed -= SubmitCtx;
@@ -90,7 +103,6 @@ public class PlayerInputHandler : MonoBehaviour
         input.UI.PrevTab.performed -= PrevTabCtx;
         input.UI.NextTab.performed -= NextTabCtx;
         input.UI.CloseUI.performed -= CloseUICtx;
-
 
         input.Disable();
     }
@@ -115,26 +127,20 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void MoveCtx(InputAction.CallbackContext ctx)
     {
-        // Vector2 값을 읽어서 이동 이벤트 발생 [cite: 2026-02-12]
         Vector2 inputVector = ctx.ReadValue<Vector2>();
         OnMove?.Invoke(inputVector);
     }
 
     private void JumpCtx(InputAction.CallbackContext ctx)
     {
-        // 버튼이 눌린 순간(Performed)에만 이벤트 발생 [cite: 2026-02-12]
-        if (ctx.performed)
-        {
-            OnJump?.Invoke();
-        }
+        // [수정] ctx.performed가 true면 누름, false면 뗌 상태 전달
+        OnJump?.Invoke(ctx.performed);
     }
 
     private void AttackCtx(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed)
-        {
-            OnAttack?.Invoke();
-        }
+        // [수정] ctx.performed가 true면 누름, false면 뗌 상태 전달
+        OnAttack?.Invoke(ctx.performed);
     }
 
     private void DodgeCtx(InputAction.CallbackContext ctx)
@@ -189,7 +195,6 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void NavigateCtx(InputAction.CallbackContext ctx)
     {
-        // UI 선택창 이동 값 전달
         Vector2 navVector = ctx.ReadValue<Vector2>();
         OnNavigate?.Invoke(navVector);
     }
@@ -220,5 +225,3 @@ public class PlayerInputHandler : MonoBehaviour
     }
     #endregion
 }
-
-
