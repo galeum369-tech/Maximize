@@ -143,9 +143,21 @@ public class Player : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage, float knockback, Vector2 hitDirection)
     {
-        if (isDashing) return;
+        if (isDashing) return; // 대시 중 무적
 
-        state.currentHp -= damage;
+        // --- [추가] 방어력 계산 로직 ---
+        // 계산식: 실제 데미지 = 받은 데미지 * (1 - 방어력 / 100)
+        // 예: 방어력이 20이면 데미지의 80%만 입음.
+        float reduction = state.FinalDef / 100f;
+        float actualDamage = damage * (1f - reduction);
+
+        // 최소 1 데미지는 보장 (방어력이 100 이상이어도 1은 달게 함)
+        actualDamage = Mathf.Max(actualDamage, 1f);
+
+        // 체력 차감
+        state.currentHp -= actualDamage;
+        // ----------------------------
+
         rb.linearVelocity = Vector2.zero;
         rb.AddForce(hitDirection * knockback, ForceMode2D.Impulse);
 

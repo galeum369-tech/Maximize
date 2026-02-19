@@ -15,10 +15,8 @@ public class EquipmentData : ItemData
 
     [Header("스텟 보너스")]
     public float atkBonus;
-    public float critBonus;
     public float hpBonus;
     public float defBonus;
     public float spdBonus;
-    public float staminaBonus;
     
 }

@@ -5,7 +5,7 @@ public class DroneCannon : MonoBehaviour
 {
     [Header("캐논 설정")]
     public float speed = 15f;
-    public float maxLifetime = 3f; // 이 시간이 지나면 자동 삭제
+    public float maxLifetime = 3f;
     public LayerMask contactLayers;
 
     [Header("폭발 설정")]
@@ -18,7 +18,6 @@ public class DroneCannon : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        // [보완] 생성되자마자 타이머를 걸어 메모리 누수 방지
         Destroy(gameObject, maxLifetime);
     }
 
@@ -46,10 +45,14 @@ public class DroneCannon : MonoBehaviour
         {
             GameObject exp = Instantiate(explosionPrefab, hitPos, Quaternion.identity);
             UniversalHitbox hb = exp.GetComponent<UniversalHitbox>();
-            if (hb != null) hb.SetOwnerAtk(cannonDamage);
+
+            // [중요] 새로 소환된 폭발 히트박스에 공격력 주입
+            if (hb != null)
+            {
+                hb.SetOwnerAtk(cannonDamage);
+            }
         }
 
-        // [수정] 즉시 삭제
         Destroy(gameObject);
     }
 }

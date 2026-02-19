@@ -8,7 +8,6 @@ public class PlayerData : ScriptableObject
 
     [Header("공격스텟 레벨")]
     public int attackLevel = 1;
-    public int critLevel = 1;
 
     [Header("생존/기동 스텟 레벨")]
     public int hpLevel = 1;
@@ -17,7 +16,6 @@ public class PlayerData : ScriptableObject
 
     [Header("기본 스텟")]
     public float baseAtk = 10f;
-    public float baseCrit = 0.1f; //치명타 확률
     public float baseHp = 100f;
     public float baseDef = 5f;
     public float baseSpd = 3f; //이동 속도
@@ -38,7 +36,6 @@ public class PlayerData : ScriptableObject
 
     [Header("스텟 레벨당 증가량")]
     public float atkIncr = 2f; //절대값 증가
-    public float critIncr = 0.05f; //절대값 증가 
     public float hpIncr = 20f;  //절대값 증가
     public float defIncr = 1f;  //절대값 증가
     public float spdIncr = 0.1f; //절대값 증가
@@ -62,10 +59,6 @@ public class PlayerData : ScriptableObject
     public float GetAtk()
     {
         return baseAtk + (attackLevel - 1) * atkIncr;
-    }
-    public float GetCrit()
-    {
-        return baseCrit + (critLevel - 1) * critIncr;
     }
     public float GetHp()
     {

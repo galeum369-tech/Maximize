@@ -14,9 +14,10 @@ public class PlayerState : MonoBehaviour
     // 최종 스탯
     public float FinalMaxHP { get; private set; }
     public float FinalAtk { get; private set; }
-    public float FinalCrit { get; private set; }
     public float FinalDef { get; private set; }
     public float FinalSpd { get; private set; }
+
+    public event System.Action OnStatsChanged;
 
     [Header("현재 상태")]
     public float currentHp;
@@ -44,7 +45,6 @@ public class PlayerState : MonoBehaviour
     {
         FinalMaxHP = baseData.GetHp() + GetTotalBonus("hp");
         FinalAtk = baseData.GetAtk() + GetTotalBonus("atk");
-        FinalCrit = baseData.GetCrit() + GetTotalBonus("crit");
         FinalDef = baseData.GetDef() + GetTotalBonus("def");
         FinalSpd = baseData.GetSpd() + GetTotalBonus("spd");
 
@@ -64,7 +64,6 @@ public class PlayerState : MonoBehaviour
         {
             case "hp": return item.hpBonus;
             case "atk": return item.atkBonus;
-            case "crit": return item.critBonus;
             case "def": return item.defBonus;
             case "spd": return item.spdBonus;
             default: return 0;

@@ -142,7 +142,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -180,7 +180,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -239,7 +239,7 @@ TextureImporter:
         width: 52
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -261,7 +261,7 @@ TextureImporter:
         width: 48
         height: 11
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -283,7 +283,7 @@ TextureImporter:
         width: 52
         height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -305,7 +305,7 @@ TextureImporter:
         width: 70
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -327,7 +327,7 @@ TextureImporter:
         width: 58
         height: 11
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -341,13 +341,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI - 16x16 UI Tileset_5
+      name: FocusOutline
       rect:
         serializedVersion: 2
-        x: 206
-        y: 223
-        width: 16
-        height: 8
+        x: 211
+        y: 162
+        width: 42
+        height: 44
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -363,50 +363,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI - 16x16 UI Tileset_6
-      rect:
-        serializedVersion: 2
-        x: 220
-        y: 219
-        width: 40
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e7ec3a5c95075eb50800000000000000
-      internalID: 6621822357988429438
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI - 16x16 UI Tileset_7
-      rect:
-        serializedVersion: 2
-        x: 258
-        y: 223
-        width: 16
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ca7fe115496516680800000000000000
-      internalID: -8763628204870142036
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: UI - 16x16 UI Tileset_8
       rect:
         serializedVersion: 2
@@ -415,7 +371,7 @@ TextureImporter:
         width: 44
         height: 44
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -437,7 +393,7 @@ TextureImporter:
         width: 44
         height: 44
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -459,7 +415,7 @@ TextureImporter:
         width: 46
         height: 46
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -481,7 +437,7 @@ TextureImporter:
         width: 46
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -495,7 +451,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI - 16x16 UI Tileset_12
+      name: SlotUI
       rect:
         serializedVersion: 2
         x: 211
@@ -503,7 +459,7 @@ TextureImporter:
         width: 42
         height: 44
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -525,7 +481,7 @@ TextureImporter:
         width: 44
         height: 44
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -539,15 +495,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI - 16x16 UI Tileset_14
+      name: EnergeFill
       rect:
         serializedVersion: 2
-        x: 35
-        y: 90
-        width: 10
-        height: 44
+        x: 140
+        y: 131
+        width: 20
+        height: 6
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -561,29 +517,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI - 16x16 UI Tileset_15
-      rect:
-        serializedVersion: 2
-        x: 97
-        y: 87
-        width: 62
-        height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6b211db8780dcf200800000000000000
-      internalID: 215276162791838390
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI - 16x16 UI Tileset_16
+      name: EnergeBox
       rect:
         serializedVersion: 2
         x: 170
@@ -591,7 +525,7 @@ TextureImporter:
         width: 44
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -605,7 +539,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI - 16x16 UI Tileset_17
+      name: HPBox
       rect:
         serializedVersion: 2
         x: 234
@@ -613,7 +547,7 @@ TextureImporter:
         width: 44
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -627,397 +561,23 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI - 16x16 UI Tileset_18
+      name: HPFill
       rect:
         serializedVersion: 2
-        x: 3
-        y: 117
-        width: 10
-        height: 7
+        x: 280
+        y: 135
+        width: 20
+        height: 6
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3e16d709ec7e0c280800000000000000
-      internalID: -9024958778877058589
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI - 16x16 UI Tileset_19
-      rect:
-        serializedVersion: 2
-        x: 8
-        y: 95
-        width: 25
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 94a9c3c7e33a6afd0800000000000000
-      internalID: -2330996268350006711
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI - 16x16 UI Tileset_20
-      rect:
-        serializedVersion: 2
-        x: 175
-        y: 115
-        width: 18
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 70583bc26e74e1740800000000000000
-      internalID: 5124612479912215815
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI - 16x16 UI Tileset_21
-      rect:
-        serializedVersion: 2
-        x: 239
-        y: 116
-        width: 18
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cee4d244b5d8cb180800000000000000
-      internalID: -9098241724069884180
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI - 16x16 UI Tileset_22
-      rect:
-        serializedVersion: 2
-        x: 51
-        y: 95
-        width: 10
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2a97d4a7c597f25b0800000000000000
-      internalID: -5390956790843344478
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI - 16x16 UI Tileset_23
-      rect:
-        serializedVersion: 2
-        x: 67
-        y: 95
-        width: 10
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: be6768b2fd15863f0800000000000000
-      internalID: -907385305965365525
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI - 16x16 UI Tileset_24
-      rect:
-        serializedVersion: 2
-        x: 83
-        y: 95
-        width: 10
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 528ef6841606fcd10800000000000000
-      internalID: 2148041518222403621
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI - 16x16 UI Tileset_25
-      rect:
-        serializedVersion: 2
-        x: 175
-        y: 99
-        width: 18
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6fa8cfde428d78190800000000000000
-      internalID: -7960156163230889226
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI - 16x16 UI Tileset_26
-      rect:
-        serializedVersion: 2
-        x: 239
-        y: 100
-        width: 18
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 90f51245c8b56d000800000000000000
-      internalID: 60336303281102601
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI - 16x16 UI Tileset_27
-      rect:
-        serializedVersion: 2
-        x: 175
-        y: 83
-        width: 18
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6cb7352c58663e1e0800000000000000
-      internalID: -2169777870785512506
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI - 16x16 UI Tileset_28
-      rect:
-        serializedVersion: 2
-        x: 231
-        y: 18
-        width: 83
-        height: 70
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 164c3d46ef1dcdaa0800000000000000
-      internalID: -6134797701841959839
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI - 16x16 UI Tileset_29
-      rect:
-        serializedVersion: 2
-        x: 239
-        y: 84
-        width: 18
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8c2c6021a2e84fab0800000000000000
-      internalID: -4975195376995351864
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI - 16x16 UI Tileset_30
-      rect:
-        serializedVersion: 2
-        x: 35
-        y: 26
-        width: 10
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 74cd26122fdc47eb0800000000000000
-      internalID: -4722923669378900921
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI - 16x16 UI Tileset_31
-      rect:
-        serializedVersion: 2
-        x: 51
-        y: 31
-        width: 10
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ff76b084a267c1ff0800000000000000
-      internalID: -64046370720618497
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI - 16x16 UI Tileset_32
-      rect:
-        serializedVersion: 2
-        x: 67
-        y: 31
-        width: 10
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f5c1d9c6051308900800000000000000
-      internalID: 684601364849695839
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI - 16x16 UI Tileset_33
-      rect:
-        serializedVersion: 2
-        x: 83
-        y: 31
-        width: 10
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4e39b293454c1ae80800000000000000
-      internalID: -8169032383057914908
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI - 16x16 UI Tileset_34
-      rect:
-        serializedVersion: 2
-        x: 97
-        y: 23
-        width: 62
-        height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0a5405c841cf25c90800000000000000
-      internalID: -7182401290518903392
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI - 16x16 UI Tileset_35
-      rect:
-        serializedVersion: 2
-        x: 167
-        y: 17
-        width: 50
-        height: 62
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2f4f0c425eeda4e80800000000000000
-      internalID: -8193491496301693710
+      spriteID: 7ce0bf5beb3478c429208344cafa2ca8
+      internalID: 1436416891
       vertices: []
       indices: 
       edges: []
@@ -1026,7 +586,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 833c9d0610fe98e4ab30d0763b1444ef
     internalID: 0
     vertices: []
     indices: 
@@ -1036,16 +596,18 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      EnergeBox: -7119411561727348017
+      EnergeFill: 4953848002186101707
+      FocusOutline: 3571497609816441215
+      HPBox: 803458787139967183
+      HPFill: 1436416891
+      SlotUI: -307300637103762139
       UI - 16x16 UI Tileset_0: -5071097628318048762
       UI - 16x16 UI Tileset_1: 4138915398614189213
       UI - 16x16 UI Tileset_10: 8234237981065670092
       UI - 16x16 UI Tileset_11: 8701322084388613760
-      UI - 16x16 UI Tileset_12: -307300637103762139
       UI - 16x16 UI Tileset_13: 5231475331421847611
-      UI - 16x16 UI Tileset_14: 4953848002186101707
       UI - 16x16 UI Tileset_15: 215276162791838390
-      UI - 16x16 UI Tileset_16: -7119411561727348017
-      UI - 16x16 UI Tileset_17: 803458787139967183
       UI - 16x16 UI Tileset_18: -9024958778877058589
       UI - 16x16 UI Tileset_19: -2330996268350006711
       UI - 16x16 UI Tileset_2: 761211697236777130
@@ -1067,7 +629,6 @@ TextureImporter:
       UI - 16x16 UI Tileset_34: -7182401290518903392
       UI - 16x16 UI Tileset_35: -8193491496301693710
       UI - 16x16 UI Tileset_4: 7341909048677166462
-      UI - 16x16 UI Tileset_5: 3571497609816441215
       UI - 16x16 UI Tileset_6: 6621822357988429438
       UI - 16x16 UI Tileset_7: -8763628204870142036
       UI - 16x16 UI Tileset_8: -4676533051104371292

@@ -17,6 +17,8 @@ public class MechaState : MonoBehaviour
     public float FinalDef { get; private set; }
     public float FinalSpd { get; private set; }
 
+    public event System.Action OnStatsChanged;
+
     [Header("현재 상태")]
     public float currentHp;
 
@@ -48,32 +50,37 @@ public class MechaState : MonoBehaviour
     {
         if (baseData == null) return;
 
-        // PlayerData의 메카 기본 스탯 + 장비 보너스 합산
         FinalMaxHP = baseData.GetMechaHp() + GetTotalBonus("hp");
         FinalAtk = baseData.GetMechaAtk() + GetTotalBonus("atk");
         FinalDef = baseData.GetMechaDef() + GetTotalBonus("def");
         FinalSpd = baseData.GetMechaSpd() + GetTotalBonus("spd");
 
-        // 체력이 줄어든 상태에서 장비 해제 등으로 최대 체력이 깎일 수 있으므로 보정
         currentHp = Mathf.Min(currentHp, FinalMaxHP);
+        OnStatsChanged?.Invoke();
     }
 
-    // --- [추가] 데미지 처리 함수 ---
+    // --- [수정] 데미지 처리 함수 ---
     public void TakeDamage(float damage)
     {
-        // 1. 실질 데미지 계산 (데미지 - 방어력)
-        // 방어력이 높아도 최소 1의 데미지는 입도록 설정 (취향에 따라 0으로 해도 됨)
-        float actualDamage = Mathf.Max(damage - FinalDef, 1f);
+        // 1. 방어력 퍼센트 감소 공식 적용 (방어력 1 = 1% 감소)
+        // 계산식: 실제 데미지 = 받은 데미지 * (1 - 방어력 / 100)
+        float reduction = FinalDef / 100f;
+        float actualDamage = damage * (1f - reduction);
 
-        // 2. 체력 차감
+        // 2. 최소 데미지 보장 (방어력이 아무리 높아도 최소 1은 입음)
+        actualDamage = Mathf.Max(actualDamage, 1f);
+
+        // 3. 체력 차감
         currentHp -= actualDamage;
 
-        // 3. 파괴 체크
+        // 4. 파괴 체크
         if (currentHp <= 0)
         {
             currentHp = 0;
             HandleDestruction();
         }
+
+        // Debug.Log($"메카닉 피격: 원본 {damage} -> 최종 {actualDamage} (방어력: {FinalDef})");
     }
 
     // --- [추가] 메카 파괴 시 처리 ---
@@ -103,7 +110,6 @@ public class MechaState : MonoBehaviour
         {
             case "hp": return item.hpBonus;
             case "atk": return item.atkBonus;
-            case "crit": return item.critBonus;
             case "def": return item.defBonus;
             case "spd": return item.spdBonus;
             default: return 0;
