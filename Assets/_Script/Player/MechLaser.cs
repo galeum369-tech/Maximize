@@ -3,12 +3,11 @@ using UnityEngine;
 public class MechaLaser : MonoBehaviour
 {
     [Header("컴포넌트 및 비주얼")]
-    public Transform laserVisual;      // [자식] Sprite + Collider + UniversalHitbox가 있는 오브젝트
-    public GameObject hitEffect;       // [자식] 충격 지점 이펙트
+    public Transform laserVisual;      // [자식] Sprite + Collider + UniversalHitbox
+    public GameObject hitEffect;       // [자식] 레이저 끝 지점 이펙트
 
     [Header("설정")]
-    public float maxDistance = 20f;
-    public LayerMask obstacleLayer;    // 지형 레이어
+    public float maxDistance = 20f;    // 고정 사거리
     public float damageTick = 0.1f;    // 다단 히트 주기
 
     private UniversalHitbox hitbox;
@@ -21,6 +20,7 @@ public class MechaLaser : MonoBehaviour
         {
             hitbox = laserVisual.GetComponent<UniversalHitbox>();
         }
+        Deactivate();
     }
 
     public void Activate(float atk)
@@ -28,8 +28,12 @@ public class MechaLaser : MonoBehaviour
         isActive = true;
         gameObject.SetActive(true);
 
-        // 유니버설 히트박스에 공격력 주입
-        if (hitbox != null) hitbox.SetOwnerAtk(atk);
+        // 공격력 주입 및 히트박스 초기화
+        if (hitbox != null)
+        {
+            hitbox.SetOwnerAtk(atk);
+            hitbox.ResetHitbox();
+        }
 
         tickTimer = 0;
     }
@@ -45,35 +49,30 @@ public class MechaLaser : MonoBehaviour
     {
         if (!isActive) return;
 
-        // 1. 레이캐스트로 실제 거리 측정 (지형 충돌용)
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, maxDistance, obstacleLayer);
-        float currentDist = hit.collider != null ? hit.distance : maxDistance;
+        // --- [핵심 수정: 레이캐스트 삭제] ---
+        // 지형 충돌 여부 상관없이 항상 maxDistance를 사용함
+        float currentDist = maxDistance;
 
-        // 2. [핵심] 자식(Visual) 스케일 조절 -> 콜라이더도 자동으로 같이 늘어남
+        // 1. 자식(Visual) 스케일 조절 
+        // 자식 오브젝트(Sprite+Collider)가 부모 스케일에 상관없이 월드 사거리 20을 유지하도록 계산
         if (laserVisual != null)
         {
-            // 부모 스케일 영향을 받지 않도록 Abs로 보정
             float globalScaleX = Mathf.Abs(transform.lossyScale.x);
             if (globalScaleX < 0.01f) globalScaleX = 1f;
 
+            // 로컬 스케일 = 목표 월드 거리 / 부모의 전역 스케일
             laserVisual.localScale = new Vector3(currentDist / globalScaleX, 1, 1);
         }
 
-        // 3. 충격 지점 이펙트 위치 업데이트
+        // 2. 이펙트 처리 (필요 없다면 이 부분은 꺼두어도 됨)
+        // 레이저의 끝(20m 지점)에 항상 이펙트를 둠
         if (hitEffect != null)
         {
-            if (hit.collider != null)
-            {
-                hitEffect.SetActive(true);
-                hitEffect.transform.position = hit.point;
-                hitEffect.transform.up = hit.normal;
-            }
-            else hitEffect.SetActive(false);
+            hitEffect.SetActive(true);
+            hitEffect.transform.localPosition = new Vector3(currentDist, 0, 0);
         }
 
-        // 4. [중요] 다단 히트 처리
-        // 유니버설 히트박스는 기본적으로 한 번만 때리므로, 
-        // 틱마다 hitTargets 리스트를 비워줘서 다시 때릴 수 있게 함
+        // 3. 다단 히트 주기적 리셋
         tickTimer += Time.deltaTime;
         if (tickTimer >= damageTick)
         {

@@ -5604,6 +5604,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 732560814}
     - target: {fileID: 5568571695806479173, guid: 2540d39ba263861429c678c77b49dcb9, type: 3}
+      propertyPath: maxDistance
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5568571695806479173, guid: 2540d39ba263861429c678c77b49dcb9, type: 3}
       propertyPath: laserSpriteTransform
       value: 
       objectReference: {fileID: 78544309}
@@ -5668,9 +5672,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 612914753}
     - target: {fileID: 8105863333810910473, guid: 2540d39ba263861429c678c77b49dcb9, type: 3}
+      propertyPath: maxDistance
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8105863333810910473, guid: 2540d39ba263861429c678c77b49dcb9, type: 3}
       propertyPath: laserSpriteTransform
       value: 
       objectReference: {fileID: 1715249127}
+    - target: {fileID: 8105863333810910473, guid: 2540d39ba263861429c678c77b49dcb9, type: 3}
+      propertyPath: obstacleLayer.m_Bits
+      value: 1088
+      objectReference: {fileID: 0}
     - target: {fileID: 8638859593061122887, guid: 2540d39ba263861429c678c77b49dcb9, type: 3}
       propertyPath: m_Name
       value: PlayerTransform
