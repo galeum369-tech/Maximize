@@ -24,15 +24,50 @@ public class ParabolicBomb : MonoBehaviour
         Destroy(gameObject, maxLifetime);
     }
 
-    public void Launch(float atk)
+    // ParabolicBomb.cs 수정 부분
+    public void Launch(float atk, Vector2 forwardDir)
     {
         ownerAtk = atk;
-        Transform target = FindNearestTarget();
-        Vector2 targetPos = (target != null)
-            ? (Vector2)target.position
-            : (Vector2)transform.position + (Vector2)(transform.right * defaultDistance);
+
+        // 전방 120도 이내의 적 탐색
+        Transform target = FindTargetInCone(forwardDir);
+
+        Vector2 targetPos;
+        if (target != null)
+        {
+            targetPos = (Vector2)target.position;
+        }
+        else
+        {
+            // 시야 내에 적이 없으면 바라보는 정면의 일정 거리 지점을 타겟으로 잡음
+            targetPos = (Vector2)transform.position + (forwardDir * defaultDistance);
+        }
 
         CalculateArc(targetPos);
+    }
+
+    private Transform FindTargetInCone(Vector2 forward)
+    {
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, detectRadius, targetLayer);
+        Transform nearest = null;
+        float minDst = Mathf.Infinity;
+
+        foreach (var enemy in enemies)
+        {
+            Vector2 dirToEnemy = (enemy.transform.position - transform.position).normalized;
+
+            // 정면 기준 좌우 60도(총 120도) 체크
+            if (Vector2.Angle(forward, dirToEnemy) <= 60f)
+            {
+                float dst = Vector2.Distance(transform.position, enemy.transform.position);
+                if (dst < minDst)
+                {
+                    minDst = dst;
+                    nearest = enemy.transform;
+                }
+            }
+        }
+        return nearest;
     }
 
     private void CalculateArc(Vector2 targetPos)

@@ -212,7 +212,27 @@ public class Mech : MonoBehaviour, IDamageable
         transform.localScale = new Vector3(Mathf.Sign(xDir) * absX, transform.localScale.y, 1);
     }
 
-    private void UseSkillA() { if (isSkillActive || !isGrounded) return; isSkillActive = true; mc.Stop(); ac.PlaySkillA(); }
+    // Mech.cs의 스킬 실행 함수 예시
+    private void UseSkillA()
+    {
+        if (isSkillActive || !isGrounded) return;
+        isSkillActive = true;
+
+        // 왼쪽을 보고 있다면 애니메이션 재생 속도를 -1로 하거나, 
+        // 레이저 오브젝트의 로컬 Y축을 180도 돌려버리는 꼼수가 있어.
+        if (transform.localScale.x < 0)
+        {
+            // 왼쪽일 때만 레이저를 담은 부모의 Y를 180도 돌려 거울 반전을 상쇄
+            foreach (var l in laserObjects) l.transform.localRotation = Quaternion.Euler(0, 180, 0);
+        }
+        else
+        {
+            foreach (var l in laserObjects) l.transform.localRotation = Quaternion.identity;
+        }
+
+        mc.Stop();
+        ac.PlaySkillA();
+    }
     private void UseSkillS() { if (isSkillActive || !isGrounded) return; isSkillActive = true; mc.Stop(); ac.PlaySkillS(); }
 
     // 이벤트 메서드들 (기존과 동일)
@@ -272,19 +292,31 @@ public class Mech : MonoBehaviour, IDamageable
 
     private void FireAllPoints(GameObject prefab)
     {
+        // 1. 현재 메카닉이 보고 있는 방향 확정 (1: 오른쪽, -1: 왼쪽)
+        float facing = Mathf.Sign(transform.localScale.x);
+
         foreach (Transform fp in firePoints)
         {
             if (fp == null) continue;
 
+            // 투사체 생성
             GameObject proj = Instantiate(prefab, fp.position, fp.rotation);
 
-            // 1. 유도탄인 경우
-            var homing = proj.GetComponent<HomingProjectile>();
-            if (homing != null) homing.Launch(state.FinalAtk);
+            // 2. [핵심] fp.right를 그대로 쓰지 않고, 메카닉의 facing을 기준으로 방향 벡터 생성
+            // fp의 y축 회전(기울기)은 유지하면서 x축 방향만 메카닉 방향으로 강제 고정
+            Vector2 forcedDir = fp.right;
 
-            // 2. 폭탄인 경우
+            // 혹시 fp.right가 부모 스케일 때문에 꼬였다면 아래처럼 강제로 방향을 잡아줌
+            if (facing > 0 && forcedDir.x < 0) forcedDir.x *= -1;
+            else if (facing < 0 && forcedDir.x > 0) forcedDir.x *= -1;
+
+            // 유도탄에 방향 전달
+            var homing = proj.GetComponent<HomingProjectile>();
+            if (homing != null) homing.Launch(state.FinalAtk, forcedDir);
+
+            // 폭탄에 방향 전달
             var bomb = proj.GetComponent<ParabolicBomb>();
-            if (bomb != null) bomb.Launch(state.FinalAtk);
+            if (bomb != null) bomb.Launch(state.FinalAtk, forcedDir);
         }
     }
 }

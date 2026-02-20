@@ -24,10 +24,47 @@ public class HomingProjectile : MonoBehaviour
         Destroy(gameObject, maxLifetime);
     }
 
-    public void Launch(float atk)
+    // HomingProjectile.cs 내부
+    public void Launch(float atk, Vector2 forwardDir)
     {
         ownerAtk = atk;
-        target = FindNearestTarget();
+
+        // [핵심 추가] 총알의 방향을 발사 방향으로 즉시 회전
+        // 2D에서는 transform.right에 벡터를 넣는 것만으로도 회전이 가능해
+        transform.right = forwardDir;
+
+        // 그 다음 120도 시야 내에서 타겟 탐색
+        target = FindNearestTargetInCone(forwardDir);
+
+        if (target == null)
+        {
+            Debug.Log($"{gameObject.name}: 시야 내 타겟 없음. 직진함.");
+        }
+    }
+
+    private Transform FindNearestTargetInCone(Vector2 forward)
+    {
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, detectRadius, targetLayer);
+        Transform nearest = null;
+        float minDst = Mathf.Infinity;
+
+        foreach (var enemy in enemies)
+        {
+            Vector2 dirToEnemy = (enemy.transform.position - transform.position).normalized;
+
+            // 내적(Dot Product)을 활용하거나 Vector2.Angle로 각도 계산
+            // 발사 방향(forward)과 적 방향(dirToEnemy) 사이의 각도가 60도 이내인지 확인
+            if (Vector2.Angle(forward, dirToEnemy) <= 60f)
+            {
+                float dst = Vector2.Distance(transform.position, enemy.transform.position);
+                if (dst < minDst)
+                {
+                    minDst = dst;
+                    nearest = enemy.transform;
+                }
+            }
+        }
+        return nearest;
     }
 
     private void FixedUpdate()

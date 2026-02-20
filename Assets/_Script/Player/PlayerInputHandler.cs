@@ -195,6 +195,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void NavigateCtx(InputAction.CallbackContext ctx)
     {
+        // 이제 에셋에서 Composite로 묶어줬기 때문에 Vector2를 안전하게 읽어올 수 있어!
         Vector2 navVector = ctx.ReadValue<Vector2>();
         OnNavigate?.Invoke(navVector);
     }

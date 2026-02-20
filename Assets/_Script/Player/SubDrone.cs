@@ -157,16 +157,20 @@ public class SubDrone : MonoBehaviour
     {
         if (normalBulletPrefab == null) return;
 
+        // 1. 드론이 현재 조준하고 있는 방향을 가져옴 (타겟이 있으면 타겟 방향, 없으면 정면)
+        Vector2 fireDir = GetFireDirection(target);
+
+        // 2. 총알 생성 (드론의 현재 위치와 회전값 적용)
         GameObject bullet = Instantiate(normalBulletPrefab, transform.position, transform.rotation);
         var proj = bullet.GetComponent<HomingProjectile>();
 
         if (proj != null)
         {
-            // 데미지 전달
-            proj.Launch(state.currentAtk);
+            // 3. [수정] 공격력과 함께 발사 방향(fireDir)을 같이 전달함
+            proj.Launch(state.currentAtk, fireDir);
 
-            // 유도탄 스크립트 내부에서 target을 세팅하는 함수가 있다면 호출
-            // 예: proj.SetTarget(target); 
+            // 만약 유도탄 스크립트에 타겟을 직접 박아주는 기능이 있다면 추가로 호출 가능
+            // (현재 HomingProjectile은 Launch 안에서 스스로 타겟을 찾도록 수정했음)
         }
     }
 
