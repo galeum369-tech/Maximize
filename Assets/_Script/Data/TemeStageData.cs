@@ -12,4 +12,7 @@ public class ThemeStageData : ScriptableObject
     public MapPiece startMap;      // 던전 시작 방
     public List<MapPiece> battleMaps; // 던전 중간 방들
     public MapPiece endMap;        // 던전 끝 방
+
+    [Header("필드 설정")]
+    public List<EnemyData> fieldEnemies; // 필드에서 스폰될 약한 몬스터들
 }

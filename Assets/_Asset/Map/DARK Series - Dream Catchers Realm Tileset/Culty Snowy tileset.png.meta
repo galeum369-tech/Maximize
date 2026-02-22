@@ -1,0 +1,2002 @@
+fileFormatVersion: 2
+guid: cd3cf582113206b4596d28662a0a8ee5
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -716270110127566893
+    second: Culty Snowy tileset_0
+  - first:
+      213: 1355813961718146150
+    second: Culty Snowy tileset_1
+  - first:
+      213: 4832091675331094738
+    second: Culty Snowy tileset_2
+  - first:
+      213: 4990527978391900092
+    second: Culty Snowy tileset_3
+  - first:
+      213: -4148071545412184947
+    second: Culty Snowy tileset_4
+  - first:
+      213: 7338361593399121320
+    second: Culty Snowy tileset_5
+  - first:
+      213: -3383095107889841280
+    second: Culty Snowy tileset_6
+  - first:
+      213: -6868188093601727000
+    second: Culty Snowy tileset_7
+  - first:
+      213: -5048977454902350914
+    second: Culty Snowy tileset_8
+  - first:
+      213: -4961890284500352702
+    second: Culty Snowy tileset_9
+  - first:
+      213: 6428593879373385606
+    second: Culty Snowy tileset_10
+  - first:
+      213: 1855082678412851575
+    second: Culty Snowy tileset_11
+  - first:
+      213: -6490209085612820424
+    second: Culty Snowy tileset_12
+  - first:
+      213: 3980223114825259705
+    second: Culty Snowy tileset_13
+  - first:
+      213: 3447891366594696727
+    second: Culty Snowy tileset_14
+  - first:
+      213: 6870186736238981796
+    second: Culty Snowy tileset_15
+  - first:
+      213: 4850946138086152355
+    second: Culty Snowy tileset_16
+  - first:
+      213: 3056608043031020650
+    second: Culty Snowy tileset_17
+  - first:
+      213: -7605267973692986842
+    second: Culty Snowy tileset_18
+  - first:
+      213: 7451418273220998865
+    second: Culty Snowy tileset_19
+  - first:
+      213: -7766441432328357140
+    second: Culty Snowy tileset_20
+  - first:
+      213: 7387033574412501301
+    second: Culty Snowy tileset_21
+  - first:
+      213: -4497210932625923160
+    second: Culty Snowy tileset_22
+  - first:
+      213: 8558722930030560341
+    second: Culty Snowy tileset_23
+  - first:
+      213: 2316456813451898349
+    second: Culty Snowy tileset_24
+  - first:
+      213: 5744718971917160536
+    second: Culty Snowy tileset_25
+  - first:
+      213: -871903697367949633
+    second: Culty Snowy tileset_26
+  - first:
+      213: 1185942586967077257
+    second: Culty Snowy tileset_27
+  - first:
+      213: -4654871187677224525
+    second: Culty Snowy tileset_28
+  - first:
+      213: -1541533072978124941
+    second: Culty Snowy tileset_29
+  - first:
+      213: 5938406269316412491
+    second: Culty Snowy tileset_30
+  - first:
+      213: 7577315995365983146
+    second: Culty Snowy tileset_31
+  - first:
+      213: -5096234282811683
+    second: Culty Snowy tileset_32
+  - first:
+      213: 6562199374139235901
+    second: Culty Snowy tileset_33
+  - first:
+      213: 6399078264856236762
+    second: Culty Snowy tileset_34
+  - first:
+      213: -8019836437108294609
+    second: Culty Snowy tileset_35
+  - first:
+      213: 3090637762906819420
+    second: Culty Snowy tileset_36
+  - first:
+      213: 300241194364479507
+    second: Culty Snowy tileset_37
+  - first:
+      213: -2332789702216486258
+    second: Culty Snowy tileset_38
+  - first:
+      213: -8141178208638013485
+    second: Culty Snowy tileset_39
+  - first:
+      213: 9217752642486283709
+    second: Culty Snowy tileset_40
+  - first:
+      213: 7528032444479783969
+    second: Culty Snowy tileset_41
+  - first:
+      213: 5243867755094568425
+    second: Culty Snowy tileset_42
+  - first:
+      213: 3838863963944993046
+    second: Culty Snowy tileset_43
+  - first:
+      213: -5954229307314565899
+    second: Culty Snowy tileset_44
+  - first:
+      213: 4823078182400006642
+    second: Culty Snowy tileset_45
+  - first:
+      213: -6958413842218743107
+    second: Culty Snowy tileset_46
+  - first:
+      213: 6509576967809743879
+    second: Culty Snowy tileset_47
+  - first:
+      213: 7788107973095834114
+    second: Culty Snowy tileset_48
+  - first:
+      213: 3751253371109325564
+    second: Culty Snowy tileset_49
+  - first:
+      213: -8892376638749144555
+    second: Culty Snowy tileset_50
+  - first:
+      213: 5325740814543569775
+    second: Culty Snowy tileset_51
+  - first:
+      213: 337530833722754801
+    second: Culty Snowy tileset_52
+  - first:
+      213: 4180318085555979419
+    second: Culty Snowy tileset_53
+  - first:
+      213: 4455627754824058043
+    second: Culty Snowy tileset_54
+  - first:
+      213: 4077303743764536688
+    second: Culty Snowy tileset_55
+  - first:
+      213: -3591239672668982149
+    second: Culty Snowy tileset_56
+  - first:
+      213: 4004618127160800726
+    second: Culty Snowy tileset_57
+  - first:
+      213: -7501450469067133234
+    second: Culty Snowy tileset_58
+  - first:
+      213: -5512745426580997282
+    second: Culty Snowy tileset_59
+  - first:
+      213: -84671199546245479
+    second: Culty Snowy tileset_60
+  - first:
+      213: 4395300700908911369
+    second: Culty Snowy tileset_61
+  - first:
+      213: 4610893887878544261
+    second: Culty Snowy tileset_62
+  - first:
+      213: -4310126351551509275
+    second: Culty Snowy tileset_63
+  - first:
+      213: 588240371445854705
+    second: Culty Snowy tileset_64
+  - first:
+      213: -8160781794306450626
+    second: Culty Snowy tileset_65
+  - first:
+      213: -7819355222723324715
+    second: Culty Snowy tileset_66
+  - first:
+      213: -5833562021376297230
+    second: Culty Snowy tileset_67
+  - first:
+      213: 8951863870053218726
+    second: Culty Snowy tileset_68
+  - first:
+      213: -8901656955813435339
+    second: Culty Snowy tileset_69
+  - first:
+      213: -1627680477833306498
+    second: Culty Snowy tileset_70
+  - first:
+      213: -5125291904895193102
+    second: Culty Snowy tileset_71
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Culty Snowy tileset_0
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 366
+        width: 162
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3dfcd9a312c4f06f0800000000000000
+      internalID: -716270110127566893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_1
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 279
+        width: 35
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 664a9b16d91d0d210800000000000000
+      internalID: 1355813961718146150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_2
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 431
+        width: 7
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d86b36f6c90f0340800000000000000
+      internalID: 4832091675331094738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_3
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 398
+        width: 7
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbf82b161cae14540800000000000000
+      internalID: 4990527978391900092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_4
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 279
+        width: 35
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d841dc828e61f66c0800000000000000
+      internalID: -4148071545412184947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_5
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 367
+        width: 67
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a59ce72df817d560800000000000000
+      internalID: 7338361593399121320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_6
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 388
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08b3ddc7ce4dc01d0800000000000000
+      internalID: -3383095107889841280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_7
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 379
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ed3d4e615b4fa0a0800000000000000
+      internalID: -6868188093601727000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_8
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 370
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebbe69161cd6ee9b0800000000000000
+      internalID: -5048977454902350914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_9
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 361
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24105e15313d32bb0800000000000000
+      internalID: -4961890284500352702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 340
+        width: 17
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68f0d49b214f63950800000000000000
+      internalID: 6428593879373385606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_11
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 287
+        width: 162
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77937cb0ed39eb910800000000000000
+      internalID: 1855082678412851575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_12
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 340
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 838f80629352ee5a0800000000000000
+      internalID: -6490209085612820424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_13
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 340
+        width: 38
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ba55f5b5d79c3730800000000000000
+      internalID: 3980223114825259705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_14
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 340
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71653022eee59df20800000000000000
+      internalID: 3447891366594696727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_15
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 340
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a2ff12df6ec75f50800000000000000
+      internalID: 6870186736238981796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_16
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 340
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a89d29afc5025340800000000000000
+      internalID: 4850946138086152355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_17
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 340
+        width: 14
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a64477e02d04b6a20800000000000000
+      internalID: 3056608043031020650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_18
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 340
+        width: 58
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62aef568219a47690800000000000000
+      internalID: -7605267973692986842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_19
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 340
+        width: 16
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d63130b071c86760800000000000000
+      internalID: 7451418273220998865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_20
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 297
+        width: 7
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cea31396aae083490800000000000000
+      internalID: -7766441432328357140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_21
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 287
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 531cdb2d5e3048660800000000000000
+      internalID: 7387033574412501301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_22
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 317
+        width: 10
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a324d8eb72b691c0800000000000000
+      internalID: -4497210932625923160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_23
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 257
+        width: 27
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5544677a821b6c670800000000000000
+      internalID: 8558722930030560341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_24
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 307
+        width: 14
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ded655fd235b52020800000000000000
+      internalID: 2316456813451898349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_25
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 223
+        width: 34
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 850d197d77759bf40800000000000000
+      internalID: 5744718971917160536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_26
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 223
+        width: 34
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbe9800f43066e3f0800000000000000
+      internalID: -871903697367949633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_27
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 272
+        width: 7
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9813e2cdf70557010800000000000000
+      internalID: 1185942586967077257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_28
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 223
+        width: 35
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b16c4f3153966fb0800000000000000
+      internalID: -4654871187677224525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_29
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 223
+        width: 35
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37f5f9766df5b9ae0800000000000000
+      internalID: -1541533072978124941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_30
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 178
+        width: 49
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b44be86f905796250800000000000000
+      internalID: 5938406269316412491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_31
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 207
+        width: 43
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa3ccae50c8082960800000000000000
+      internalID: 7577315995365983146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_32
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 215
+        width: 32
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dde71ed7005edeff0800000000000000
+      internalID: -5096234282811683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_33
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 215
+        width: 32
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3e1cd0109d911b50800000000000000
+      internalID: 6562199374139235901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_34
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 214
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad2dda237c71ec850800000000000000
+      internalID: 6399078264856236762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_35
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 214
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2cfc695041d3b090800000000000000
+      internalID: -8019836437108294609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_36
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 214
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5b0873aba624ea20800000000000000
+      internalID: 3090637762906819420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_37
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 214
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 318a80986cbaa2400800000000000000
+      internalID: 300241194364479507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_38
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 214
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8272bf102440afd0800000000000000
+      internalID: -2332789702216486258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_39
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 213
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3dfeaf49d89b40f80800000000000000
+      internalID: -8141178208638013485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_40
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 213
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbd20dac0390cef70800000000000000
+      internalID: 9217752642486283709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_41
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 213
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12445de7f91f87860800000000000000
+      internalID: 7528032444479783969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_42
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 159
+        width: 34
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ed6987a0f5f5c840800000000000000
+      internalID: 5243867755094568425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_43
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 159
+        width: 34
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6114dff9f62664530800000000000000
+      internalID: 3838863963944993046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_44
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 174
+        width: 35
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fc8b4aedf35e5da0800000000000000
+      internalID: -5954229307314565899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_45
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 174
+        width: 35
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f993e99d040fe240800000000000000
+      internalID: 4823078182400006642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_46
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 169
+        width: 65
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dba046e4a7fbe6f90800000000000000
+      internalID: -6958413842218743107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_47
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 144
+        width: 61
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70c3d5453c9a65a50800000000000000
+      internalID: 6509576967809743879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_48
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 169
+        width: 65
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 202c3c830fae41c60800000000000000
+      internalID: 7788107973095834114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_49
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 144
+        width: 61
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfa3577e0112f0430800000000000000
+      internalID: 3751253371109325564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_50
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 178
+        width: 21
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51a00669f8ee79480800000000000000
+      internalID: -8892376638749144555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_51
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 15
+        width: 354
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f634ba8cd05d8e940800000000000000
+      internalID: 5325740814543569775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_52
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 127
+        width: 97
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f649c441862fa400800000000000000
+      internalID: 337530833722754801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_53
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 24
+        width: 106
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9484b98629730a30800000000000000
+      internalID: 4180318085555979419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_54
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 24
+        width: 69
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb4c8a906d195dd30800000000000000
+      internalID: 4455627754824058043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_55
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 111
+        width: 14
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07d9478072e759830800000000000000
+      internalID: 4077303743764536688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_56
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 88
+        width: 69
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b74764f7b8a592ec0800000000000000
+      internalID: -3591239672668982149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_57
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 111
+        width: 48
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d5728228f2439730800000000000000
+      internalID: 4004618127160800726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_58
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 111
+        width: 29
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ecee013fa8e75e790800000000000000
+      internalID: -7501450469067133234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_59
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 111
+        width: 32
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5bfa770e3bce73b0800000000000000
+      internalID: -5512745426580997282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_60
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 95
+        width: 41
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99ef65c1eff23def0800000000000000
+      internalID: -84671199546245479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_61
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 63
+        width: 43
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90b73be33be3ffc30800000000000000
+      internalID: 4395300700908911369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_62
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 63
+        width: 42
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58b350cbf8f2dff30800000000000000
+      internalID: 4610893887878544261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_63
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 79
+        width: 41
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ecc8b65bea5f24c0800000000000000
+      internalID: -4310126351551509275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_64
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 29
+        width: 14
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f1f29e4089d92800800000000000000
+      internalID: 588240371445854705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_65
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 8
+        width: 30
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3b93ec12341fbe80800000000000000
+      internalID: -8160781794306450626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_66
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 29
+        width: 14
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d41bf88ad11c7390800000000000000
+      internalID: -7819355222723324715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_67
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 8
+        width: 30
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f6f7a4cf360b0fa0800000000000000
+      internalID: -5833562021376297230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_68
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 47
+        width: 71
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a9fc24c2c86b3c70800000000000000
+      internalID: 8951863870053218726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_69
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 47
+        width: 38
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 538ea546926f67480800000000000000
+      internalID: -8901656955813435339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_70
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 15
+        width: 72
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7e58eeaa315969e0800000000000000
+      internalID: -1627680477833306498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Culty Snowy tileset_71
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 15
+        width: 38
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ff698eda2e4fd8b0800000000000000
+      internalID: -5125291904895193102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Culty Snowy tileset_0: -716270110127566893
+      Culty Snowy tileset_1: 1355813961718146150
+      Culty Snowy tileset_10: 6428593879373385606
+      Culty Snowy tileset_11: 1855082678412851575
+      Culty Snowy tileset_12: -6490209085612820424
+      Culty Snowy tileset_13: 3980223114825259705
+      Culty Snowy tileset_14: 3447891366594696727
+      Culty Snowy tileset_15: 6870186736238981796
+      Culty Snowy tileset_16: 4850946138086152355
+      Culty Snowy tileset_17: 3056608043031020650
+      Culty Snowy tileset_18: -7605267973692986842
+      Culty Snowy tileset_19: 7451418273220998865
+      Culty Snowy tileset_2: 4832091675331094738
+      Culty Snowy tileset_20: -7766441432328357140
+      Culty Snowy tileset_21: 7387033574412501301
+      Culty Snowy tileset_22: -4497210932625923160
+      Culty Snowy tileset_23: 8558722930030560341
+      Culty Snowy tileset_24: 2316456813451898349
+      Culty Snowy tileset_25: 5744718971917160536
+      Culty Snowy tileset_26: -871903697367949633
+      Culty Snowy tileset_27: 1185942586967077257
+      Culty Snowy tileset_28: -4654871187677224525
+      Culty Snowy tileset_29: -1541533072978124941
+      Culty Snowy tileset_3: 4990527978391900092
+      Culty Snowy tileset_30: 5938406269316412491
+      Culty Snowy tileset_31: 7577315995365983146
+      Culty Snowy tileset_32: -5096234282811683
+      Culty Snowy tileset_33: 6562199374139235901
+      Culty Snowy tileset_34: 6399078264856236762
+      Culty Snowy tileset_35: -8019836437108294609
+      Culty Snowy tileset_36: 3090637762906819420
+      Culty Snowy tileset_37: 300241194364479507
+      Culty Snowy tileset_38: -2332789702216486258
+      Culty Snowy tileset_39: -8141178208638013485
+      Culty Snowy tileset_4: -4148071545412184947
+      Culty Snowy tileset_40: 9217752642486283709
+      Culty Snowy tileset_41: 7528032444479783969
+      Culty Snowy tileset_42: 5243867755094568425
+      Culty Snowy tileset_43: 3838863963944993046
+      Culty Snowy tileset_44: -5954229307314565899
+      Culty Snowy tileset_45: 4823078182400006642
+      Culty Snowy tileset_46: -6958413842218743107
+      Culty Snowy tileset_47: 6509576967809743879
+      Culty Snowy tileset_48: 7788107973095834114
+      Culty Snowy tileset_49: 3751253371109325564
+      Culty Snowy tileset_5: 7338361593399121320
+      Culty Snowy tileset_50: -8892376638749144555
+      Culty Snowy tileset_51: 5325740814543569775
+      Culty Snowy tileset_52: 337530833722754801
+      Culty Snowy tileset_53: 4180318085555979419
+      Culty Snowy tileset_54: 4455627754824058043
+      Culty Snowy tileset_55: 4077303743764536688
+      Culty Snowy tileset_56: -3591239672668982149
+      Culty Snowy tileset_57: 4004618127160800726
+      Culty Snowy tileset_58: -7501450469067133234
+      Culty Snowy tileset_59: -5512745426580997282
+      Culty Snowy tileset_6: -3383095107889841280
+      Culty Snowy tileset_60: -84671199546245479
+      Culty Snowy tileset_61: 4395300700908911369
+      Culty Snowy tileset_62: 4610893887878544261
+      Culty Snowy tileset_63: -4310126351551509275
+      Culty Snowy tileset_64: 588240371445854705
+      Culty Snowy tileset_65: -8160781794306450626
+      Culty Snowy tileset_66: -7819355222723324715
+      Culty Snowy tileset_67: -5833562021376297230
+      Culty Snowy tileset_68: 8951863870053218726
+      Culty Snowy tileset_69: -8901656955813435339
+      Culty Snowy tileset_7: -6868188093601727000
+      Culty Snowy tileset_70: -1627680477833306498
+      Culty Snowy tileset_71: -5125291904895193102
+      Culty Snowy tileset_8: -5048977454902350914
+      Culty Snowy tileset_9: -4961890284500352702
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
