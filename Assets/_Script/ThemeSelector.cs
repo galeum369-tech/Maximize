@@ -2,20 +2,19 @@ using UnityEngine;
 
 public class ThemeSelector : MonoBehaviour
 {
-    // 테마별 씬 이름 혹은 ID
+    public ThemeStageData[] availableThemes;
+
     public void SelectTheme(int themeIndex)
     {
-        string targetScene = "";
-        switch (themeIndex)
+        if (themeIndex >= 0 && themeIndex < availableThemes.Length)
         {
-            case 0: targetScene = "Field_Forest"; break;
-            case 1: targetScene = "Field_Desert"; break;
-        }
+            GameManager.Instance.SetTheme(availableThemes[themeIndex]);
 
-        if (targetScene != "")
-        {
-            // SceneControlManager를 통해 이동
-            SceneControlManager.Instance.LoadTargetScene(targetScene, GameState.Dungeon);
+            // [추가] 마을에서 나갈 때 무작위 번호(시드)를 하나 뽑아서 저장함
+            int newSeed = Random.Range(1, 99999);
+            PlayerPrefs.SetInt("CurrentFieldSeed", newSeed);
+
+            SceneControlManager.Instance.LoadTargetScene("FieldScene", GameState.Field);
         }
     }
 }
