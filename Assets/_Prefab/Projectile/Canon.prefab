@@ -76,8 +76,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2082656673
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 3265060137090216594, guid: 0a934eb6c1b2b3e40a6cb77c344c47f5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -111,6 +111,7 @@ MonoBehaviour:
     m_Bits: 1216
   timeToTarget: 0.8
   defaultDistance: 5
+  maxLifetime: 5
   explosionPrefab: {fileID: 3950027628379373394, guid: 1d2898f0984375c478036d38b9e2197f, type: 3}
 --- !u!50 &5909046830452414949
 Rigidbody2D:

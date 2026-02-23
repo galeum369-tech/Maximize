@@ -184,8 +184,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 843477937
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 7732212587292825396, guid: 332f5ffb525c6b74d80e1f0de9ff885b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -335,7 +335,7 @@ MonoBehaviour:
   platformLayer:
     serializedVersion: 2
     m_Bits: 128
-  jumpForce: 12
+  jumpForce: 14
   dashDistance: 3
   dashDuration: 0.2
   maxDashCount: 2

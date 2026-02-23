@@ -1,0 +1,1248 @@
+fileFormatVersion: 2
+guid: adf98f8262feae94f9b88cc8b8c0edb1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8263281769881421227
+    second: TileOrangeForest_0
+  - first:
+      213: -2126532808949634548
+    second: TileOrangeForest_1
+  - first:
+      213: 6349602003916571363
+    second: TileOrangeForest_2
+  - first:
+      213: 8048412527584294873
+    second: TileOrangeForest_3
+  - first:
+      213: -4203949572594135935
+    second: TileOrangeForest_4
+  - first:
+      213: -6505346469355926985
+    second: TileOrangeForest_5
+  - first:
+      213: -2541759764836999696
+    second: TileOrangeForest_6
+  - first:
+      213: 6257644919400776810
+    second: TileOrangeForest_7
+  - first:
+      213: 3761779520885215519
+    second: TileOrangeForest_8
+  - first:
+      213: 4655438074475837590
+    second: TileOrangeForest_9
+  - first:
+      213: -7665846860874537347
+    second: TileOrangeForest_10
+  - first:
+      213: 4907405892198728594
+    second: TileOrangeForest_11
+  - first:
+      213: 70560447874295397
+    second: TileOrangeForest_12
+  - first:
+      213: -2923833094670540646
+    second: TileOrangeForest_13
+  - first:
+      213: -147811836218029224
+    second: TileOrangeForest_14
+  - first:
+      213: 2247462755076940492
+    second: TileOrangeForest_15
+  - first:
+      213: 4786105918467106336
+    second: TileOrangeForest_16
+  - first:
+      213: -8663534343111372017
+    second: TileOrangeForest_17
+  - first:
+      213: -3511450585425470335
+    second: TileOrangeForest_18
+  - first:
+      213: 4886042687475007706
+    second: TileOrangeForest_19
+  - first:
+      213: 6026995596687288758
+    second: TileOrangeForest_20
+  - first:
+      213: 6039749651014448119
+    second: TileOrangeForest_21
+  - first:
+      213: 4694091217754366251
+    second: TileOrangeForest_22
+  - first:
+      213: 21820050362960554
+    second: TileOrangeForest_23
+  - first:
+      213: -7428163668434850943
+    second: TileOrangeForest_24
+  - first:
+      213: -182888039785816080
+    second: TileOrangeForest_25
+  - first:
+      213: 3147389702860582125
+    second: TileOrangeForest_26
+  - first:
+      213: 5112695145808928536
+    second: TileOrangeForest_27
+  - first:
+      213: -7239736756145611603
+    second: TileOrangeForest_28
+  - first:
+      213: -8473581552536331801
+    second: TileOrangeForest_29
+  - first:
+      213: 583888323672090932
+    second: TileOrangeForest_30
+  - first:
+      213: -2365558442211285931
+    second: TileOrangeForest_31
+  - first:
+      213: 7807641386247834218
+    second: TileOrangeForest_32
+  - first:
+      213: 2401878687394629160
+    second: TileOrangeForest_33
+  - first:
+      213: -1970329363125119342
+    second: TileOrangeForest_34
+  - first:
+      213: 4727132347507716536
+    second: TileOrangeForest_35
+  - first:
+      213: 6619671160558071139
+    second: TileOrangeForest_36
+  - first:
+      213: 7100417971561062878
+    second: TileOrangeForest_37
+  - first:
+      213: 133279968183528987
+    second: TileOrangeForest_38
+  - first:
+      213: -7787315985553592764
+    second: TileOrangeForest_39
+  - first:
+      213: -3315329150474034762
+    second: TileOrangeForest_40
+  - first:
+      213: -3974159042692668620
+    second: TileOrangeForest_41
+  - first:
+      213: 7658792536674331201
+    second: TileOrangeForest_42
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: TileOrangeForest_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 367
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba54ebc2df21da270800000000000000
+      internalID: 8263281769881421227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_1
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 367
+        width: 50
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0ae7575da90d72e0800000000000000
+      internalID: -2126532808949634548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_2
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 367
+        width: 50
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e24e8481615e1850800000000000000
+      internalID: 6349602003916571363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_3
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 363
+        width: 35
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d737703d84b1bf60800000000000000
+      internalID: 8048412527584294873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_4
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 364
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18c0fdf132298a5c0800000000000000
+      internalID: -4203949572594135935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_5
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 298
+        width: 61
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73ac2395add58b5a0800000000000000
+      internalID: -6505346469355926985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_6
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 337
+        width: 82
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fd9280f5fad9bcd0800000000000000
+      internalID: -2541759764836999696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_7
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 239
+        width: 148
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a64496756ee97d650800000000000000
+      internalID: 6257644919400776810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_8
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 305
+        width: 82
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f11d3b12b86843430800000000000000
+      internalID: 3761779520885215519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 239
+        width: 17
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 698f5fe53407b9040800000000000000
+      internalID: 4655438074475837590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_10
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 239
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d76a70b35e07d9590800000000000000
+      internalID: -7665846860874537347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_11
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 239
+        width: 32
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2930a2d88ab9a1440800000000000000
+      internalID: 4907405892198728594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_12
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 274
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5666dbe7a5eaaf000800000000000000
+      internalID: 70560447874295397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_13
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 255
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a90a1a1aa457c67d0800000000000000
+      internalID: -2923833094670540646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_14
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 239
+        width: 64
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85b40a80bedd2fdf0800000000000000
+      internalID: -147811836218029224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_15
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 176
+        width: 10
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc2284ad777903f10800000000000000
+      internalID: 2247462755076940492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_16
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 210
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02660a799f9ab6240800000000000000
+      internalID: 4786105918467106336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_17
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 175
+        width: 22
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0313739a61f4c780800000000000000
+      internalID: -8663534343111372017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_18
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 175
+        width: 22
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18c90690c42d44fc0800000000000000
+      internalID: -3511450585425470335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_19
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 207
+        width: 14
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad0c758dfe5bec340800000000000000
+      internalID: 4886042687475007706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_20
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 207
+        width: 14
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b9a363109034a350800000000000000
+      internalID: 6026995596687288758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_21
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 175
+        width: 30
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f37101ce4081d350800000000000000
+      internalID: 6039749651014448119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_22
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 175
+        width: 30
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b21a7899713c42140800000000000000
+      internalID: 4694091217754366251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_23
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 207
+        width: 82
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aaa8dde58358d4000800000000000000
+      internalID: 21820050362960554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_24
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 143
+        width: 17
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18b6a79ef7cd9e890800000000000000
+      internalID: -7428163668434850943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_25
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 143
+        width: 17
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ff16eafb40467df0800000000000000
+      internalID: -182888039785816080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_26
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 175
+        width: 46
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dec2ab85246cdab20800000000000000
+      internalID: 3147389702860582125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_27
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 176
+        width: 82
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81f1eca9521f3f640800000000000000
+      internalID: 5112695145808928536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_28
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 111
+        width: 30
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dac1a9e27c9478b90800000000000000
+      internalID: -7239736756145611603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_29
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 111
+        width: 30
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e9d4c1197ac76a80800000000000000
+      internalID: -8473581552536331801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_30
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 111
+        width: 30
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43929f836536a1800800000000000000
+      internalID: 583888323672090932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_31
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 111
+        width: 59
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 554e19c4129db2fd0800000000000000
+      internalID: -2365558442211285931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_32
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 111
+        width: 12
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6ac0f069705a5c60800000000000000
+      internalID: 7807641386247834218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_33
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 111
+        width: 12
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8260db3c0ff255120800000000000000
+      internalID: 2401878687394629160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_34
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 123
+        width: 82
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 296d76c22ebf7a4e0800000000000000
+      internalID: -1970329363125119342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_35
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 31
+        width: 34
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b1b47b13d52a9140800000000000000
+      internalID: 4727132347507716536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_36
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 15
+        width: 66
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36d26f619dbcddb50800000000000000
+      internalID: 6619671160558071139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_37
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 63
+        width: 9
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed162b78680c98260800000000000000
+      internalID: 7100417971561062878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_38
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 77
+        width: 9
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1e2147cc6189d100800000000000000
+      internalID: 133279968183528987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_39
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 29
+        width: 59
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44e6b5fbe55ede390800000000000000
+      internalID: -7787315985553592764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_40
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 75
+        width: 82
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b16f78f3b59df1d0800000000000000
+      internalID: -3315329150474034762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_41
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 27
+        width: 82
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 433a56b1863f8d8c0800000000000000
+      internalID: -3974159042692668620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileOrangeForest_42
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 15
+        width: 60
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14ae2eceb3f794a60800000000000000
+      internalID: 7658792536674331201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      TileOrangeForest_0: 8263281769881421227
+      TileOrangeForest_1: -2126532808949634548
+      TileOrangeForest_10: -7665846860874537347
+      TileOrangeForest_11: 4907405892198728594
+      TileOrangeForest_12: 70560447874295397
+      TileOrangeForest_13: -2923833094670540646
+      TileOrangeForest_14: -147811836218029224
+      TileOrangeForest_15: 2247462755076940492
+      TileOrangeForest_16: 4786105918467106336
+      TileOrangeForest_17: -8663534343111372017
+      TileOrangeForest_18: -3511450585425470335
+      TileOrangeForest_19: 4886042687475007706
+      TileOrangeForest_2: 6349602003916571363
+      TileOrangeForest_20: 6026995596687288758
+      TileOrangeForest_21: 6039749651014448119
+      TileOrangeForest_22: 4694091217754366251
+      TileOrangeForest_23: 21820050362960554
+      TileOrangeForest_24: -7428163668434850943
+      TileOrangeForest_25: -182888039785816080
+      TileOrangeForest_26: 3147389702860582125
+      TileOrangeForest_27: 5112695145808928536
+      TileOrangeForest_28: -7239736756145611603
+      TileOrangeForest_29: -8473581552536331801
+      TileOrangeForest_3: 8048412527584294873
+      TileOrangeForest_30: 583888323672090932
+      TileOrangeForest_31: -2365558442211285931
+      TileOrangeForest_32: 7807641386247834218
+      TileOrangeForest_33: 2401878687394629160
+      TileOrangeForest_34: -1970329363125119342
+      TileOrangeForest_35: 4727132347507716536
+      TileOrangeForest_36: 6619671160558071139
+      TileOrangeForest_37: 7100417971561062878
+      TileOrangeForest_38: 133279968183528987
+      TileOrangeForest_39: -7787315985553592764
+      TileOrangeForest_4: -4203949572594135935
+      TileOrangeForest_40: -3315329150474034762
+      TileOrangeForest_41: -3974159042692668620
+      TileOrangeForest_42: 7658792536674331201
+      TileOrangeForest_5: -6505346469355926985
+      TileOrangeForest_6: -2541759764836999696
+      TileOrangeForest_7: 6257644919400776810
+      TileOrangeForest_8: 3761779520885215519
+      TileOrangeForest_9: 4655438074475837590
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

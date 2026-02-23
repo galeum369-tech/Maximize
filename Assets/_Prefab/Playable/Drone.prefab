@@ -76,8 +76,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 843477937
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 3882729438411915723, guid: 0eb50e351eb15624da8fe494496dd3c2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -127,6 +127,7 @@ MonoBehaviour:
   owner: {fileID: 0}
   followOffset: {x: -1.2, y: 2, z: 0}
   followSpeed: 6
+  rotationSpeed: 10
   normalBulletPrefab: {fileID: 2321649552298896596, guid: 51ac3794b0dab0b428e5a10f9be9905d, type: 3}
   bigCannonPrefab: {fileID: 1976671449734820917, guid: b3f918d679f32ee47b954844b3930cfa, type: 3}
   fireRate: 0.5
@@ -148,6 +149,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: e1532a07f0aebae42b595cbc5ee357f9, type: 2}
   currentAtk: 0
+  fireRate: 0
+  range: 0
   skill1Cooldown: 5
   skill2Cooldown: 10
   skill1Timer: 0

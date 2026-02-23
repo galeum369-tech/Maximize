@@ -1,0 +1,1141 @@
+fileFormatVersion: 2
+guid: 0ecf4739455e79a4abb5ec28201fc5c0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6462310267973550183
+    second: Tent Pack Sprite Sheet_0
+  - first:
+      213: 2158452573129919931
+    second: Tent Pack Sprite Sheet_1
+  - first:
+      213: -9082700568913859757
+    second: Tent Pack Sprite Sheet_2
+  - first:
+      213: 5154827060149486264
+    second: Tent Pack Sprite Sheet_3
+  - first:
+      213: 1696895542156642336
+    second: Tent Pack Sprite Sheet_4
+  - first:
+      213: -5790536977451808220
+    second: Tent Pack Sprite Sheet_5
+  - first:
+      213: 7248544399500587799
+    second: Tent Pack Sprite Sheet_6
+  - first:
+      213: -4800901574813443832
+    second: Tent Pack Sprite Sheet_7
+  - first:
+      213: 6588393367396064541
+    second: Tent Pack Sprite Sheet_8
+  - first:
+      213: 1498471209782697633
+    second: Tent Pack Sprite Sheet_9
+  - first:
+      213: -4796562388251383815
+    second: Tent Pack Sprite Sheet_10
+  - first:
+      213: -5429558786616175633
+    second: Tent Pack Sprite Sheet_11
+  - first:
+      213: -8655265181577621480
+    second: Tent Pack Sprite Sheet_12
+  - first:
+      213: 2367680488535320220
+    second: Tent Pack Sprite Sheet_13
+  - first:
+      213: -2892456777049490498
+    second: Tent Pack Sprite Sheet_14
+  - first:
+      213: -2460546085413122212
+    second: Tent Pack Sprite Sheet_15
+  - first:
+      213: 597690656203785316
+    second: Tent Pack Sprite Sheet_16
+  - first:
+      213: 5135100963266890989
+    second: Tent Pack Sprite Sheet_17
+  - first:
+      213: -7719466351616734840
+    second: Tent Pack Sprite Sheet_18
+  - first:
+      213: 1652456311908361476
+    second: Tent Pack Sprite Sheet_19
+  - first:
+      213: -3110326614039494647
+    second: Tent Pack Sprite Sheet_20
+  - first:
+      213: -8729454565325133
+    second: Tent Pack Sprite Sheet_21
+  - first:
+      213: 4558186542001648724
+    second: Tent Pack Sprite Sheet_22
+  - first:
+      213: 5003752744729782507
+    second: Tent Pack Sprite Sheet_23
+  - first:
+      213: -8951219287825056863
+    second: Tent Pack Sprite Sheet_24
+  - first:
+      213: -1136978824357538325
+    second: Tent Pack Sprite Sheet_25
+  - first:
+      213: 7753055019795839330
+    second: Tent Pack Sprite Sheet_26
+  - first:
+      213: 563358517114077314
+    second: Tent Pack Sprite Sheet_27
+  - first:
+      213: 6619710497001725109
+    second: Tent Pack Sprite Sheet_28
+  - first:
+      213: 8364148028940540632
+    second: Tent Pack Sprite Sheet_29
+  - first:
+      213: -2234348180124754406
+    second: Tent Pack Sprite Sheet_30
+  - first:
+      213: -5962774686648910312
+    second: Tent Pack Sprite Sheet_31
+  - first:
+      213: -5757712357197346134
+    second: Tent Pack Sprite Sheet_32
+  - first:
+      213: -4325436832080930048
+    second: Tent Pack Sprite Sheet_33
+  - first:
+      213: -1966263423561512020
+    second: Tent Pack Sprite Sheet_34
+  - first:
+      213: -1024456204507289118
+    second: Tent Pack Sprite Sheet_35
+  - first:
+      213: -3201365445661351280
+    second: Tent Pack Sprite Sheet_36
+  - first:
+      213: 772499426257930140
+    second: Tent Pack Sprite Sheet_37
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SkyBuleCleanTent
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 527
+        width: 64
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7604cee23fcbea950800000000000000
+      internalID: 6462310267973550183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkyBuleMiddleDamageTant
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 527
+        width: 64
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbdcfe5ed2d54fd10800000000000000
+      internalID: 2158452573129919931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkyBuleHardDamageTant
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 527
+        width: 64
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35ba6ac64f3c3f180800000000000000
+      internalID: -9082700568913859757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tent Pack Sprite Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 527
+        width: 124
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b208c656ef998740800000000000000
+      internalID: 5154827060149486264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tent Pack Sprite Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 527
+        width: 66
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 028c03b41859c8710800000000000000
+      internalID: 1696895542156642336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tent Pack Sprite Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 527
+        width: 57
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42a88307c41e3afa0800000000000000
+      internalID: -5790536977451808220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrawnCleanTent
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 479
+        width: 63
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71331e61ab0089460800000000000000
+      internalID: 7248544399500587799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrawnMiddleDamageTant
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 479
+        width: 64
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80991a73475cf5db0800000000000000
+      internalID: -4800901574813443832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrawnHardDamageTant
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 479
+        width: 64
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1d9e206cdcae6b50800000000000000
+      internalID: 6588393367396064541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tent Pack Sprite Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 479
+        width: 124
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ae5f3540a3abc410800000000000000
+      internalID: 1498471209782697633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tent Pack Sprite Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 495
+        width: 53
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f7e641dbef2f6db0800000000000000
+      internalID: -4796562388251383815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tent Pack Sprite Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 495
+        width: 63
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe354a4fc0556a4b0800000000000000
+      internalID: -5429558786616175633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BuleCleanTent
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 431
+        width: 63
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8105247cc2252e780800000000000000
+      internalID: -8655265181577621480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BuleMiddleDamageTant
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 431
+        width: 64
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9665cc1cd0bbd020800000000000000
+      internalID: 2367680488535320220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BuleHardDamageTant
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 431
+        width: 64
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebb3bcbd2edebd7d0800000000000000
+      internalID: -2892456777049490498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tent Pack Sprite Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 431
+        width: 124
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5f09713f526addd0800000000000000
+      internalID: -2460546085413122212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tent Pack Sprite Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 431
+        width: 32
+        height: 55
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 464c8903c7c6b4800800000000000000
+      internalID: 597690656203785316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tent Pack Sprite Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 431
+        width: 32
+        height: 55
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dec0a418e1b834740800000000000000
+      internalID: 5135100963266890989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tent Pack Sprite Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 431
+        width: 32
+        height: 55
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 889cd40b042fed490800000000000000
+      internalID: -7719466351616734840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tent Pack Sprite Sheet_19
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 431
+        width: 36
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4056626b244bee610800000000000000
+      internalID: 1652456311908361476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tent Pack Sprite Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 471
+        y: 431
+        width: 36
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9008bba7c66e5d4d0800000000000000
+      internalID: -3110326614039494647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tent Pack Sprite Sheet_21
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 367
+        width: 56
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b60d897b9cf0eff0800000000000000
+      internalID: -8729454565325133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tent Pack Sprite Sheet_22
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 367
+        width: 56
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45479f7728ee14f30800000000000000
+      internalID: 4558186542001648724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tent Pack Sprite Sheet_23
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 367
+        width: 56
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be8218d3c96e07540800000000000000
+      internalID: 5003752744729782507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tent Pack Sprite Sheet_24
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 383
+        width: 40
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1abff8abb71e6c380800000000000000
+      internalID: -8951219287825056863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tent Pack Sprite Sheet_25
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 383
+        width: 40
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be5170188c3a830f0800000000000000
+      internalID: -1136978824357538325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tent Pack Sprite Sheet_26
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 319
+        width: 79
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2697dfa8672689b60800000000000000
+      internalID: 7753055019795839330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tent Pack Sprite Sheet_27
+      rect:
+        serializedVersion: 2
+        x: 369
+        y: 319
+        width: 79
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28086c5269371d700800000000000000
+      internalID: 563358517114077314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tent Pack Sprite Sheet_28
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 319
+        width: 79
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bc56b1df9feddb50800000000000000
+      internalID: 6619710497001725109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkyBlueLargeTant
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 223
+        width: 223
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8dad8c1315c631470800000000000000
+      internalID: 8364148028940540632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SKyBuleMiddleTant
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 319
+        width: 84
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1e9f131b200ef0e0800000000000000
+      internalID: -2234348180124754406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrawnMiddleTant
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 319
+        width: 84
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81eb99eb308ff3da0800000000000000
+      internalID: -5962774686648910312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BuleMiddleTant
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 319
+        width: 84
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aaa0066ed1f7810b0800000000000000
+      internalID: -5757712357197346134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrawnLargeTant
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 127
+        width: 223
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00bdc6d4e16f8f3c0800000000000000
+      internalID: -4325436832080930048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tent Pack Sprite Sheet_34
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 223
+        width: 321
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cabc5cf75dd66b4e0800000000000000
+      internalID: -1966263423561512020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BlueLargeTant
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 31
+        width: 223
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e9e562828668c1f0800000000000000
+      internalID: -1024456204507289118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tent Pack Sprite Sheet_36
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 127
+        width: 161
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0922527b6177293d0800000000000000
+      internalID: -3201365445661351280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tent Pack Sprite Sheet_37
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 31
+        width: 321
+        height: 88
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c970c43a22878ba00800000000000000
+      internalID: 772499426257930140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tent Pack Sprite Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 127
+        width: 160
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d2bcaaf06a696f42b17fc489c4d2380
+      internalID: -1869334535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 49b73e8985af8a945895a93217e414ae
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      BlueLargeTant: -1024456204507289118
+      BrawnCleanTent: 7248544399500587799
+      BrawnHardDamageTant: 6588393367396064541
+      BrawnLargeTant: -4325436832080930048
+      BrawnMiddleDamageTant: -4800901574813443832
+      BrawnMiddleTant: -5962774686648910312
+      BuleCleanTent: -8655265181577621480
+      BuleHardDamageTant: -2892456777049490498
+      BuleMiddleDamageTant: 2367680488535320220
+      BuleMiddleTant: -5757712357197346134
+      SKyBuleMiddleTant: -2234348180124754406
+      SkyBlueLargeTant: 8364148028940540632
+      SkyBuleCleanTent: 6462310267973550183
+      SkyBuleHardDamageTant: -9082700568913859757
+      SkyBuleMiddleDamageTant: 2158452573129919931
+      Tent Pack Sprite Sheet_0: -1869334535
+      Tent Pack Sprite Sheet_10: -4796562388251383815
+      Tent Pack Sprite Sheet_11: -5429558786616175633
+      Tent Pack Sprite Sheet_15: -2460546085413122212
+      Tent Pack Sprite Sheet_16: 597690656203785316
+      Tent Pack Sprite Sheet_17: 5135100963266890989
+      Tent Pack Sprite Sheet_18: -7719466351616734840
+      Tent Pack Sprite Sheet_19: 1652456311908361476
+      Tent Pack Sprite Sheet_20: -3110326614039494647
+      Tent Pack Sprite Sheet_21: -8729454565325133
+      Tent Pack Sprite Sheet_22: 4558186542001648724
+      Tent Pack Sprite Sheet_23: 5003752744729782507
+      Tent Pack Sprite Sheet_24: -8951219287825056863
+      Tent Pack Sprite Sheet_25: -1136978824357538325
+      Tent Pack Sprite Sheet_26: 7753055019795839330
+      Tent Pack Sprite Sheet_27: 563358517114077314
+      Tent Pack Sprite Sheet_28: 6619710497001725109
+      Tent Pack Sprite Sheet_3: 5154827060149486264
+      Tent Pack Sprite Sheet_34: -1966263423561512020
+      Tent Pack Sprite Sheet_36: -3201365445661351280
+      Tent Pack Sprite Sheet_37: 772499426257930140
+      Tent Pack Sprite Sheet_4: 1696895542156642336
+      Tent Pack Sprite Sheet_5: -5790536977451808220
+      Tent Pack Sprite Sheet_9: 1498471209782697633
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

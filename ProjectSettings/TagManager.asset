@@ -17,7 +17,7 @@ TagManager:
   - Player
   - Enemy
   - Wall
-  - 
+  - Item
   - 
   - 
   - 
@@ -41,6 +41,27 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BG_Far
+    uniqueID: 3510062887
+    locked: 0
+  - name: BG_Mid
+    uniqueID: 3662100007
+    locked: 0
+  - name: Platforms
+    uniqueID: 1957132445
+    locked: 0
+  - name: Actor
+    uniqueID: 843477937
+    locked: 0
+  - name: VFX
+    uniqueID: 2082656673
+    locked: 0
+  - name: Foreground
+    uniqueID: 1737855119
+    locked: 0
+  - name: UI
+    uniqueID: 3901000621
     locked: 0
   m_RenderingLayers:
   - Default
