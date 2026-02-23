@@ -149,13 +149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c86ada7ba359dd14ca7ff2c7eeb70b06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startMapPrefab: {fileID: 148399971857308117, guid: 164d2a4e7742a9c46a2e4bdd839077eb, type: 3}
-  endMapPrefab: {fileID: 4312628147059039758, guid: 9ea1b54cf5442a449918a87242b95b6d, type: 3}
-  battleMapPrefabs:
-  - {fileID: 185619392814512060, guid: 412d4431b396ec649b11333545356534, type: 3}
-  - {fileID: 8840565471103341350, guid: adb8b7b150d04a345ad3badc2b0722c2, type: 3}
-  minBattleMaps: 2
-  maxBattleMaps: 5
+  minBattleMaps: 3
+  maxBattleMaps: 6
 --- !u!114 &1964941853
 MonoBehaviour:
   m_ObjectHideFlags: 0
