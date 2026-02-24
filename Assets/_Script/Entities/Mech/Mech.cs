@@ -67,16 +67,16 @@ public class Mech : MonoBehaviour, IDamageable
     private void OnEnable()
     {
         input.OnMove += (vec) => moveInput = vec;
-        input.OnJump += HandleJump; // [수정] 메서드로 분리 (복잡해져서)
+        input.OnJump += HandleJump;
         input.OnAttack += (pressed) => isAttackHeld = pressed;
-        input.OnSkill1 += UseSkillA;
-        input.OnSkill2 += UseSkillS;
 
-        // 내가 활성화(변신)될 때마다 GameManager에 내 위치를 등록
+        // [핵심 수정] 입력을 컨트롤러로 포워딩
+        input.OnSkill1 += ForwardSkill1;
+        input.OnSkill2 += ForwardSkill2;
+        input.OnMaximize += ForwardMaximize;
+
         if (GameManager.Instance != null)
-        {
             GameManager.Instance.RegisterPlayer(transform);
-        }
     }
 
     private void OnDisable()
@@ -84,14 +84,21 @@ public class Mech : MonoBehaviour, IDamageable
         input.OnMove -= (vec) => moveInput = vec;
         input.OnJump -= HandleJump;
         input.OnAttack -= (pressed) => isAttackHeld = pressed;
-        input.OnSkill1 -= UseSkillA;
-        input.OnSkill2 -= UseSkillS;
+
+        // [핵심 수정] 해제
+        input.OnSkill1 -= ForwardSkill1;
+        input.OnSkill2 -= ForwardSkill2;
+        input.OnMaximize -= ForwardMaximize;
 
         isSkillActive = false;
         isJumpHeld = false;
         isAttackHeld = false;
         moveInput = Vector2.zero;
     }
+
+    private void ForwardSkill1() { PlayerSkillController.Instance?.TryUseSkill(0); }
+    private void ForwardSkill2() { PlayerSkillController.Instance?.TryUseSkill(1); }
+    private void ForwardMaximize() { PlayerSkillController.Instance?.TryTransform(); }
 
     private void Update()
     {
@@ -219,16 +226,13 @@ public class Mech : MonoBehaviour, IDamageable
     }
 
     // Mech.cs의 스킬 실행 함수 예시
-    private void UseSkillA()
+    public bool ExecuteSkill1() // 기존 UseSkillA
     {
-        if (isSkillActive || !isGrounded) return;
-        isSkillActive = true;
+        if (isSkillActive || !isGrounded) return false; // 공중에선 발동 불가 (쿨타임 안 먹음)
 
-        // 왼쪽을 보고 있다면 애니메이션 재생 속도를 -1로 하거나, 
-        // 레이저 오브젝트의 로컬 Y축을 180도 돌려버리는 꼼수가 있어.
+        isSkillActive = true;
         if (transform.localScale.x < 0)
         {
-            // 왼쪽일 때만 레이저를 담은 부모의 Y를 180도 돌려 거울 반전을 상쇄
             foreach (var l in laserObjects) l.transform.localRotation = Quaternion.Euler(0, 180, 0);
         }
         else
@@ -238,8 +242,18 @@ public class Mech : MonoBehaviour, IDamageable
 
         mc.Stop();
         ac.PlaySkillA();
+        return true; // 성공적으로 발동됨 (쿨타임 적용됨)
     }
-    private void UseSkillS() { if (isSkillActive || !isGrounded) return; isSkillActive = true; mc.Stop(); ac.PlaySkillS(); }
+
+    public bool ExecuteSkill2() // 기존 UseSkillS
+    {
+        if (isSkillActive || !isGrounded) return false;
+
+        isSkillActive = true;
+        mc.Stop();
+        ac.PlaySkillS();
+        return true;
+    }
 
     // 이벤트 메서드들 (기존과 동일)
     public void OnFireNormal() { if (normalBulletPrefab) FireAllPoints(normalBulletPrefab); }

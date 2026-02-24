@@ -72,30 +72,36 @@ public class Player : MonoBehaviour, IDamageable
     private void OnEnable()
     {
         inputHandler.OnMove += HandleMove;
-
-        // [수정] bool 매개변수를 받는 메서드 연결
         inputHandler.OnJump += HandleJump;
         inputHandler.OnAttack += HandleAttack;
-
         inputHandler.OnDodge += HandleDodge;
 
-        // 내가 활성화(변신)될 때마다 GameManager에 내 위치를 등록
+        // [추가] 입력을 중앙 컨트롤러로 포워딩
+        inputHandler.OnSkill1 += ForwardSkill1;
+        inputHandler.OnSkill2 += ForwardSkill2;
+        inputHandler.OnMaximize += ForwardMaximize;
+
         if (GameManager.Instance != null)
-        {
             GameManager.Instance.RegisterPlayer(transform);
-        }
     }
 
     private void OnDisable()
     {
         inputHandler.OnMove -= HandleMove;
-
-        // [수정] 연결 해제
         inputHandler.OnJump -= HandleJump;
         inputHandler.OnAttack -= HandleAttack;
-
         inputHandler.OnDodge -= HandleDodge;
+
+        // [추가] 해제
+        inputHandler.OnSkill1 -= ForwardSkill1;
+        inputHandler.OnSkill2 -= ForwardSkill2;
+        inputHandler.OnMaximize -= ForwardMaximize;
     }
+
+    // --- 컨트롤러로 입력 넘겨주기 ---
+    private void ForwardSkill1() { PlayerSkillController.Instance?.TryUseSkill(0); }
+    private void ForwardSkill2() { PlayerSkillController.Instance?.TryUseSkill(1); }
+    private void ForwardMaximize() { PlayerSkillController.Instance?.TryTransform(); }
 
     private void Update()
     {
@@ -162,6 +168,7 @@ public class Player : MonoBehaviour, IDamageable
 
         // 체력 차감
         state.currentHp -= actualDamage;
+        UIManager.Instance?.UpdateHP(state.currentHp, state.FinalMaxHP); // <- 맞았을 때 UI 갱신
         // ----------------------------
 
         rb.linearVelocity = Vector2.zero;

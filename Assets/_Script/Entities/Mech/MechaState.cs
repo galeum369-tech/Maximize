@@ -72,6 +72,7 @@ public class MechaState : MonoBehaviour
 
         // 3. 체력 차감
         currentHp -= actualDamage;
+        UIManager.Instance?.UpdateHP(currentHp, FinalMaxHP); // <- 맞았을 때 UI 갱신
 
         // 4. 파괴 체크
         if (currentHp <= 0)
