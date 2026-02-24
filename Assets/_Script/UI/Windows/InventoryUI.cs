@@ -214,7 +214,7 @@ public class InventoryUI : MonoBehaviour
             uiSlots[i].UpdateSlot(dataSlots[i]);
         }
         UpdateFocusVisuals();
-        statDisplay.Refresh();
+        
     }
 
     private void UpdateFocusVisuals()

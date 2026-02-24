@@ -931,7 +931,8 @@ MonoBehaviour:
   - {fileID: 5100520424938200424}
   - {fileID: 7238406091779641734}
   - {fileID: 8819004246048889801}
-  spawnableEnemyData: []
+  spawnableEnemyData:
+  - {fileID: 11400000, guid: 9e313f278b6a29e4094910547f189189, type: 2}
 --- !u!1 &5637476273316433885
 GameObject:
   m_ObjectHideFlags: 0

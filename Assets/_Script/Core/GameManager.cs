@@ -24,6 +24,13 @@ public class GameManager : MonoBehaviour
     public int currentMoney;
     public event Action<int> OnMoneyChanged;
 
+    // ==========================================
+    // [추가된 부분] 데미지 텍스트 등 UI/이펙트 프리팹 보관
+    // ==========================================
+    [Header("UI / 이펙트 프리팹")]
+    // 몬스터 피격 시 허공에 띄울 데미지 숫자 프리팹
+    public GameObject damageTextPrefab;
+
     private void Awake()
     {
         if (Instance == null)

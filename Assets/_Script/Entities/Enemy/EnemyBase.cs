@@ -108,6 +108,12 @@ public class EnemyBase : MonoBehaviour, IDamageable
         float actualDamage = Mathf.Max(damage * (1f - reduction), 1f);
 
         currentHp -= actualDamage;
+        // [UI 연동] 데미지 텍스트 프리팹을 몬스터 머리 위 위치에 생성
+        if (GameManager.Instance.damageTextPrefab != null)
+        {
+            GameObject textObj = Instantiate(GameManager.Instance.damageTextPrefab, transform.position + Vector3.up, Quaternion.identity);
+            textObj.GetComponent<DamageText>().Setup(damage, false); // 데미지 수치 전달
+        }
         ac.PlayHit();
 
         rb.linearVelocity = Vector2.zero;
