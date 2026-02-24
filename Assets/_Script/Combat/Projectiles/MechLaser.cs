@@ -20,7 +20,7 @@ public class MechaLaser : MonoBehaviour
         {
             hitbox = laserVisual.GetComponent<UniversalHitbox>();
         }
-        Deactivate();
+        
     }
 
     public void Activate(float atk)

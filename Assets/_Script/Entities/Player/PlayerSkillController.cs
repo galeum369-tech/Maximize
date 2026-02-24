@@ -2,23 +2,37 @@ using UnityEngine;
 
 public class PlayerSkillController : MonoBehaviour
 {
+    public static PlayerSkillController Instance { get; private set; }
+
     [Header("데이터 참조")]
-    public PlayerData playerData; // 플레이어 데이터 (에너지 최대치 등)
+    public PlayerData playerData;
+
+    [Header("실행기 참조 (인스펙터 할당)")]
+    public SubDrone droneScript;
+    public Mech mechScript;
 
     [Header("폼 상태")]
     public bool isMechaForm = false;
-    private float currentMechaEnergy = 0f; // 현재 모인 변신 게이지
+    private float currentMechaEnergy = 0f;
 
     [Header("스킬 쿨타임 (0:스킬1, 1:스킬2, 2:변신)")]
-    public float[] humanMaxCooldowns = { 3f, 8f, 1f }; // 변신(2번) 쿨타임은 UI 연출용으로 안 씀, 기본 1초 등 짧게 세팅
+    public float[] humanMaxCooldowns = { 5f, 10f, 1f };
     private float[] humanCurrentCooldowns = { 0f, 0f, 0f };
 
-    public float[] mechaMaxCooldowns = { 5f, 12f, 1f }; // 메카에서 인간으로 내리는 쿨타임 (언제든 내릴 수 있게 1초로 짧게 세팅)
+    public float[] mechaMaxCooldowns = { 5f, 12f, 1f };
     private float[] mechaCurrentCooldowns = { 0f, 0f, 0f };
+
+    [Header("에너지 소모량(초당)")]
+    public float lessEnerge = 1f;
+
+    private void Awake()
+    {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
 
     private void Start()
     {
-        // 시작 시 UI 초기화
         if (UIManager.Instance != null)
         {
             UIManager.Instance.SwapSkillForm(false);
@@ -36,60 +50,44 @@ public class PlayerSkillController : MonoBehaviour
         // 2. UI 지속 업데이트
         UpdateCooldownUI();
 
-        // 3. 플레이어 입력 체크
-        HandleInput();
+        // 3. 메카 폼일 때 에너지 지속 감소 로직 추가
+        if (isMechaForm)
+        {
+            // 1초에 1씩 감소 (Time.deltaTime은 1프레임당 걸린 시간)
+            currentMechaEnergy -= lessEnerge * Time.deltaTime;
+
+            // 감소하는 에너지를 UI에 실시간 반영
+            UpdateEnergyUI();
+
+            // 에너지가 바닥나면 강제로 인간 폼으로 복귀
+            if (currentMechaEnergy <= 0f)
+            {
+                currentMechaEnergy = 0f;
+                ForceRevertToHuman();
+            }
+        }
+
+        // 🛠️ [테스트용 치트키] 키보드 숫자 1 누르면 게이지 MAX
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            if (!isMechaForm)
+            {
+                currentMechaEnergy = playerData.mechaMaxEnergy;
+                UpdateEnergyUI();
+                Debug.Log("🛠️ [치트] 메카닉 변신 게이지 MAX!");
+            }
+        }
     }
 
-    // 적 타격 시 호출 (UniversalHitbox 등에서)
     public void AddMechaEnergy()
     {
         if (isMechaForm) return;
 
-        float gain = playerData.GetEnergyGainPerHit();
-        currentMechaEnergy += gain;
-
+        currentMechaEnergy += playerData.GetEnergyGainPerHit();
         if (currentMechaEnergy > playerData.mechaMaxEnergy)
-        {
             currentMechaEnergy = playerData.mechaMaxEnergy;
-        }
 
         UpdateEnergyUI();
-    }
-
-    // ==========================================
-    // [핵심 변경점] 쿨타임 UI 업데이트 로직
-    // ==========================================
-    private void UpdateCooldownUI()
-    {
-        if (UIManager.Instance == null) return;
-
-        if (isMechaForm)
-        {
-            // 메카 폼일 때는 일반적인 쿨타임 그대로 전달
-            UIManager.Instance.UpdateAllSkillCooldowns(mechaCurrentCooldowns, mechaMaxCooldowns);
-        }
-        else
-        {
-            // 인간 폼일 때: 1, 2번 슬롯은 쿨타임, 3번(변신) 슬롯은 게이지 기반으로 계산해서 전달
-            float[] displayCurrent = new float[3];
-            float[] displayMax = new float[3];
-
-            // 1번, 2번 스킬은 기존 쿨타임 그대로
-            displayCurrent[0] = humanCurrentCooldowns[0]; displayMax[0] = humanMaxCooldowns[0];
-            displayCurrent[1] = humanCurrentCooldowns[1]; displayMax[1] = humanMaxCooldowns[1];
-
-            // 3번 변신 스킬: 게이지가 0이면 가림막 100%, 게이지가 꽉 차면 가림막 0% (스킬 사용 가능 연출)
-            displayMax[2] = playerData.mechaMaxEnergy;
-            displayCurrent[2] = playerData.mechaMaxEnergy - currentMechaEnergy; // 부족한 에너지를 '남은 쿨타임'처럼 취급
-
-            UIManager.Instance.UpdateAllSkillCooldowns(displayCurrent, displayMax);
-        }
-    }
-
-    private void UpdateEnergyUI()
-    {
-        if (UIManager.Instance == null) return;
-        UIManager.Instance.UpdateMechaEnergy(currentMechaEnergy, playerData.mechaMaxEnergy);
     }
 
     private void ProcessCooldowns(float[] cooldowns)
@@ -100,67 +98,102 @@ public class PlayerSkillController : MonoBehaviour
         }
     }
 
-    private void HandleInput()
+    private void UpdateCooldownUI()
     {
-        if (Input.GetKeyDown(KeyCode.Q)) TryUseSkill(0);
-        if (Input.GetKeyDown(KeyCode.W)) TryUseSkill(1);
-        if (Input.GetKeyDown(KeyCode.E)) TryTransform();
+        if (UIManager.Instance == null) return;
+
+        if (isMechaForm)
+        {
+            UIManager.Instance.UpdateAllSkillCooldowns(mechaCurrentCooldowns, mechaMaxCooldowns);
+        }
+        else
+        {
+            float[] displayCurrent = new float[3];
+            float[] displayMax = new float[3];
+
+            displayCurrent[0] = humanCurrentCooldowns[0]; displayMax[0] = humanMaxCooldowns[0];
+            displayCurrent[1] = humanCurrentCooldowns[1]; displayMax[1] = humanMaxCooldowns[1];
+
+            displayMax[2] = playerData.mechaMaxEnergy;
+            displayCurrent[2] = playerData.mechaMaxEnergy - currentMechaEnergy;
+
+            UIManager.Instance.UpdateAllSkillCooldowns(displayCurrent, displayMax);
+        }
     }
 
-    private void TryUseSkill(int slotIndex)
+    private void UpdateEnergyUI()
+    {
+        if (UIManager.Instance != null)
+            UIManager.Instance.UpdateMechaEnergy(currentMechaEnergy, playerData.mechaMaxEnergy);
+    }
+
+    public void TryUseSkill(int slotIndex)
     {
         float[] currentCooldowns = isMechaForm ? mechaCurrentCooldowns : humanCurrentCooldowns;
         float[] maxCooldowns = isMechaForm ? mechaMaxCooldowns : humanMaxCooldowns;
 
         if (currentCooldowns[slotIndex] <= 0f)
         {
-            currentCooldowns[slotIndex] = maxCooldowns[slotIndex];
+            bool isSuccess = false;
 
             if (isMechaForm)
             {
-                Debug.Log($"메카 스킬 {slotIndex} 사용!");
-                // TODO: GetComponent<MechaState>().ChangeState(...) 호출
+                if (slotIndex == 0) isSuccess = mechScript.ExecuteSkill1();
+                else if (slotIndex == 1) isSuccess = mechScript.ExecuteSkill2();
             }
             else
             {
-                Debug.Log($"인간 스킬 {slotIndex} 사용!");
-                // TODO: GetComponent<PlayerState>().ChangeState(...) 호출
+                if (slotIndex == 0) isSuccess = droneScript.ExecuteSkill1();
+                else if (slotIndex == 1) isSuccess = droneScript.ExecuteSkill2();
+            }
+
+            if (isSuccess)
+            {
+                currentCooldowns[slotIndex] = maxCooldowns[slotIndex];
             }
         }
     }
 
-    private void TryTransform()
+    public void TryTransform()
     {
         int transformSlot = 2;
 
         if (!isMechaForm)
         {
-            // [인간 -> 메카] 에너지가 꽉 찼는지 확인
+            // 인간 -> 메카
             if (currentMechaEnergy >= playerData.mechaMaxEnergy)
             {
-                currentMechaEnergy = 0f; // 에너지 초기화
-
+                // 변신할 때 에너지를 0으로 만들지 않고 유지함 (그래야 메카 상태에서 깎임)
                 isMechaForm = true;
+
                 UIManager.Instance.SwapSkillForm(true);
                 UpdateEnergyUI();
-
-                Debug.Log("메카닉 폼 체인지 완료!");
-                // TODO: FSM 교체 및 모델링 변경 로직
+                PlayerTransformManager.Instance.ToMecha();
             }
         }
         else
         {
-            // [메카 -> 인간] 언제든 쿨타임만 아니면 내릴 수 있음
+            // 메카 -> 인간 (수동 탈출)
             if (mechaCurrentCooldowns[transformSlot] <= 0f)
             {
                 mechaCurrentCooldowns[transformSlot] = mechaMaxCooldowns[transformSlot];
-
-                isMechaForm = false;
-                UIManager.Instance.SwapSkillForm(false);
-
-                Debug.Log("인간 폼으로 복귀!");
-                // TODO: FSM 교체 및 모델링 변경 로직
+                ForceRevertToHuman(); // 중복 코드 방지를 위해 함수로 분리
             }
         }
+    }
+
+    // 에너지가 다 떨어지거나 수동으로 탈출할 때 호출되는 강제 해제 로직
+    private void ForceRevertToHuman()
+    {
+        isMechaForm = false;
+
+        // 인간으로 돌아와도 게이지 유지
+        //currentMechaEnergy = 0f;
+        UpdateEnergyUI();
+
+        UIManager.Instance.SwapSkillForm(false);
+        PlayerTransformManager.Instance.ToHuman();
+
+        Debug.Log("메카닉 해제! 파일럿 복귀 완료.");
     }
 }

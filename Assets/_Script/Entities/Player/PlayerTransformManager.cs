@@ -5,15 +5,14 @@ public class PlayerTransformManager : MonoBehaviour
     public static PlayerTransformManager Instance;
 
     [Header("플레이어 오브젝트 참조")]
-    public GameObject humanObject; // 파일럿
-    public GameObject mechaObject; // 메카닉
-    public GameObject droneObject; // 드론 (추가됨)
+    public GameObject humanObject;
+    public GameObject mechaObject;
+    public GameObject droneObject;
 
     [Header("설정")]
-    public bool startAsMecha = false; // 테스트용 시작 모드
-    public bool isDroneActiveInHuman = true; // 인간일 때 드론 사용 여부
+    public bool startAsMecha = false;
+    public bool isDroneActiveInHuman = true;
 
-    // 현재 상태 프로퍼티
     public bool IsMechaMode { get; private set; }
 
     private void Awake()
@@ -24,14 +23,8 @@ public class PlayerTransformManager : MonoBehaviour
 
     private void Start()
     {
-        // 1. 각 캐릭터의 입력 핸들러를 찾아 이벤트 구독
-        var humanInput = humanObject.GetComponent<PlayerInputHandler>();
-        var mechaInput = mechaObject.GetComponent<PlayerInputHandler>();
+        // [수정] 직접 input.OnMaximize를 구독하던 로직 삭제 (PlayerSkillController가 호출함)
 
-        if (humanInput != null) humanInput.OnMaximize += ToggleMode;
-        if (mechaInput != null) mechaInput.OnMaximize += ToggleMode;
-
-        // 2. 초기 모드 설정
         if (startAsMecha) ToMecha(true);
         else ToHuman(true);
     }
@@ -89,27 +82,27 @@ public class PlayerTransformManager : MonoBehaviour
         {
             mechaObject.transform.position = humanObject.transform.position;
             mechaObject.transform.rotation = humanObject.transform.rotation;
-
-            // 드론 위치도 메카 쪽으로 즉시 이동 (부드러운 추적 중이라면 생략 가능)
-            if (droneObject != null)
-            {
-                droneObject.transform.position = mechaObject.transform.position;
-            }
+            if (droneObject != null) droneObject.transform.position = mechaObject.transform.position;
         }
 
-        // 2. 메카 체력/스탯 초기화
+        // 2. 메카 체력/스탯 초기화 및 UI 갱신
         MechaState mState = mechaObject.GetComponent<MechaState>();
         if (mState != null)
         {
-            mState.RecalculateFinalStats();
-            mState.currentHp = mState.FinalMaxHP;
+            if (isInit) // 씬 시작 등 초기화 때만 체력 꽉 채우기
+            {
+                mState.RecalculateFinalStats();
+                mState.currentHp = mState.FinalMaxHP;
+            }
+
+            // [추가] 변신 즉시 UIManager에 메카 체력 정보 전달해서 화면 갱신!
+            UIManager.Instance?.UpdateHP(mState.currentHp, mState.FinalMaxHP);
         }
 
         // 3. 오브젝트 스위칭
         humanObject.SetActive(false);
         droneObject.SetActive(false);
         mechaObject.SetActive(true);
-
 
         IsMechaMode = true;
         Debug.Log(">>> 메카닉 소환 완료!");
@@ -123,23 +116,19 @@ public class PlayerTransformManager : MonoBehaviour
         {
             humanObject.transform.position = mechaObject.transform.position;
             humanObject.transform.rotation = mechaObject.transform.rotation;
-
-            // 드론 위치 동기화
-            if (droneObject != null)
-            {
-                droneObject.transform.position = humanObject.transform.position;
-            }
+            if (droneObject != null) droneObject.transform.position = humanObject.transform.position;
         }
 
         // 2. 오브젝트 스위칭
         mechaObject.SetActive(false);
         humanObject.SetActive(true);
-        droneObject.SetActive(true);
+        if (droneObject != null) droneObject.SetActive(isDroneActiveInHuman);
 
-        // 인간일 때 드론 사용 여부에 따라 활성화/비활성화
-        if (droneObject != null)
+        // [추가] 복귀 즉시 UIManager에 인간 폼 체력 정보 전달해서 화면 갱신!
+        PlayerState pState = humanObject.GetComponent<PlayerState>();
+        if (pState != null)
         {
-            droneObject.SetActive(isDroneActiveInHuman);
+            UIManager.Instance?.UpdateHP(pState.currentHp, pState.FinalMaxHP);
         }
 
         IsMechaMode = false;

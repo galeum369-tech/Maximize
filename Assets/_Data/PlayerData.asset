@@ -13,27 +13,34 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   money: 0
-  attackLevel: 1
-  hpLevel: 1
-  defLevel: 1
-  spdLevel: 1
+  humanLevel: 1
+  mechaLevel: 1
+  droneLevel: 1
   baseAtk: 10
   baseHp: 100
   baseDef: 5
   baseSpd: 10
-  mechaBaseHp: 500
-  mechaBaseAtk: 50
-  mechaBaseDef: 20
-  mechaBaseSpd: 8
-  mechaFuelMax: 100
-  droneBaseAtk: 5
-  droneAtkIncr: 1.5
-  droneFireRate: 0.5
-  droneRange: 10
+  baseEnergyGain: 2.5
   atkIncr: 2
   hpIncr: 20
   defIncr: 1
   spdIncr: 0.1
+  energyGainIncr: 0.5
+  mechaBaseHp: 500
+  mechaBaseAtk: 50
+  mechaBaseDef: 20
+  mechaBaseSpd: 8
+  mechaMaxEnergy: 100
   mechaHpIncr: 50
   mechaAtkIncr: 5
   mechaDefIncr: 2
+  droneBaseAtk: 5
+  droneFireRate: 0.25
+  droneRange: 10
+  droneAtkIncr: 1.5
+  humanBaseCost: 100
+  humanCostIncr: 50
+  mechaBaseCost: 500
+  mechaCostIncr: 200
+  droneBaseCost: 200
+  droneCostIncr: 100

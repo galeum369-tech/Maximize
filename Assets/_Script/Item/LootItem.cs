@@ -15,9 +15,9 @@ public class LootItem : MonoBehaviour
     [Header("자석 효과 설정")]
     public float pullRange = 5f;  // 플레이어를 감지할 범위
     public float pullSpeed = 10f; // 끌려가는 속도
-    private Transform playerTransform;
+    public float eatRange = 0.5f; // [추가] 이 거리 안으로 들어오면 획득됨
 
-    // [추가] 튀어 오르는 걸 감상할 딜레이 시간
+    private Transform playerTransform;
     private float magnetDelay = 0.5f;
 
     private void Awake()
@@ -25,13 +25,13 @@ public class LootItem : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
 
-        // 플레이어와 부딪혔을 때 물리적 충돌은 무시하고 판정만 하도록 설정
-        col.isTrigger = true;
+        // [수정] 트리거 강제 전환 삭제! 바닥이랑 정상적으로 충돌해서 튕기도록 냅둠
+        // col.isTrigger = true; 
     }
 
     private void Start()
     {
-        // 생성될 때 위로 살짝 튀어오르는 연출 (파밍하는 맛을 살림)
+        // 생성될 때 위로 살짝 튀어오르는 연출
         rb.AddForce(new Vector2(Random.Range(-2f, 2f), 5f), ForceMode2D.Impulse);
     }
 
@@ -39,49 +39,44 @@ public class LootItem : MonoBehaviour
     {
         if (isCollected) return;
 
-        // 딜레이가 아직 안 끝났으면 자석 효과 작동 안 함
+        // 딜레이가 아직 안 끝났으면 대기
         if (magnetDelay > 0)
         {
             magnetDelay -= Time.deltaTime;
             return;
         }
 
-        // 플레이어가 주변에 있는지 확인
+        // 플레이어 타겟팅 (GameManager 적극 활용)
         if (playerTransform == null || !playerTransform.gameObject.activeInHierarchy)
         {
-            Collider2D hit = Physics2D.OverlapCircle(transform.position, pullRange, LayerMask.GetMask("Player"));
-            if (hit != null) playerTransform = hit.transform;
+            // 네가 만든 GameManager에 등록된 진짜 활성화 플레이어를 가져옴
+            if (GameManager.Instance != null && GameManager.Instance.GetActivePlayer() != null)
+            {
+                playerTransform = GameManager.Instance.GetActivePlayer();
+            }
+            else
+            {
+                // 보험용 OverlapCircle
+                Collider2D hit = Physics2D.OverlapCircle(transform.position, pullRange, LayerMask.GetMask("Player"));
+                if (hit != null) playerTransform = hit.transform;
+            }
         }
         else
         {
             // 플레이어 방향으로 이동 (자석 효과)
             transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, pullSpeed * Time.deltaTime);
-        }
-    
 
-        // 타겟이 꺼져있다면(변신 등으로 인해) 타겟 초기화
-        if (playerTransform != null && !playerTransform.gameObject.activeInHierarchy)
-        {
-            playerTransform = null;
-        }
-
-        if (playerTransform == null)
-        {
-            Collider2D hit = Physics2D.OverlapCircle(transform.position, pullRange, LayerMask.GetMask("Player"));
-            if (hit != null) playerTransform = hit.transform;
-        }
-        else
-        {
-            transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, pullSpeed * Time.deltaTime);
+            // [핵심] 트리거 콜라이더 대신, 실제 거리를 재서 먹어버림!
+            if (Vector2.Distance(transform.position, playerTransform.position) <= eatRange)
+            {
+                TryCollectItem();
+            }
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    // 아이템 획득 시도 (OnTriggerEnter2D를 대체함)
+    private void TryCollectItem()
     {
-        // 이미 먹은 아이템이거나, 부딪힌 게 플레이어가 아니면 무시
-        if (isCollected || !collision.CompareTag("Player")) return;
-
-        // 인벤토리 매니저를 통해 아이템 추가 시도
         bool isAdded = InventoryManager.Instance.AddItem(itemData, amount);
 
         if (isAdded)
@@ -89,15 +84,16 @@ public class LootItem : MonoBehaviour
             isCollected = true;
             Debug.Log($"<color=yellow>{itemData.itemName}</color> {amount}개 획득!");
 
-            // 획득 이펙트나 사운드를 여기서 재생하면 됨
-
-            // 인벤토리에 잘 들어갔으면 필드에서 오브젝트 삭제
+            // TODO: 획득 이펙트나 사운드 재생
             Destroy(gameObject);
         }
         else
         {
-            // 인벤토리가 꽉 찼을 경우
             Debug.Log("인벤토리가 꽉 차서 먹을 수 없어!");
+
+            // 인벤토리가 꽉 찼을 때 플레이어 몸에 비비적거리지 않게 살짝 밀어내거나 타겟을 초기화
+            playerTransform = null;
+            magnetDelay = 1f; // 1초 뒤에 다시 자석 켜짐
         }
     }
 }
