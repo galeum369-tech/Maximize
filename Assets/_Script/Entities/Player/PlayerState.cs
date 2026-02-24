@@ -5,19 +5,11 @@ public class PlayerState : MonoBehaviour
     [Header("데이터 참조")]
     public PlayerData baseData;
 
-    [Header("장착 슬롯")]
-    public EquipmentData coreSlot;
-    public EquipmentData frameSlot;
-    public EquipmentData gearSlot;
-    public EquipmentData chipSlot;
-
     // 최종 스탯
     public float FinalMaxHP { get; private set; }
     public float FinalAtk { get; private set; }
     public float FinalDef { get; private set; }
     public float FinalSpd { get; private set; }
-
-    public event System.Action OnStatsChanged;
 
     [Header("현재 상태")]
     public float currentHp;
@@ -28,45 +20,28 @@ public class PlayerState : MonoBehaviour
         currentHp = FinalMaxHP;
     }
 
-    public void Equip(EquipmentData newItem)
+    private void OnEnable()
     {
-        if (newItem == null) return;
-        switch (newItem.equipType)
-        {
-            case EquipType.Core: coreSlot = newItem; break;
-            case EquipType.Frame: frameSlot = newItem; break;
-            case EquipType.Gear: gearSlot = newItem; break;
-            case EquipType.Chip: chipSlot = newItem; break;
-        }
-        RecalculateFinalStats();
+        // 인벤토리에서 장비가 변경될 때마다 자동 재계산 구독
+        if (InventoryManager.Instance != null)
+            InventoryManager.Instance.OnEquipmentChanged += RecalculateFinalStats;
+    }
+
+    private void OnDisable()
+    {
+        if (InventoryManager.Instance != null)
+            InventoryManager.Instance.OnEquipmentChanged -= RecalculateFinalStats;
     }
 
     public void RecalculateFinalStats()
     {
-        FinalMaxHP = baseData.GetHp() + GetTotalBonus("hp");
-        FinalAtk = baseData.GetAtk() + GetTotalBonus("atk");
-        FinalDef = baseData.GetDef() + GetTotalBonus("def");
-        FinalSpd = baseData.GetSpd() + GetTotalBonus("spd");
+        // 인벤토리 매니저에서 "Player" 대상의 보너스 수치를 싹 긁어옴
+        FinalMaxHP = baseData.GetHp() + InventoryManager.Instance.GetTotalBonus("Player", "hp");
+        FinalAtk = baseData.GetAtk() + InventoryManager.Instance.GetTotalBonus("Player", "atk");
+        FinalDef = baseData.GetDef() + InventoryManager.Instance.GetTotalBonus("Player", "def");
+        FinalSpd = baseData.GetSpd() + InventoryManager.Instance.GetTotalBonus("Player", "spd");
 
         currentHp = Mathf.Min(currentHp, FinalMaxHP);
-    }
-
-    private float GetTotalBonus(string statType)
-    {
-        return GetBonus(coreSlot, statType) + GetBonus(frameSlot, statType) +
-               GetBonus(gearSlot, statType) + GetBonus(chipSlot, statType);
-    }
-
-    private float GetBonus(EquipmentData item, string statType)
-    {
-        if (item == null) return 0;
-        switch (statType)
-        {
-            case "hp": return item.hpBonus;
-            case "atk": return item.atkBonus;
-            case "def": return item.defBonus;
-            case "spd": return item.spdBonus;
-            default: return 0;
-        }
+        Debug.Log($"[Player] 스탯 갱신 완료! ATK: {FinalAtk}");
     }
 }

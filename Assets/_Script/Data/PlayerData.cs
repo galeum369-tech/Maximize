@@ -6,7 +6,6 @@ public class PlayerData : ScriptableObject
     [Header("보유 재화")]
     public int money;
 
-    // [수정] 개별 스탯 레벨 대신 폼(Form)별 통합 레벨로 변경!
     [Header("=== 통합 레벨 ===")]
     public int humanLevel = 1;
     public int mechaLevel = 1;
@@ -30,7 +29,7 @@ public class PlayerData : ScriptableObject
     public float mechaBaseHp = 500f;
     public float mechaBaseAtk = 50f;
     public float mechaBaseDef = 20f;
-    public float mechaBaseSpd = 8f;
+    public float mechaBaseSpd = 8f;   // [추가됨] 메카 기본 속도
     public float mechaMaxEnergy = 100f; // 변신에 필요한 통 
 
     [Header("메카 레벨당 증가량")]
@@ -45,52 +44,32 @@ public class PlayerData : ScriptableObject
 
     [Header("드론 레벨당 증가량")]
     public float droneAtkIncr = 1.5f;
-    // 필요하다면 발사 속도나 사거리 증가량도 추가 가능
 
     [Header("=== 업그레이드 비용 설정 ===")]
-    // 인간 강화 비용
     public int humanBaseCost = 100;
     public int humanCostIncr = 50;
-
-    // 메카 강화 비용 (메카는 강력하니까 더 비싸게!)
     public int mechaBaseCost = 500;
     public int mechaCostIncr = 200;
-
-    // 드론 강화 비용
     public int droneBaseCost = 200;
     public int droneCostIncr = 100;
 
-    // 인간 레벨업 비용 계산
-    public int GetHumanUpgradeCost()
-    {
-        return humanBaseCost + (humanLevel - 1) * humanCostIncr;
-    }
+    public int GetHumanUpgradeCost() => humanBaseCost + (humanLevel - 1) * humanCostIncr;
+    public int GetMechaUpgradeCost() => mechaBaseCost + (mechaLevel - 1) * mechaCostIncr;
+    public int GetDroneUpgradeCost() => droneBaseCost + (droneLevel - 1) * droneCostIncr;
 
-    // 메카 레벨업 비용 계산
-    public int GetMechaUpgradeCost()
-    {
-        return mechaBaseCost + (mechaLevel - 1) * mechaCostIncr;
-    }
-
-    // 드론 레벨업 비용 계산
-    public int GetDroneUpgradeCost()
-    {
-        return droneBaseCost + (droneLevel - 1) * droneCostIncr;
-    }
-
-    // --- [수정] 인간 스탯 (humanLevel 하나로 모든 스탯이 오름) ---
+    // --- 인간 스탯 ---
     public float GetAtk() => baseAtk + (humanLevel - 1) * atkIncr;
     public float GetHp() => baseHp + (humanLevel - 1) * hpIncr;
     public float GetDef() => baseDef + (humanLevel - 1) * defIncr;
     public float GetSpd() => baseSpd + (humanLevel - 1) * spdIncr;
     public float GetEnergyGainPerHit() => baseEnergyGain + (humanLevel - 1) * energyGainIncr;
 
-    // --- [수정] 메카 스탯 (mechaLevel 하나로 모든 스탯이 오름) ---
+    // --- 메카 스탯 ---
     public float GetMechaHp() => mechaBaseHp + (mechaLevel - 1) * mechaHpIncr;
     public float GetMechaAtk() => mechaBaseAtk + (mechaLevel - 1) * mechaAtkIncr;
     public float GetMechaDef() => mechaBaseDef + (mechaLevel - 1) * mechaDefIncr;
-    public float GetMechaSpd() => mechaBaseSpd; // 속도는 고정
+    public float GetMechaSpd() => mechaBaseSpd; // 속도는 레벨업 증가량 없이 고정 반환!
 
-    // --- [수정] 드론 스탯 (droneLevel 하나로 모든 스탯이 오름) ---
+    // --- 드론 스탯 ---
     public float GetDroneAtk() => droneBaseAtk + (droneLevel - 1) * droneAtkIncr;
 }

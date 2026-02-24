@@ -10,57 +10,57 @@ public class QuickSlotManager : MonoBehaviour
     public PlayerInputHandler inputHandler;
 
     [Header("퀵슬롯 데이터 (3개)")]
-    public ItemSlot[] quickSlots = new ItemSlot[3]; // 실제 데이터
+    public ItemSlot[] quickSlots = new ItemSlot[3];
 
     [Header("UI 요소")]
-    public Image[] iconImages;     // 아이콘 이미지 3개
-    public TextMeshProUGUI[] countTexts; // 개수 텍스트 3개
+    public Image[] iconImages;
+    public TextMeshProUGUI[] countTexts;
 
     private void Awake()
     {
         Instance = this;
-        // 초기 데이터 슬롯 생성 (비어있음)
         for (int i = 0; i < 3; i++) quickSlots[i] = new ItemSlot();
     }
 
     private void OnEnable()
     {
-        // 핸들러 이벤트 연결
         inputHandler.OnUseItem1 += () => UseItem(0);
         inputHandler.OnUseItem2 += () => UseItem(1);
         inputHandler.OnUseItem3 += () => UseItem(2);
     }
 
-    // 아이템 사용 로직
     public void UseItem(int index)
     {
         ItemSlot slot = quickSlots[index];
 
         if (slot.item != null && slot.count > 0)
         {
-            // 1. 소모품(Consumable) 타입인지 확인
             if (slot.item.itemType == ItemType.Consumable)
             {
-                Debug.Log($"{slot.item.itemName} 사용!");
+                ConsumableData consumable = slot.item as ConsumableData;
+                Debug.Log($"{consumable.itemName} 사용! 체력 {consumable.healAmount} 회복!");
 
-                // 2. 효과 적용 (예: 체력 회복 등 - 아이템 데이터에 로직 필요)
-                // playerState.Heal(slot.item.healAmount);
+                if (PlayerTransformManager.Instance.IsMechaMode)
+                    PlayerTransformManager.Instance.mechaObject.GetComponent<MechaState>().currentHp += consumable.healAmount;
+                else
+                    PlayerTransformManager.Instance.humanObject.GetComponent<PlayerState>().currentHp += consumable.healAmount;
 
-                // 3. 개수 감소
                 slot.count--;
                 if (slot.count <= 0) slot.Clear();
 
                 RefreshQuickSlotUI();
+
+                if (InventoryUI.Instance != null && InventoryUI.Instance.isOpen)
+                    InventoryUI.Instance.RefreshUI();
             }
         }
     }
 
-    // UI 갱신
     public void RefreshQuickSlotUI()
     {
         for (int i = 0; i < 3; i++)
         {
-            if (quickSlots[i].item != null)
+            if (quickSlots[i].item != null && quickSlots[i].count > 0)
             {
                 iconImages[i].sprite = quickSlots[i].item.icon;
                 iconImages[i].enabled = true;
@@ -72,5 +72,12 @@ public class QuickSlotManager : MonoBehaviour
                 countTexts[i].text = "";
             }
         }
+    }
+
+    public void RegisterSlot(int slotIndex, ItemSlot inventorySlot)
+    {
+        quickSlots[slotIndex] = inventorySlot;
+        RefreshQuickSlotUI();
+        Debug.Log($"퀵슬롯 {slotIndex + 1}번에 {inventorySlot.item.itemName} 등록 완료!");
     }
 }

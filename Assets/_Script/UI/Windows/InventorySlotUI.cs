@@ -6,7 +6,7 @@ public class InventorySlotUI : MonoBehaviour
 {
     public Image iconImage;
     public TextMeshProUGUI countText;
-    public Image focusOutline; // 선택되었을 때 나타날 테두리 이미지 (Inspector에서 할당)
+    public Image focusOutline;
 
     public void UpdateSlot(ItemSlot slot)
     {
@@ -23,7 +23,6 @@ public class InventorySlotUI : MonoBehaviour
         }
     }
 
-    // 인벤토리 매니저가 호출해줄 포커스 시각화
     public void SetFocus(bool isFocused)
     {
         if (focusOutline != null)
