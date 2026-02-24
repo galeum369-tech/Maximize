@@ -134,6 +134,15 @@ public class UniversalHitbox : MonoBehaviour
             OnHitEffect?.Invoke(hitPoint);
 
             Debug.Log($"<color=white>[Hit]</color> {collision.gameObject.name}의 {hitPoint} 지점 타격!");
+            // 내가 인간 폼(pState)일 때만 게이지를 채운다
+            if (pState != null)
+            {
+                PlayerSkillController skillController = GetComponentInParent<PlayerSkillController>();
+                if (skillController != null)
+                {
+                    skillController.AddMechaEnergy(); // 타격 성공 시 게이지 증가!
+                }
+            }
         }
     }
 

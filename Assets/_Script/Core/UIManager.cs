@@ -13,14 +13,15 @@ public class UIManager : MonoBehaviour
     [Header("재화 UI")]
     public TextMeshProUGUI goldText; // 소지 금액
 
-    // [추가] 메카 변신 게이지 UI
     [Header("메카닉 변신 UI")]
-    public Image mechaEnergyFill; // 변신 게이지바 (0부터 꽉 찰 때까지)
+    public Image mechaEnergyFill; // 변신 게이지바
 
-    // [추가] 스킬 쿨타임 UI
-    [Header("스킬 쿨타임 UI")]
-    public Image mechaSkillCooldownOverlay; // 메카 스킬 아이콘 위를 덮을 반투명 검은색 이미지
-    public Image droneSkillCooldownOverlay; // 드론 스킬 가림막 이미지
+    // ==========================================
+    // [핵심 수정] 기존 Image 직접 참조를 버리고, 우리가 만든 SkillSlotUI 배열을 사용!
+    // ==========================================
+    [Header("스킬 슬롯 관리")]
+    // 0: 일반스킬, 1: 특수스킬, 2: 폼체인지
+    public SkillSlotUI[] skillSlots = new SkillSlotUI[3];
 
     private void Awake()
     {
@@ -45,8 +46,7 @@ public class UIManager : MonoBehaviour
         if (goldText != null) goldText.text = $"💰 {currentGold:N0}";
     }
 
-    // --- [추가] 메카 변신 게이지 갱신 ---
-    // 플레이어가 적을 때릴 때마다 이걸 호출해주면 됨
+    // 메카 변신 게이지 갱신 (때릴 때마다 호출)
     public void UpdateMechaEnergy(float currentEnergy, float maxEnergy)
     {
         if (mechaEnergyFill != null)
@@ -55,17 +55,26 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    // --- [추가] 쿨타임 UI 업데이트 ---
-    // ratio: 남은 시간 비율 (1이면 쿨타임 꽉 찬 상태, 0이면 쿨타임 끝나서 스킬 사용 가능)
-    public void UpdateMechaSkillCooldown(float ratio)
+    // ==========================================
+    // [추가된 스킬 관리 로직]
+    // ==========================================
+
+    // 폼 체인지 시 호출해서 슬롯 3개의 아이콘을 한 번에 스왑
+    public void SwapSkillForm(bool isMecha)
     {
-        if (mechaSkillCooldownOverlay != null)
-            mechaSkillCooldownOverlay.fillAmount = ratio;
+        for (int i = 0; i < skillSlots.Length; i++)
+        {
+            // SkillSlotUI에 있는 함수 호출
+            skillSlots[i].ChangeForm(isMecha);
+        }
     }
 
-    public void UpdateDroneSkillCooldown(float ratio)
+    // 매 프레임(혹은 쿨타임 돌 때) 플레이어 쪽에서 쿨타임 배열을 던져주면 UI에 갱신
+    public void UpdateAllSkillCooldowns(float[] currentCooldowns, float[] maxCooldowns)
     {
-        if (droneSkillCooldownOverlay != null)
-            droneSkillCooldownOverlay.fillAmount = ratio;
+        for (int i = 0; i < skillSlots.Length; i++)
+        {
+            skillSlots[i].UpdateCooldownUI(currentCooldowns[i], maxCooldowns[i]);
+        }
     }
 }
