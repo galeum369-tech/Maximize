@@ -232,8 +232,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: e1532a07f0aebae42b595cbc5ee357f9, type: 2}
-  droneScript: {fileID: 1193486301}
-  mechScript: {fileID: 325296532}
+  droneScript: {fileID: 0}
+  mechScript: {fileID: 0}
   isMechaForm: 0
   humanMaxCooldowns:
   - 4
@@ -243,7 +243,7 @@ MonoBehaviour:
   - 10
   - 8
   - 1
-  lessEnerge: 5
+  lessEnerge: 1
 --- !u!1 &129015184
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,17 +410,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4610788079898984301, guid: 03320608e1f37a948949c87549fe9262, type: 3}
   m_PrefabInstance: {fileID: 6517685135405850042}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &325296532 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4017501307834115870, guid: 03320608e1f37a948949c87549fe9262, type: 3}
-  m_PrefabInstance: {fileID: 6517685135405850042}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 325296530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62fd017617dbd0047964de5c860a9321, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &368058624
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1463,17 +1452,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8707793007258041178, guid: bebff1544e3f0454dab0292bd882d4ea, type: 3}
   m_PrefabInstance: {fileID: 8257246872459913388}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1193486301 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 944253938659267615, guid: bebff1544e3f0454dab0292bd882d4ea, type: 3}
-  m_PrefabInstance: {fileID: 8257246872459913388}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1193486298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1adfe62de86a79448135bf3e2e812ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1213594034
 GameObject:
   m_ObjectHideFlags: 0
