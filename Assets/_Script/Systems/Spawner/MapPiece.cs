@@ -44,9 +44,9 @@ public class MapPiece : MonoBehaviour
         EnemyBase enemy = enemyObj.GetComponent<EnemyBase>();
         if (enemy != null)
         {
-            enemy.data = selectedData;
+            // [핵심 변경] data를 그냥 넣지 말고 아까 만든 Setup 함수를 호출!
+            enemy.Setup(selectedData);
 
-            // 리스트에 추가하고 사망 이벤트 구독
             aliveEnemies.Add(enemy);
             enemy.OnDeathEvent += HandleEnemyDeath;
         }

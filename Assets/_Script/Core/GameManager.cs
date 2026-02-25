@@ -45,8 +45,6 @@ public class GameManager : MonoBehaviour
     }
 
     // --- [플레이어 관리] ---
-
-    // 변신 시나 씬 로드 시 현재 조종 중인 플레이어를 등록 (LootItem이 참조함)
     public void RegisterPlayer(Transform player)
     {
         activePlayerTransform = player;
@@ -55,7 +53,6 @@ public class GameManager : MonoBehaviour
     public Transform GetActivePlayer() => activePlayerTransform;
 
     // --- [위치 및 테마 관리] ---
-
     public void SetTheme(ThemeStageData theme)
     {
         selectedTheme = theme;
@@ -74,7 +71,6 @@ public class GameManager : MonoBehaviour
     }
 
     // --- [상태 제어] ---
-
     public void ChangeState(GameState newState)
     {
         if (currentState == newState) return;
@@ -89,7 +85,6 @@ public class GameManager : MonoBehaviour
     }
 
     // --- [재화 제어] ---
-
     public void AddMoney(int amount)
     {
         currentMoney += amount;
@@ -104,6 +99,6 @@ public class GameManager : MonoBehaviour
             OnMoneyChanged?.Invoke(currentMoney);
             return true;
         }
-        return false;
+        return false; // 돈이 부족하면 false 반환
     }
 }

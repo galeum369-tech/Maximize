@@ -26,24 +26,30 @@ public class InventoryUI : MonoBehaviour
     public ItemTooltipUI tooltip;
     public StatDisplayUI statDisplay;
 
-    [Header("장비 슬롯 UI (오른쪽 판넬)")]
+    [Header("장비/퀵슬롯 UI (오른쪽 판넬)")]
     public InventorySlotUI[] equipSlots = new InventorySlotUI[4];
+    public InventorySlotUI[] quickSlotUIs = new InventorySlotUI[3]; // [추가] 장비창 쪽에 보여줄 퀵슬롯 UI
     private ItemSlot[] tempEquipData = new ItemSlot[4] { new ItemSlot(), new ItemSlot(), new ItemSlot(), new ItemSlot() };
 
     [Header("조작 및 연출")]
     public Image floatingIcon;
     private int grabbedIndex = -1;
-    private bool isWaitingForQuickSlot = false;
 
     private List<InventorySlotUI> uiSlots = new List<InventorySlotUI>();
     private int invFocusIndex = 0;   // 왼쪽(가방) 인덱스
-    private int equipFocusIndex = 0; // 오른쪽(장비) 인덱스
+
+    // [수정] 오른쪽 판넬 인덱스 (0~3: 장비, 4~6: 퀵슬롯)
+    private int rightFocusIndex = 0;
     private int columns = 8;
 
     private int settingsFocusIndex = 0;
     private int settingsCount = 3;
 
     public bool isOpen = false;
+
+    [Header("더블클릭 감지용")]
+    private float lastZPressTime = 0f;
+    private float doubleClickThreshold = 0.3f; // 0.3초 이내 누르면 더블클릭
 
     private void Awake()
     {
@@ -72,7 +78,7 @@ public class InventoryUI : MonoBehaviour
             currentInput.OnCancel -= HandleCancel;
             currentInput.OnPrevTab -= ChangeTabPrev;
             currentInput.OnNextTab -= ChangeTabNext;
-            currentInput.OnSwitchZone -= ToggleZone; // [추가] 구독 해제
+            currentInput.OnSwitchZone -= ToggleZone;
         }
 
         currentInput = newInput;
@@ -86,7 +92,7 @@ public class InventoryUI : MonoBehaviour
             currentInput.OnCancel += HandleCancel;
             currentInput.OnPrevTab += ChangeTabPrev;
             currentInput.OnNextTab += ChangeTabNext;
-            currentInput.OnSwitchZone += ToggleZone; // [추가] 이벤트 구독!
+            currentInput.OnSwitchZone += ToggleZone;
         }
     }
 
@@ -99,23 +105,19 @@ public class InventoryUI : MonoBehaviour
     {
         if (!isOpen) return;
 
-        if (isWaitingForQuickSlot)
-        {
-            if (Input.GetKeyDown(KeyCode.Q)) AssignToQuickSlot(0);
-            else if (Input.GetKeyDown(KeyCode.W)) AssignToQuickSlot(1);
-            else if (Input.GetKeyDown(KeyCode.E)) AssignToQuickSlot(2);
-            else if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.X))
-            {
-                isWaitingForQuickSlot = false;
-                Debug.Log("퀵슬롯 등록 취소");
-            }
-            return;
-        }
-
+        // 들고 있는 아이콘 따라다니기 (오른쪽 존일 경우 알맞은 슬롯에 포커스)
         if (grabbedIndex != -1 && floatingIcon != null && floatingIcon.gameObject.activeSelf)
         {
             Vector3 offset = new Vector3(20f, -20f, 0f);
-            Transform targetTransform = currentZone == UIZone.Inventory ? uiSlots[invFocusIndex].transform : equipSlots[equipFocusIndex].transform;
+            Transform targetTransform;
+
+            if (currentZone == UIZone.Inventory)
+                targetTransform = uiSlots[invFocusIndex].transform;
+            else if (rightFocusIndex < 4)
+                targetTransform = equipSlots[rightFocusIndex].transform;
+            else
+                targetTransform = quickSlotUIs[rightFocusIndex - 4].transform;
+
             floatingIcon.transform.position = targetTransform.position + offset;
         }
     }
@@ -134,7 +136,6 @@ public class InventoryUI : MonoBehaviour
         else
         {
             DropGrabbedItem();
-            isWaitingForQuickSlot = false;
             if (tooltip != null) tooltip.Hide();
             if (currentInput != null) currentInput.OpenUI(false);
         }
@@ -156,41 +157,30 @@ public class InventoryUI : MonoBehaviour
         inventoryPage.SetActive(currentTab == UITab.Inventory);
         settingsPage.SetActive(currentTab == UITab.Settings);
 
-        // 탭이 바뀌면 무조건 기본 구역(인벤토리)으로 포커스 초기화
         currentZone = UIZone.Inventory;
         RefreshUI();
     }
 
-    // ==========================================
-    // [신규] X키를 눌렀을 때 구역(판넬) 전환 로직
-    // ==========================================
+    // 아이템을 쥐고 있어도 구역 이동 가능
     private void ToggleZone()
     {
-        // 탭이 인벤토리가 아니거나, 아이템을 들고 있거나, 퀵슬롯 대기 중엔 구역 전환 불가
-        if (!isOpen || currentTab != UITab.Inventory || grabbedIndex != -1 || isWaitingForQuickSlot) return;
+        if (!isOpen || currentTab != UITab.Inventory) return;
 
-        // 인벤토리 <-> 장비창 핑퐁 전환
-        if (currentZone == UIZone.Inventory)
-            currentZone = UIZone.Equipment;
-        else
-            currentZone = UIZone.Inventory;
+        currentZone = (currentZone == UIZone.Inventory) ? UIZone.Equipment : UIZone.Inventory;
 
         UpdateFocusVisuals();
         Debug.Log($"[UI] 포커스 판넬 전환: {currentZone}");
     }
 
-    // ==========================================
-    // [수정] 각 구역 내부에서만 커서가 돌도록 제한
-    // ==========================================
+    // 우측 판넬(장비4 + 퀵슬롯3) 네비게이션 처리
     private void HandleNavigate(Vector2 dir)
     {
-        if (!isOpen || isWaitingForQuickSlot) return;
+        if (!isOpen) return;
 
         if (currentTab == UITab.Inventory)
         {
             if (currentZone == UIZone.Inventory)
             {
-                // 인벤토리 40칸 안에서만 갇혀서 움직임
                 if (dir.x > 0) invFocusIndex++;
                 else if (dir.x < 0) invFocusIndex--;
                 else if (dir.y > 0) invFocusIndex -= columns;
@@ -200,12 +190,21 @@ public class InventoryUI : MonoBehaviour
             }
             else if (currentZone == UIZone.Equipment)
             {
-                // [수정] 올려준 이미지를 보니 장비 4칸이 가로로 배치되어 있음!
-                // 그래서 좌우 방향키(dir.x)로 포커스가 이동하도록 세팅함.
-                if (dir.x > 0) equipFocusIndex++;
-                else if (dir.x < 0) equipFocusIndex--;
+                // 좌우 이동
+                if (dir.x > 0) rightFocusIndex++;
+                else if (dir.x < 0) rightFocusIndex--;
 
-                equipFocusIndex = Mathf.Clamp(equipFocusIndex, 0, 3);
+                // 상하 이동 (장비 <-> 퀵슬롯 간 이동)
+                else if (dir.y < 0) // 아래로
+                {
+                    if (rightFocusIndex < 4) rightFocusIndex = Mathf.Min(rightFocusIndex + 4, 6);
+                }
+                else if (dir.y > 0) // 위로
+                {
+                    if (rightFocusIndex >= 4) rightFocusIndex -= 4;
+                }
+
+                rightFocusIndex = Mathf.Clamp(rightFocusIndex, 0, 6);
             }
             UpdateFocusVisuals();
         }
@@ -217,61 +216,119 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    // 아이템 상호작용 (기존 코드와 동일)
-    private void ExecuteInventoryAction()
+    private void HandleSubmit()
     {
-        if (isWaitingForQuickSlot) return;
+        if (!isOpen) return;
 
-        bool isMecha = PlayerTransformManager.Instance != null && PlayerTransformManager.Instance.IsMechaMode;
+        if (currentTab == UITab.Inventory)
+        {
+            bool isDoubleClick = (Time.time - lastZPressTime) <= doubleClickThreshold;
+            lastZPressTime = Time.time;
 
+            ExecuteInventoryAction(isDoubleClick);
+        }
+        else if (currentTab == UITab.Settings) ExecuteSettingsAction();
+    }
+
+    // [핵심 로직] 장비와 마찬가지로 소모품도 '물리적 이동'으로 처리
+    private void ExecuteInventoryAction(bool isDoubleClick)
+    {
+        // 1. 우측 판넬 (장비 or 퀵슬롯) 포커스 시
         if (currentZone == UIZone.Equipment)
         {
-            if (grabbedIndex == -1)
+            if (grabbedIndex == -1) // 빈 손 (장착 해제)
             {
-                EquipmentData[] currentEquips = isMecha ? InventoryManager.Instance.mechaEquips : InventoryManager.Instance.humanEquips;
-
-                if (currentEquips[equipFocusIndex] != null)
+                if (rightFocusIndex < 4) // 장비칸
                 {
-                    InventoryManager.Instance.UnequipItem(equipFocusIndex, isMecha);
-                    RefreshUI();
-                    if (statDisplay != null) statDisplay.RefreshStats();
+                    InventoryManager.Instance.UnequipItem(rightFocusIndex);
+                }
+                else // 퀵슬롯 (4, 5, 6)
+                {
+                    int quickIndex = rightFocusIndex - 4;
+                    // [수정] Clear가 아니라 반환 로직(Unequip)을 호출!
+                    QuickSlotManager.Instance.UnequipQuickSlot(quickIndex);
                 }
             }
+            else // 아이템 들고 있는 상태 (수동 장착 시도)
+            {
+                var grabbedSlot = InventoryManager.Instance.slots[grabbedIndex];
+
+                if (rightFocusIndex < 4) // 장비칸에 올려놓기
+                {
+                    if (grabbedSlot.item.itemType == ItemType.Equipment)
+                    {
+                        EquipmentData equip = grabbedSlot.item as EquipmentData;
+                        if ((int)equip.equipType == rightFocusIndex)
+                        {
+                            InventoryManager.Instance.EquipItem(equip);
+                            grabbedSlot.count--;
+                            if (grabbedSlot.count <= 0) grabbedSlot.Clear();
+                            DropGrabbedItem();
+                        }
+                        else Debug.Log("그 부위에는 장착할 수 없어!");
+                    }
+                    else Debug.Log("장비칸에는 장비만 올릴 수 있어!");
+                }
+                else // 퀵슬롯에 올려놓기
+                {
+                    if (grabbedSlot.item.itemType == ItemType.Consumable)
+                    {
+                        int quickIndex = rightFocusIndex - 4;
+                        // [수정] 수동 장착 시 퀵슬롯으로 물리적 이동 처리
+                        QuickSlotManager.Instance.EquipToQuickSlot(quickIndex, grabbedSlot);
+                        DropGrabbedItem();
+                    }
+                    else Debug.Log("퀵슬롯에는 소모품만 등록 가능해!");
+                }
+            }
+            RefreshUI();
+            if (statDisplay != null) statDisplay.RefreshStats();
             return;
         }
 
+        // 2. 좌측 판넬 (인벤토리) 포커스 시
         var currentSlotData = InventoryManager.Instance.slots[invFocusIndex];
 
-        if (grabbedIndex == -1)
+        if (grabbedIndex == -1) // 손이 비어있음
         {
             if (currentSlotData.item != null)
             {
-                grabbedIndex = invFocusIndex;
-                floatingIcon.sprite = currentSlotData.item.icon;
-                floatingIcon.gameObject.SetActive(true);
-                uiSlots[grabbedIndex].iconImage.color = new Color(1, 1, 1, 0.5f);
+                if (isDoubleClick) // 자동 장착/등록
+                {
+                    if (currentSlotData.item.itemType == ItemType.Equipment)
+                    {
+                        EquipmentData equip = currentSlotData.item as EquipmentData;
+                        InventoryManager.Instance.EquipItem(equip);
+                        currentSlotData.count--;
+                        if (currentSlotData.count <= 0) currentSlotData.Clear();
+                        Debug.Log($"{equip.itemName} 자동 장착 완료!");
+                    }
+                    else if (currentSlotData.item.itemType == ItemType.Consumable)
+                    {
+                        for (int i = 0; i < 3; i++)
+                        {
+                            if (QuickSlotManager.Instance.quickSlots[i].item == null)
+                            {
+                                // [수정] 자동 장착 시 퀵슬롯으로 물리적 이동 처리
+                                QuickSlotManager.Instance.EquipToQuickSlot(i, currentSlotData);
+                                Debug.Log($"퀵슬롯 {i + 1}번에 자동 등록 완료!");
+                                break;
+                            }
+                        }
+                    }
+                }
+                else // 집기
+                {
+                    grabbedIndex = invFocusIndex;
+                    floatingIcon.sprite = currentSlotData.item.icon;
+                    floatingIcon.gameObject.SetActive(true);
+                    uiSlots[grabbedIndex].iconImage.color = new Color(1, 1, 1, 0.5f);
+                }
             }
         }
-        else
+        else // 아이템 들고 있음 (가방 안에 내려놓거나 스왑)
         {
-            if (grabbedIndex == invFocusIndex)
-            {
-                DropGrabbedItem();
-
-                if (currentSlotData.item.itemType == ItemType.Equipment)
-                {
-                    EquipmentData equip = currentSlotData.item as EquipmentData;
-                    InventoryManager.Instance.EquipItem(equip, isMecha);
-
-                    currentSlotData.count--;
-                    if (currentSlotData.count <= 0) currentSlotData.Clear();
-                }
-                else if (currentSlotData.item.itemType == ItemType.Consumable)
-                {
-                    isWaitingForQuickSlot = true;
-                    Debug.Log("퀵슬롯 단축키(Q,W,E)를 누르세요.");
-                }
-            }
+            if (grabbedIndex == invFocusIndex) DropGrabbedItem();
             else
             {
                 InventoryManager.Instance.MoveOrSwapSlot(grabbedIndex, invFocusIndex);
@@ -283,23 +340,9 @@ public class InventoryUI : MonoBehaviour
         if (statDisplay != null) statDisplay.RefreshStats();
     }
 
-    private void HandleSubmit()
-    {
-        if (!isOpen) return;
-
-        if (currentTab == UITab.Inventory) ExecuteInventoryAction();
-        else if (currentTab == UITab.Settings) ExecuteSettingsAction();
-    }
-
     private void HandleCancel()
     {
         if (!isOpen) return;
-
-        if (isWaitingForQuickSlot)
-        {
-            isWaitingForQuickSlot = false;
-            return;
-        }
 
         if (grabbedIndex != -1)
         {
@@ -318,16 +361,6 @@ public class InventoryUI : MonoBehaviour
             floatingIcon.gameObject.SetActive(false);
             grabbedIndex = -1;
         }
-    }
-
-    private void AssignToQuickSlot(int quickSlotIndex)
-    {
-        var slot = InventoryManager.Instance.slots[invFocusIndex];
-        if (QuickSlotManager.Instance != null)
-        {
-            QuickSlotManager.Instance.RegisterSlot(quickSlotIndex, slot);
-        }
-        isWaitingForQuickSlot = false;
     }
 
     private void ExecuteSettingsAction()
@@ -351,17 +384,22 @@ public class InventoryUI : MonoBehaviour
             else uiSlots[i].iconImage.color = Color.white;
         }
 
-        if (PlayerTransformManager.Instance != null)
+        // [수정] isMecha 검사할 필요 없이 그냥 공통 장비 배열(equippedItems)을 가져와서 그리면 끝!
+        EquipmentData[] currentEquips = InventoryManager.Instance.equippedItems;
+
+        for (int i = 0; i < 4; i++)
         {
-            bool isMecha = PlayerTransformManager.Instance.IsMechaMode;
-            EquipmentData[] currentEquips = isMecha ? InventoryManager.Instance.mechaEquips : InventoryManager.Instance.humanEquips;
+            tempEquipData[i].item = currentEquips[i];
+            tempEquipData[i].count = currentEquips[i] != null ? 1 : 0;
+            if (equipSlots[i] != null) equipSlots[i].UpdateSlot(tempEquipData[i]);
+        }
 
-            for (int i = 0; i < 4; i++)
+        // 퀵슬롯 UI 갱신 (인벤토리 판넬 안의 퀵슬롯 보여주기용)
+        if (QuickSlotManager.Instance != null)
+        {
+            for (int i = 0; i < 3; i++)
             {
-                tempEquipData[i].item = currentEquips[i];
-                tempEquipData[i].count = currentEquips[i] != null ? 1 : 0;
-
-                if (equipSlots[i] != null) equipSlots[i].UpdateSlot(tempEquipData[i]);
+                if (quickSlotUIs[i] != null) quickSlotUIs[i].UpdateSlot(QuickSlotManager.Instance.quickSlots[i]);
             }
         }
 
@@ -372,10 +410,10 @@ public class InventoryUI : MonoBehaviour
     {
         foreach (var slot in uiSlots) slot.SetFocus(false);
         foreach (var slot in equipSlots) slot.SetFocus(false);
+        foreach (var slot in quickSlotUIs) slot.SetFocus(false);
 
         ItemData focusedItem = null;
 
-        // 선택된 구역(판넬)에만 테두리를 켜줌
         if (currentZone == UIZone.Inventory)
         {
             uiSlots[invFocusIndex].SetFocus(true);
@@ -383,8 +421,17 @@ public class InventoryUI : MonoBehaviour
         }
         else if (currentZone == UIZone.Equipment)
         {
-            equipSlots[equipFocusIndex].SetFocus(true);
-            focusedItem = tempEquipData[equipFocusIndex].item;
+            if (rightFocusIndex < 4)
+            {
+                equipSlots[rightFocusIndex].SetFocus(true);
+                focusedItem = tempEquipData[rightFocusIndex].item;
+            }
+            else
+            {
+                int quickIndex = rightFocusIndex - 4;
+                quickSlotUIs[quickIndex].SetFocus(true);
+                focusedItem = QuickSlotManager.Instance.quickSlots[quickIndex].item;
+            }
         }
 
         if (focusedItem != null && tooltip != null) tooltip.Show(focusedItem);

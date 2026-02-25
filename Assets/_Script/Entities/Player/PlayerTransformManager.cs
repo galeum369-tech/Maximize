@@ -48,7 +48,7 @@ public class PlayerTransformManager : MonoBehaviour
 
     public void ToggleMode()
     {
-        if (IsMechaMode) ToHuman();
+        if (!IsMechaMode) ToHuman();
         else ToMecha();
     }
 

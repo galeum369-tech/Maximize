@@ -23,6 +23,9 @@ public class EnemyBase : MonoBehaviour, IDamageable
 
     public System.Action<EnemyBase> OnDeathEvent;
 
+    // [핵심 추가] 초기화 완료 여부를 FSM에 알려줄 플래그
+    [HideInInspector] public bool isInitialized = false;
+
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -30,16 +33,26 @@ public class EnemyBase : MonoBehaviour, IDamageable
         ac = new EnemyAnimController(GetComponent<Animator>());
     }
 
+    // [핵심 추가] MapPiece 같은 외부 스크립트에서 생성 즉시 호출할 수 있는 셋업 함수
+    public virtual void Setup(EnemyData newData)
+    {
+        this.data = newData;
+        InitializeStats();
+        currentState = EnemyState.Idle;
+        player = GameManager.Instance?.GetActivePlayer();
+        isInitialized = true; // 세팅 완료!
+    }
+
     protected virtual void Start()
     {
-        // 1. 스탯 먼저 세팅해서 currentHp가 절대 0이 아니게 만듦
-        if (data != null) InitializeStats();
-
-        // 2. 혹시 모르니 상태 다시 한번 강제 초기화
-        currentState = EnemyState.Idle;
-
-        // (이제 player 찾는 건 EnemyFSM이 알아서 끈질기게 할 거라 여기서 못 찾아도 됨)
-        player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        // Setup() 함수로 미리 초기화되지 않았을 때만 (ex. 마을에 미리 배치해둔 적) Start에서 초기화 진행
+        if (!isInitialized)
+        {
+            if (data != null) InitializeStats();
+            currentState = EnemyState.Idle;
+            player = GameObject.FindGameObjectWithTag("Player")?.transform;
+            isInitialized = true;
+        }
     }
 
     protected virtual void InitializeStats()

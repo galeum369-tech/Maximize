@@ -18,8 +18,16 @@ MonoBehaviour:
   itemType: 0
   rarity: 0
   price: 0
+  description: 
   equipType: 0
-  atkBonus: 10
-  hpBonus: 0
-  defBonus: 0
-  spdBonus: 0
+  humanAtkBonus: 10
+  humanHpBonus: 0
+  humanDefBonus: 0
+  humanSpdBonus: 0
+  mechaAtkBonus: 0
+  mechaHpBonus: 0
+  mechaDefBonus: 0
+  mechaSpdBonus: 0
+  droneAtkBonus: 0
+  droneFireRateBonus: 0
+  droneRangeBonus: 0
