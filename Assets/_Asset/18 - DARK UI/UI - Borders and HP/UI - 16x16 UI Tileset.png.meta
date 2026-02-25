@@ -363,7 +363,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI - 16x16 UI Tileset_8
+      name: Cooldown_Overlay
       rect:
         serializedVersion: 2
         x: 18
@@ -583,7 +583,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cooldwon_Overlay
+      name: Focus
       rect:
         serializedVersion: 2
         x: 49
@@ -591,7 +591,7 @@ TextureImporter:
         width: 44
         height: 44
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -618,9 +618,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Cooldwon_Overlay: -1342565124
+      Cooldown_Overlay: -4676533051104371292
       EnergeBox: -7119411561727348017
       EnergeFill: 4953848002186101707
+      Focus: -1342565124
       FocusOutline: 3571497609816441215
       HPBox: 803458787139967183
       HPFill: 1436416891
@@ -654,7 +655,6 @@ TextureImporter:
       UI - 16x16 UI Tileset_4: 7341909048677166462
       UI - 16x16 UI Tileset_6: 6621822357988429438
       UI - 16x16 UI Tileset_7: -8763628204870142036
-      UI - 16x16 UI Tileset_8: -4676533051104371292
       UI - 16x16 UI Tileset_9: 8311563248834313335
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0

@@ -29,6 +29,8 @@ public class PlayerInputHandler : MonoBehaviour
     public event Action OnNextTab;
     public event Action OnCloseUI;
 
+    public event Action OnSwitchZone;
+
     private void Awake()
     {
         input = new Player_Actions();
@@ -67,6 +69,8 @@ public class PlayerInputHandler : MonoBehaviour
         input.UI.NextTab.performed += NextTabCtx;
         input.UI.CloseUI.performed += CloseUICtx;
 
+        input.UI.SwitchZone.performed += SwitchZoneCtx;
+
         input.Player.Enable();
         input.UI.Disable();
     }
@@ -103,6 +107,8 @@ public class PlayerInputHandler : MonoBehaviour
         input.UI.PrevTab.performed -= PrevTabCtx;
         input.UI.NextTab.performed -= NextTabCtx;
         input.UI.CloseUI.performed -= CloseUICtx;
+
+        input.UI.SwitchZone.performed -= SwitchZoneCtx;
 
         input.Disable();
     }
@@ -223,6 +229,11 @@ public class PlayerInputHandler : MonoBehaviour
     private void CloseUICtx(InputAction.CallbackContext ctx)
     {
         if (ctx.performed) OnCloseUI?.Invoke();
+    }
+
+    private void SwitchZoneCtx(InputAction.CallbackContext ctx)
+    { 
+        if (ctx.performed) OnSwitchZone?.Invoke(); 
     }
     #endregion
 }

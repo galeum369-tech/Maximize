@@ -14,7 +14,7 @@ public class PlayerState : MonoBehaviour
     [Header("현재 상태")]
     public float currentHp;
 
-    private void Awake()
+    private void Start()
     {
         RecalculateFinalStats();
         currentHp = FinalMaxHP;

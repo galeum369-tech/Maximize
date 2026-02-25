@@ -173,6 +173,32 @@ public class InventoryManager : MonoBehaviour
         return total;
     }
 
+    public void UnequipItem(int equipSlotIndex, bool isMechaMode)
+    {
+        EquipmentData[] targetEquips = isMechaMode ? mechaEquips : humanEquips;
+        EquipmentData itemToUnequip = targetEquips[equipSlotIndex];
+
+        if (itemToUnequip != null)
+        {
+            // 1. 가방에 넣기 시도
+            bool added = AddItem(itemToUnequip, 1);
+
+            if (added)
+            {
+                // 2. 가방에 성공적으로 들어갔으면 장착 칸 비우기
+                targetEquips[equipSlotIndex] = null;
+
+                // 3. 스탯 재계산
+                OnEquipmentChanged?.Invoke();
+                Debug.Log($"{itemToUnequip.itemName} 장착 해제 완료!");
+            }
+            else
+            {
+                Debug.Log("가방이 꽉 차서 장비를 해제할 수 없습니다!");
+            }
+        }
+    }
+
     // 개별 장비에서 스탯 뽑아오기
     private float ExtractStat(EquipmentData equip, string targetType, string statType)
     {

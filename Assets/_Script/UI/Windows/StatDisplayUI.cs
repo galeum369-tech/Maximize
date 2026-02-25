@@ -47,7 +47,7 @@ public class StatDisplayUI : MonoBehaviour
 
         if (GameManager.Instance != null)
         {
-            moneyText.text = $"💰 {GameManager.Instance.currentMoney:N0}";
+            moneyText.text = $"Money {GameManager.Instance.currentMoney:N0}";
         }
     }
 }

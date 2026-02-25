@@ -9,12 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97257e2ca86f24b4abc818473aaae4bb, type: 3}
-  m_Name: Tresh
+  m_Script: {fileID: 11500000, guid: 09e4608c4864cd343972cf829bc7b693, type: 3}
+  m_Name: TestPotion
   m_EditorClassIdentifier: 
-  itemName: "\uC4F0\uB808\uAE30"
-  id: 1001
+  itemName: "\uD14C\uC2A4\uD2B8 \uD3EC\uC158"
+  id: 0
   icon: {fileID: 0}
-  itemType: 1
+  itemType: 2
   rarity: 0
-  price: 5
+  price: 0
+  healAmount: 20
+  effectDuration: 10

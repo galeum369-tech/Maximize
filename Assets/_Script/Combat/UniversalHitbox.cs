@@ -10,9 +10,8 @@ public class UniversalHitbox : MonoBehaviour
     public float knockbackPower = 10f;
 
     [Header("옵션")]
-    public bool canHitMultiple = true; // true면 여러 대상을 동시에 타격, false면 첫 대상만 타격
+    public bool canHitMultiple = true;
 
-    // 외부에서 타격 이펙트를 재생할 수 있도록 이벤트 추가
     public System.Action<Vector2> OnHitEffect;
 
     private HashSet<GameObject> hitTargets = new HashSet<GameObject>();
@@ -20,7 +19,6 @@ public class UniversalHitbox : MonoBehaviour
     private float ownerAtk = 0f;
     private bool isInitialized = false;
 
-    // 참조용 State들
     private PlayerState pState;
     private MechaState mState;
     private EnemyBase eBase;
@@ -28,8 +26,6 @@ public class UniversalHitbox : MonoBehaviour
     private void Awake()
     {
         myCollider = GetComponent<Collider2D>();
-
-        // 부모로부터 모든 가능한 State 탐색
         pState = GetComponentInParent<PlayerState>();
         mState = GetComponentInParent<MechaState>();
         eBase = GetComponentInParent<EnemyBase>();
@@ -39,7 +35,7 @@ public class UniversalHitbox : MonoBehaviour
 
     private void OnEnable()
     {
-        ResetHitbox(); // 켜질 때 타겟 목록 초기화
+        ResetHitbox();
         RefreshOwnerAtk();
 
         if (isInitialized)
@@ -48,27 +44,13 @@ public class UniversalHitbox : MonoBehaviour
         }
     }
 
-    // 부모 타입에 따라 최신 공격력을 가져옴
     public void RefreshOwnerAtk()
     {
-        if (mState != null)
-        {
-            ownerAtk = mState.FinalAtk;
-            isInitialized = true;
-        }
-        else if (pState != null)
-        {
-            ownerAtk = pState.FinalAtk;
-            isInitialized = true;
-        }
-        else if (eBase != null)
-        {
-            ownerAtk = eBase.FinalDamage;
-            isInitialized = true;
-        }
+        if (mState != null) { ownerAtk = mState.FinalAtk; isInitialized = true; }
+        else if (pState != null) { ownerAtk = pState.FinalAtk; isInitialized = true; }
+        else if (eBase != null) { ownerAtk = eBase.FinalDamage; isInitialized = true; }
     }
 
-    // 외부 주입용 (폭탄, 드론 등 부모가 없는 경우)
     public void SetOwnerAtk(float atk)
     {
         ownerAtk = atk;
@@ -77,14 +59,11 @@ public class UniversalHitbox : MonoBehaviour
         CheckImmediateOverlap();
     }
 
-    // [추가] 다단 히트를 위해 타격 목록을 비우는 기능
-    // 레이저 같은 다단 히트 무기는 0.1초마다 이 함수를 호출하면 됨
     public void ResetHitbox()
     {
         hitTargets.Clear();
     }
 
-    // 즉시 겹쳐 있는 적 판정 (애니메이션 첫 프레임용)
     private void CheckImmediateOverlap()
     {
         if (myCollider == null || !myCollider.enabled || !isInitialized) return;
@@ -113,13 +92,7 @@ public class UniversalHitbox : MonoBehaviour
         {
             hitTargets.Add(collision.gameObject);
 
-            // --- [핵심 수정: 타격 지점 계산] ---
-            // 1. 내 위치에서 가장 가까운 상대방 콜라이더의 지점을 찾음
-            // 보스처럼 큰 몬스터라도 히트박스와 맞닿은 표면 좌표를 가져옴
             Vector2 hitPoint = collision.ClosestPoint(transform.position);
-
-            // 만약 ClosestPoint가 내 위치와 너무 가깝다면(이미 겹친 경우), 
-            // 그냥 적의 중앙 좌표를 대안으로 사용
             if (Vector2.Distance(hitPoint, transform.position) < 0.05f)
             {
                 hitPoint = collision.transform.position;
@@ -129,19 +102,14 @@ public class UniversalHitbox : MonoBehaviour
             Vector2 hitDir = ((Vector2)collision.transform.position - (Vector2)transform.position).normalized;
 
             target.TakeDamage(finalDamage, knockbackPower, hitDir);
-
-            // 2. 계산된 hitPoint를 이벤트로 전달!
             OnHitEffect?.Invoke(hitPoint);
 
-            Debug.Log($"<color=white>[Hit]</color> {collision.gameObject.name}의 {hitPoint} 지점 타격!");
-            // 내가 인간 폼(pState)일 때만 게이지를 채운다
-            if (pState != null)
+            // ==========================================
+            // [핵심 수정] 부모(pState) 체크 대신 전역 스킬 컨트롤러를 확인
+            // ==========================================
+            if (PlayerSkillController.Instance != null && !PlayerSkillController.Instance.isMechaForm)
             {
-                PlayerSkillController skillController = GetComponentInParent<PlayerSkillController>();
-                if (skillController != null)
-                {
-                    skillController.AddMechaEnergy(); // 타격 성공 시 게이지 증가!
-                }
+                PlayerSkillController.Instance.AddMechaEnergy(); // 인간 폼이면 투사체 타격도 게이지 증가!
             }
         }
     }

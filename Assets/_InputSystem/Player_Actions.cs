@@ -437,6 +437,15 @@ public partial class @Player_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchZone"",
+                    ""type"": ""Button"",
+                    ""id"": ""5c68d012-f9c6-49d7-abd9-3b0e209c931c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -549,6 +558,17 @@ public partial class @Player_Actions: IInputActionCollection2, IDisposable
                     ""action"": ""NextTab"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""47ef9a68-0e53-4504-a824-c3e5c0fde358"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchZone"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -577,6 +597,7 @@ public partial class @Player_Actions: IInputActionCollection2, IDisposable
         m_UI_CloseUI = m_UI.FindAction("CloseUI", throwIfNotFound: true);
         m_UI_PrevTab = m_UI.FindAction("PrevTab", throwIfNotFound: true);
         m_UI_NextTab = m_UI.FindAction("NextTab", throwIfNotFound: true);
+        m_UI_SwitchZone = m_UI.FindAction("SwitchZone", throwIfNotFound: true);
     }
 
     ~@Player_Actions()
@@ -881,6 +902,7 @@ public partial class @Player_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_CloseUI;
     private readonly InputAction m_UI_PrevTab;
     private readonly InputAction m_UI_NextTab;
+    private readonly InputAction m_UI_SwitchZone;
     /// <summary>
     /// Provides access to input actions defined in input action map "UI".
     /// </summary>
@@ -916,6 +938,10 @@ public partial class @Player_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "UI/NextTab".
         /// </summary>
         public InputAction @NextTab => m_Wrapper.m_UI_NextTab;
+        /// <summary>
+        /// Provides access to the underlying input action "UI/SwitchZone".
+        /// </summary>
+        public InputAction @SwitchZone => m_Wrapper.m_UI_SwitchZone;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -960,6 +986,9 @@ public partial class @Player_Actions: IInputActionCollection2, IDisposable
             @NextTab.started += instance.OnNextTab;
             @NextTab.performed += instance.OnNextTab;
             @NextTab.canceled += instance.OnNextTab;
+            @SwitchZone.started += instance.OnSwitchZone;
+            @SwitchZone.performed += instance.OnSwitchZone;
+            @SwitchZone.canceled += instance.OnSwitchZone;
         }
 
         /// <summary>
@@ -989,6 +1018,9 @@ public partial class @Player_Actions: IInputActionCollection2, IDisposable
             @NextTab.started -= instance.OnNextTab;
             @NextTab.performed -= instance.OnNextTab;
             @NextTab.canceled -= instance.OnNextTab;
+            @SwitchZone.started -= instance.OnSwitchZone;
+            @SwitchZone.performed -= instance.OnSwitchZone;
+            @SwitchZone.canceled -= instance.OnSwitchZone;
         }
 
         /// <summary>
@@ -1163,5 +1195,12 @@ public partial class @Player_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnNextTab(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SwitchZone" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSwitchZone(InputAction.CallbackContext context);
     }
 }
