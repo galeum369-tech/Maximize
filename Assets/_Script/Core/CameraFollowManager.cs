@@ -31,6 +31,8 @@ public class CameraFollowManager : MonoBehaviour
         vcam = GetComponent<CinemachineCamera>();
     }
 
+    
+
     private void Update()
     {
         if (GameManager.Instance == null) return;

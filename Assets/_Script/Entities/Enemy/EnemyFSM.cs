@@ -6,6 +6,7 @@ public enum EnemyState { Idle, Chase, Attack, Hit, Die }
 public class EnemyFSM : MonoBehaviour
 {
     private EnemyBase owner;
+
     public EnemyState currentState = EnemyState.Idle;
 
     [Header("인식 설정")]
@@ -17,8 +18,16 @@ public class EnemyFSM : MonoBehaviour
         owner = GetComponent<EnemyBase>();
     }
 
+    private void Start()
+    {
+        currentState = EnemyState.Idle;
+    }
+
     private void Update()
     {
+        // [핵심 추가] EnemyBase가 체력 등의 세팅을 완전히 끝내기 전까진 FSM 작동 중지!
+        if (!owner.isInitialized) return;
+
         if (owner.currentHp <= 0)
         {
             currentState = EnemyState.Die;
@@ -30,11 +39,29 @@ public class EnemyFSM : MonoBehaviour
 
     private void UpdateState()
     {
-        if (owner.player == null) return;
+        if (owner.player == null)
+        {
+            if (GameManager.Instance != null && GameManager.Instance.GetActivePlayer() != null)
+            {
+                owner.player = GameManager.Instance.GetActivePlayer();
+            }
+            else
+            {
+                GameObject pObj = GameObject.FindGameObjectWithTag("Player");
+                if (pObj != null) owner.player = pObj.transform;
+            }
+
+            if (owner.player == null)
+            {
+                currentState = EnemyState.Idle;
+                owner.currentState = currentState;
+                owner.StopMove();
+                return;
+            }
+        }
 
         float dist = Vector2.Distance(transform.position, owner.player.position);
 
-        // owner.currentState와 이 스크립트의 currentState를 동기화 (선택 사항)
         owner.currentState = currentState;
 
         switch (currentState)
@@ -52,7 +79,7 @@ public class EnemyFSM : MonoBehaviour
 
             case EnemyState.Attack:
                 if (dist > attackRange) currentState = EnemyState.Chase;
-                else owner.Attack(); // 이제 EnemyBase에 Attack이 있음
+                else owner.Attack();
                 break;
         }
     }

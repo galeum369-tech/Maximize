@@ -25,9 +25,9 @@ public class InventoryManager : MonoBehaviour
     public List<ItemSlot> slots = new List<ItemSlot>();
     public int maxSlotCount = 40;
 
+    // [핵심 수정] 인간/메카 배열을 하나로 통합!
     [Header("장착된 장비 (0:Core, 1:Frame, 2:Gear, 3:Chip)")]
-    public EquipmentData[] humanEquips = new EquipmentData[4];
-    public EquipmentData[] mechaEquips = new EquipmentData[4];
+    public EquipmentData[] equippedItems = new EquipmentData[4];
 
     // 장비가 바뀌었을 때 각 State들에게 스탯 재계산하라고 알리는 이벤트
     public event Action OnEquipmentChanged;
@@ -134,38 +134,57 @@ public class InventoryManager : MonoBehaviour
         toSlot.count = temp.count;
     }
 
-    // 장비 장착 처리
-    public void EquipItem(EquipmentData equip, bool isMechaMode)
+    // [수정] 통합 장비 장착 처리 (isMechaMode 파라미터 삭제)
+    public void EquipItem(EquipmentData equip)
     {
-        EquipmentData[] targetEquips = isMechaMode ? mechaEquips : humanEquips;
         int slotIndex = (int)equip.equipType;
 
         // 1. 이미 그 부위에 장비가 있다면 가방으로 다시 넣기
-        if (targetEquips[slotIndex] != null)
+        if (equippedItems[slotIndex] != null)
         {
-            AddItem(targetEquips[slotIndex], 1);
+            AddItem(equippedItems[slotIndex], 1);
         }
 
         // 2. 새 장비 장착
-        targetEquips[slotIndex] = equip;
+        equippedItems[slotIndex] = equip;
 
-        // 3. 스탯 재계산 이벤트 발생 (구독 중인 PlayerState 등이 알아서 갱신됨)
+        // 3. 스탯 재계산 이벤트 발생 (구독 중인 State들이 알아서 갱신됨)
         OnEquipmentChanged?.Invoke();
     }
 
-    // 통합 스탯 보너스 계산기 (각 State들이 호출해서 씀)
+    // [수정] 통합 장비 해제 (isMechaMode 파라미터 삭제)
+    public void UnequipItem(int equipSlotIndex)
+    {
+        EquipmentData itemToUnequip = equippedItems[equipSlotIndex];
+
+        if (itemToUnequip != null)
+        {
+            // 1. 가방에 넣기 시도
+            bool added = AddItem(itemToUnequip, 1);
+
+            if (added)
+            {
+                // 2. 가방에 성공적으로 들어갔으면 장착 칸 비우기
+                equippedItems[equipSlotIndex] = null;
+
+                // 3. 스탯 재계산
+                OnEquipmentChanged?.Invoke();
+                Debug.Log($"{itemToUnequip.itemName} 장착 해제 완료!");
+            }
+            else
+            {
+                Debug.Log("가방이 꽉 차서 장비를 해제할 수 없습니다!");
+            }
+        }
+    }
+
+    // 통합 스탯 보너스 계산기
     public float GetTotalBonus(string targetType, string statType)
     {
         float total = 0f;
 
-        // 인간 장비 검사
-        foreach (var equip in humanEquips)
-        {
-            if (equip != null) total += ExtractStat(equip, targetType, statType);
-        }
-
-        // 메카 장비 검사
-        foreach (var equip in mechaEquips)
+        // 하나의 배열만 순회
+        foreach (var equip in equippedItems)
         {
             if (equip != null) total += ExtractStat(equip, targetType, statType);
         }
@@ -173,19 +192,36 @@ public class InventoryManager : MonoBehaviour
         return total;
     }
 
-    // 개별 장비에서 스탯 뽑아오기
+    // [수정] 각 폼(대상)에 맞는 스탯을 영리하게 뽑아오기
     private float ExtractStat(EquipmentData equip, string targetType, string statType)
     {
-        // 타겟이 Player이거나 Mecha일 때 기본 보너스 부여
-        // (추후 드론 전용 옵션이 생기면 targetType == "Drone" 조건 추가 가능)
-        if (targetType == "Player" || targetType == "Mecha")
+        if (targetType == "Player" || targetType == "Human") // 기존 PlayerState 호환
         {
             switch (statType)
             {
-                case "hp": return equip.hpBonus;
-                case "atk": return equip.atkBonus;
-                case "def": return equip.defBonus;
-                case "spd": return equip.spdBonus;
+                case "hp": return equip.humanHpBonus;
+                case "atk": return equip.humanAtkBonus;
+                case "def": return equip.humanDefBonus;
+                case "spd": return equip.humanSpdBonus;
+            }
+        }
+        else if (targetType == "Mecha")
+        {
+            switch (statType)
+            {
+                case "hp": return equip.mechaHpBonus;
+                case "atk": return equip.mechaAtkBonus;
+                case "def": return equip.mechaDefBonus;
+                case "spd": return equip.mechaSpdBonus;
+            }
+        }
+        else if (targetType == "Drone")
+        {
+            switch (statType)
+            {
+                case "atk": return equip.droneAtkBonus;
+                case "fireRate": return equip.droneFireRateBonus;
+                case "range": return equip.droneRangeBonus;
             }
         }
         return 0f;

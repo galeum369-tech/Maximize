@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class DroneCannon : MonoBehaviour
@@ -18,7 +19,12 @@ public class DroneCannon : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        Destroy(gameObject, maxLifetime);
+    }
+
+    private void Start()
+    {
+        // 내장된 Destroy 타이머 대신, 코루틴으로 수명 관리 시작
+        StartCoroutine(LifetimeRoutine());
     }
 
     public void Launch(float dmg, Vector2 direction)
@@ -35,7 +41,21 @@ public class DroneCannon : MonoBehaviour
         if (((1 << collision.gameObject.layer) & contactLayers) != 0)
         {
             hasHit = true;
-            HitTarget(collision.transform.position);
+            // 적이나 벽에 맞았을 때는 맞은 정확한 위치(ClosestPoint)에서 터짐
+            HitTarget(collision.ClosestPoint(transform.position));
+        }
+    }
+
+    // 허공에서 수명이 다했을 때의 처리
+    private IEnumerator LifetimeRoutine()
+    {
+        yield return new WaitForSeconds(maxLifetime);
+
+        if (!hasHit)
+        {
+            hasHit = true;
+            // 허공에서 시간이 다 됐으면 '현재 총알이 있는 위치'에서 터지게 강제함
+            HitTarget(transform.position);
         }
     }
 
@@ -46,11 +66,7 @@ public class DroneCannon : MonoBehaviour
             GameObject exp = Instantiate(explosionPrefab, hitPos, Quaternion.identity);
             UniversalHitbox hb = exp.GetComponent<UniversalHitbox>();
 
-            // [중요] 새로 소환된 폭발 히트박스에 공격력 주입
-            if (hb != null)
-            {
-                hb.SetOwnerAtk(cannonDamage);
-            }
+            if (hb != null) hb.SetOwnerAtk(cannonDamage);
         }
 
         Destroy(gameObject);

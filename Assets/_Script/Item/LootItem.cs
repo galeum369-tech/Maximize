@@ -6,7 +6,12 @@ public class LootItem : MonoBehaviour
 {
     [Header("아이템 정보")]
     public ItemData itemData; // 드롭될 아이템의 데이터 (SO)
-    public int amount = 1;    // 떨어질 개수
+
+    [Header("수량 설정")]
+    public int minAmount = 1; // 떨어질 최소 개수
+    public int maxAmount = 1; // 떨어질 최대 개수
+
+    private int currentAmount; // 실제로 결정된 떨어질 개수
 
     private Rigidbody2D rb;
     private Collider2D col;
@@ -15,7 +20,7 @@ public class LootItem : MonoBehaviour
     [Header("자석 효과 설정")]
     public float pullRange = 5f;  // 플레이어를 감지할 범위
     public float pullSpeed = 10f; // 끌려가는 속도
-    public float eatRange = 0.5f; // [추가] 이 거리 안으로 들어오면 획득됨
+    public float eatRange = 0.5f; // 이 거리 안으로 들어오면 획득됨
 
     private Transform playerTransform;
     private float magnetDelay = 0.5f;
@@ -24,13 +29,28 @@ public class LootItem : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
-
-        // [수정] 트리거 강제 전환 삭제! 바닥이랑 정상적으로 충돌해서 튕기도록 냅둠
-        // col.isTrigger = true; 
     }
 
     private void Start()
     {
+        // 1. 개수 랜덤 지정
+        // 장비템이면 스택이 안 되니까 무조건 1개로 고정, 나머지는 랜덤!
+        if (itemData != null && itemData.itemType == ItemType.Equipment)
+        {
+            currentAmount = 1;
+        }
+        else
+        {
+            currentAmount = Random.Range(minAmount, maxAmount + 1);
+        }
+
+        // 2. 만약 최소 개수를 0으로 뒀는데 0이 걸렸다면? 아예 삭제해버림 (꽝 효과)
+        if (currentAmount <= 0)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         // 생성될 때 위로 살짝 튀어오르는 연출
         rb.AddForce(new Vector2(Random.Range(-2f, 2f), 5f), ForceMode2D.Impulse);
     }
@@ -49,7 +69,6 @@ public class LootItem : MonoBehaviour
         // 플레이어 타겟팅 (GameManager 적극 활용)
         if (playerTransform == null || !playerTransform.gameObject.activeInHierarchy)
         {
-            // 네가 만든 GameManager에 등록된 진짜 활성화 플레이어를 가져옴
             if (GameManager.Instance != null && GameManager.Instance.GetActivePlayer() != null)
             {
                 playerTransform = GameManager.Instance.GetActivePlayer();
@@ -74,15 +93,16 @@ public class LootItem : MonoBehaviour
         }
     }
 
-    // 아이템 획득 시도 (OnTriggerEnter2D를 대체함)
+    // 아이템 획득 시도
     private void TryCollectItem()
     {
-        bool isAdded = InventoryManager.Instance.AddItem(itemData, amount);
+        // 랜덤으로 정해진 currentAmount만큼 인벤토리에 추가 시도
+        bool isAdded = InventoryManager.Instance.AddItem(itemData, currentAmount);
 
         if (isAdded)
         {
             isCollected = true;
-            Debug.Log($"<color=yellow>{itemData.itemName}</color> {amount}개 획득!");
+            Debug.Log($"<color=yellow>{itemData.itemName}</color> {currentAmount}개 획득!");
 
             // TODO: 획득 이펙트나 사운드 재생
             Destroy(gameObject);
