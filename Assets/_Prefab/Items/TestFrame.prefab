@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1239111655783142775}
   - component: {fileID: 6416618074917966827}
   m_Layer: 11
-  m_Name: TestEquipment
+  m_Name: TestFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.11420822, a: 1}
+  m_Color: {r: 0.8832483, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d493675b660b4a34bafadb1fc8997143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: 13f0dd0a6714ead4786d159ab6c605d0, type: 2}
+  itemData: {fileID: 11400000, guid: 316605b42aeb87e49bc70d54d0592bcb, type: 2}
   amount: 1
   pullRange: 2
   pullSpeed: 10

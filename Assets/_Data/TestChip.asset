@@ -10,24 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a5a4d1f98b1c0974495db789406cbeda, type: 3}
-  m_Name: TestEquipment
+  m_Name: TestChip
   m_EditorClassIdentifier: 
-  itemName: "\uD14C\uC2A4\uD2B8 \uC7A5\uBE44"
+  itemName: "\uD14C\uC2A4\uD2B8 \uCE69"
   id: 2001
   icon: {fileID: 0}
   itemType: 0
   rarity: 0
   price: 0
   description: 
-  equipType: 0
-  humanAtkBonus: 10
-  humanHpBonus: 0
-  humanDefBonus: 0
-  humanSpdBonus: 0
-  mechaAtkBonus: 0
-  mechaHpBonus: 0
-  mechaDefBonus: 0
-  mechaSpdBonus: 0
-  droneAtkBonus: 0
+  equipType: 3
+  humanAtkBonus: 5
+  humanHpBonus: 5
+  humanDefBonus: 5
+  humanSpdBonus: 5
+  mechaAtkBonus: 10
+  mechaHpBonus: 10
+  mechaDefBonus: 10
+  mechaSpdBonus: 10
+  droneAtkBonus: 10
   droneFireRateBonus: 0
   droneRangeBonus: 0

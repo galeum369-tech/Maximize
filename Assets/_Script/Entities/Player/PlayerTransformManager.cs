@@ -80,9 +80,17 @@ public class PlayerTransformManager : MonoBehaviour
         IsMechaMode = true;
         Debug.Log(">>> 메카닉 소환 완료!");
 
-        // ==========================================
-        // [핵심 추가] 변신 즉시 메카의 인풋 핸들러를 UI들에게 배달!
-        // ==========================================
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.RegisterPlayer(mechaObject.transform);
+        }
+
+        // [추가] 변신 즉시 카메라를 메카 위치로 순간이동!
+        if (CameraFollowManager.Instance != null)
+        {
+            CameraFollowManager.Instance.SnapToTarget();
+        }
+
         var mechaInput = mechaObject.GetComponent<PlayerInputHandler>();
         if (InventoryUI.Instance != null) InventoryUI.Instance.SetInputHandler(mechaInput);
         if (QuickSlotManager.Instance != null) QuickSlotManager.Instance.SetInputHandler(mechaInput);
@@ -111,9 +119,17 @@ public class PlayerTransformManager : MonoBehaviour
         IsMechaMode = false;
         Debug.Log(">>> 파일럿 복귀 완료!");
 
-        // ==========================================
-        // [핵심 추가] 복귀 즉시 인간의 인풋 핸들러를 UI들에게 배달!
-        // ==========================================
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.RegisterPlayer(humanObject.transform);
+        }
+
+        // [추가] 변신(또는 씬 시작) 즉시 카메라를 인간 위치로 순간이동!
+        if (CameraFollowManager.Instance != null)
+        {
+            CameraFollowManager.Instance.SnapToTarget();
+        }
+
         var humanInput = humanObject.GetComponent<PlayerInputHandler>();
         if (InventoryUI.Instance != null) InventoryUI.Instance.SetInputHandler(humanInput);
         if (QuickSlotManager.Instance != null) QuickSlotManager.Instance.SetInputHandler(humanInput);
