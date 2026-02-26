@@ -17,4 +17,21 @@ MonoBehaviour:
   icon: {fileID: 0}
   itemType: 1
   rarity: 0
-  price: 5
+  sellPrice: 10
+  description: 
+  equipType: 0
+  humanAtkBonus: 0
+  humanHpBonus: 0
+  humanDefBonus: 0
+  humanSpdBonus: 0
+  mechaAtkBonus: 0
+  mechaHpBonus: 0
+  mechaDefBonus: 0
+  mechaSpdBonus: 0
+  droneAtkBonus: 0
+  droneFireRateBonus: 0
+  droneRangeBonus: 0
+  consumableType: 0
+  buffStatType: 0
+  effectValue: 0
+  effectDuration: 0

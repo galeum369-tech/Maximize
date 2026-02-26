@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Collections; // 코루틴을 사용하기 위해 추가
+using System.Collections;
 
 public class QuickSlotManager : MonoBehaviour
 {
@@ -48,12 +48,11 @@ public class QuickSlotManager : MonoBehaviour
     private void UseItem(int index)
     {
         var slot = quickSlots[index];
-        if (slot.item != null && slot.item is ItemData consumable)
+        if (slot.item != null && slot.item.itemType == ItemType.Consumable)
         {
-            // 현재 메카인지 인간인지 확인
+            ItemData consumable = slot.item;
             bool isMecha = PlayerTransformManager.Instance.IsMechaMode;
 
-            // 아이템 타입에 따라 효과 분기 처리
             switch (consumable.consumableType)
             {
                 case ConsumableType.HealHP:
@@ -63,24 +62,19 @@ public class QuickSlotManager : MonoBehaviour
                     ApplyHealEnergy(consumable, isMecha);
                     break;
                 case ConsumableType.Buff:
-                    // 버프는 코루틴으로 실행하여 지속시간 후 해제되도록 함
                     StartCoroutine(BuffCoroutine(consumable, isMecha));
                     break;
             }
 
-            // 공통 로직: 개수 차감 및 슬롯 비우기
             slot.count--;
             if (slot.count <= 0) slot.Clear();
 
             RefreshQuickSlotUI();
 
-            // 인벤토리가 열려있다면 즉시 갱신
             if (InventoryUI.Instance != null && InventoryUI.Instance.isOpen)
                 InventoryUI.Instance.RefreshUI();
         }
     }
-
-    // --- 개별 효과 적용 함수들 ---
 
     private void ApplyHealHP(ItemData data, bool isMecha)
     {
@@ -89,7 +83,6 @@ public class QuickSlotManager : MonoBehaviour
         if (isMecha)
         {
             var mState = PlayerTransformManager.Instance.mechaObject.GetComponent<MechaState>();
-            // 최대 체력을 넘지 않도록 Min으로 제한
             mState.currentHp = Mathf.Min(mState.currentHp + data.effectValue, mState.FinalMaxHP);
             UIManager.Instance?.UpdateHP(mState.currentHp, mState.FinalMaxHP);
         }
@@ -104,28 +97,22 @@ public class QuickSlotManager : MonoBehaviour
     private void ApplyHealEnergy(ItemData data, bool isMecha)
     {
         Debug.Log($"{data.itemName} 사용! 에너지 {data.effectValue} 회복!");
-        // 차후 에너지(EP/SP) 시스템 연동 시 여기에 로직 추가
     }
 
-    // 버프 지속을 처리하는 코루틴
     private IEnumerator BuffCoroutine(ItemData data, bool isMecha)
     {
         Debug.Log($"{data.itemName} 사용! {data.buffStatType} 스탯이 {data.effectDuration}초 동안 {data.effectValue} 증가!");
 
-        // 1. 버프 수치 적용 및 스탯 강제 갱신
         ApplyBuffValue(data.buffStatType, data.effectValue, isMecha);
         InventoryManager.Instance.ForceStatUpdate();
 
-        // 2. 지속 시간(초) 만큼 대기
         yield return new WaitForSeconds(data.effectDuration);
 
-        // 3. 시간이 지나면 버프 수치를 다시 빼서 원상복구
         Debug.Log($"{data.itemName} 버프 종료!");
         ApplyBuffValue(data.buffStatType, -data.effectValue, isMecha);
         InventoryManager.Instance.ForceStatUpdate();
     }
 
-    // 대상 폼에 맞춰 실제 버프 변수 증감 처리
     private void ApplyBuffValue(BuffStatType buffType, float amount, bool isMecha)
     {
         if (isMecha)
@@ -172,7 +159,6 @@ public class QuickSlotManager : MonoBehaviour
         }
     }
 
-    // [핵심 1] 인벤토리에서 퀵슬롯으로 장착
     public void EquipToQuickSlot(int index, ItemSlot bagSlot)
     {
         if (quickSlots[index].item != null)
@@ -196,7 +182,6 @@ public class QuickSlotManager : MonoBehaviour
         RefreshQuickSlotUI();
     }
 
-    // [핵심 2] 퀵슬롯 해제 시 가방으로 반환
     public void UnequipQuickSlot(int index)
     {
         if (quickSlots[index].item != null)
@@ -215,7 +200,6 @@ public class QuickSlotManager : MonoBehaviour
         }
     }
 
-    // [핵심 3] 아이템 획득 시 퀵슬롯 우선 보충
     public int AddToQuickSlotFirst(ItemData data, int amount)
     {
         for (int i = 0; i < 3; i++)

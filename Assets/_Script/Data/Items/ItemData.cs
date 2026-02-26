@@ -17,7 +17,7 @@ public class ItemData : ScriptableObject
     public ItemType itemType;
     public ItemRarity rarity;
 
-    // [상점 분리용] 이제 아이템은 '팔 때 얼마인가'만 알면 됨!
+    // 상점 분리용 (이제 아이템은 '팔 때 얼마인가'만 알면 됨!)
     public int sellPrice;
 
     [TextArea(3, 5)]

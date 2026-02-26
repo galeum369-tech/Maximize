@@ -2,19 +2,12 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 
-// 인벤토리 한 칸의 데이터를 담당하는 클래스
 [System.Serializable]
 public class ItemSlot
 {
-    public ItemData item; // 아이템 원본 데이터 (SO)
-    public int count;     // 현재 겹쳐진 개수
-
-    // 슬롯 비우기
-    public void Clear()
-    {
-        item = null;
-        count = 0;
-    }
+    public ItemData item;
+    public int count;
+    public void Clear() { item = null; count = 0; }
 }
 
 [DefaultExecutionOrder(-100)]
@@ -26,177 +19,112 @@ public class InventoryManager : MonoBehaviour
     public List<ItemSlot> slots = new List<ItemSlot>();
     public int maxSlotCount = 40;
 
-    // [핵심 수정] 인간/메카 배열을 하나로 통합!
     [Header("장착된 장비 (0:Core, 1:Frame, 2:Gear, 3:Chip)")]
     public ItemData[] equippedItems = new ItemData[4];
 
-    // 장비가 바뀌었을 때 각 State들에게 스탯 재계산하라고 알리는 이벤트
     public event Action OnEquipmentChanged;
 
     private void Awake()
     {
         Instance = this;
-        // 시작할 때 빈 슬롯 40개 생성
         for (int i = 0; i < maxSlotCount; i++) slots.Add(new ItemSlot());
     }
 
-    // 아이템 획득
-    public bool AddItem(ItemData data, int amount)
+    public bool AddItem(ItemData itemToAdd, int amount)
     {
-        // 1. 장비가 아니라면 기존 슬롯에 합치기 시도
-        if (data.itemType != ItemType.Equipment)
+        if (itemToAdd.itemType != ItemType.Equipment)
         {
             foreach (var slot in slots)
             {
-                if (slot.item == data && slot.count < data.GetMaxStack())
+                if (slot.item == itemToAdd && slot.count < itemToAdd.GetMaxStack())
                 {
-                    int canAdd = data.GetMaxStack() - slot.count;
+                    int canAdd = itemToAdd.GetMaxStack() - slot.count;
                     int toAdd = Mathf.Min(canAdd, amount);
                     slot.count += toAdd;
                     amount -= toAdd;
-                    if (amount <= 0) return true; // 다 넣었으면 성공
+                    if (amount <= 0) return true;
                 }
             }
         }
-
-        // 2. 남은 수량은 빈 슬롯을 찾아서 새로 추가
-        while (amount > 0)
-        {
-            ItemSlot emptySlot = slots.Find(s => s.item == null);
-            if (emptySlot != null)
-            {
-                emptySlot.item = data;
-                int toAdd = Mathf.Min(amount, data.GetMaxStack());
-                emptySlot.count = toAdd;
-                amount -= toAdd;
-            }
-            else
-            {
-                Debug.Log("인벤토리가 꽉 찼습니다!");
-                return false;
-            }
-        }
-        return true;
-    }
-
-    // 사망 패널티 (재료템 25% 소실)
-    public void HandleDeathPenalty()
-    {
         foreach (var slot in slots)
         {
-            if (slot.item != null && slot.item.itemType != ItemType.Equipment)
+            if (slot.item == null)
             {
-                int loss = Mathf.FloorToInt(slot.count * 0.25f);
-                if (loss > 0)
-                {
-                    slot.count -= loss;
-                    Debug.Log($"{slot.item.itemName} 아이템을 {loss}개 잃었습니다.");
-                }
-                if (slot.count <= 0) slot.Clear();
+                slot.item = itemToAdd;
+                int toAdd = Mathf.Min(amount, itemToAdd.GetMaxStack());
+                slot.count = toAdd;
+                amount -= toAdd;
+                if (amount <= 0) return true;
             }
         }
+        return false;
     }
 
-    // 인벤토리 내 아이템 이동, 교체, 병합
-    public void MoveOrSwapSlot(int fromIndex, int toIndex)
+    public void EquipItem(ItemData equipItem)
     {
-        if (fromIndex == toIndex) return;
+        if (equipItem.itemType != ItemType.Equipment) return;
 
-        ItemSlot fromSlot = slots[fromIndex];
-        ItemSlot toSlot = slots[toIndex];
+        int slotIndex = (int)equipItem.equipType;
 
-        // 1. 병합 시도 (같은 아이템이고 스택 가능한 경우)
-        if (fromSlot.item != null && toSlot.item != null &&
-            fromSlot.item == toSlot.item &&
-            fromSlot.item.GetMaxStack() > 1)
-        {
-            int availableSpace = toSlot.item.GetMaxStack() - toSlot.count;
-
-            if (availableSpace > 0)
-            {
-                int moveAmount = Mathf.Min(availableSpace, fromSlot.count);
-                toSlot.count += moveAmount;
-                fromSlot.count -= moveAmount;
-
-                if (fromSlot.count <= 0) fromSlot.Clear();
-                return;
-            }
-        }
-
-        // 2. 단순 자리 교체 (Swap)
-        ItemSlot temp = new ItemSlot();
-        temp.item = fromSlot.item;
-        temp.count = fromSlot.count;
-
-        fromSlot.item = toSlot.item;
-        fromSlot.count = toSlot.count;
-
-        toSlot.item = temp.item;
-        toSlot.count = temp.count;
-    }
-
-    // [수정] 통합 장비 장착 처리 (isMechaMode 파라미터 삭제)
-    public void EquipItem(ItemData equip)
-    {
-        int slotIndex = (int)equip.equipType;
-
-        // 1. 이미 그 부위에 장비가 있다면 가방으로 다시 넣기
         if (equippedItems[slotIndex] != null)
         {
             AddItem(equippedItems[slotIndex], 1);
         }
 
-        // 2. 새 장비 장착
-        equippedItems[slotIndex] = equip;
-
-        // 3. 스탯 재계산 이벤트 발생 (구독 중인 State들이 알아서 갱신됨)
+        equippedItems[slotIndex] = equipItem;
         OnEquipmentChanged?.Invoke();
     }
 
-    // [수정] 통합 장비 해제 (isMechaMode 파라미터 삭제)
-    public void UnequipItem(int equipSlotIndex)
+    public void UnequipItem(int slotIndex)
     {
-        ItemData itemToUnequip = equippedItems[equipSlotIndex];
-
-        if (itemToUnequip != null)
+        if (equippedItems[slotIndex] != null)
         {
-            // 1. 가방에 넣기 시도
-            bool added = AddItem(itemToUnequip, 1);
-
-            if (added)
+            if (AddItem(equippedItems[slotIndex], 1))
             {
-                // 2. 가방에 성공적으로 들어갔으면 장착 칸 비우기
-                equippedItems[equipSlotIndex] = null;
-
-                // 3. 스탯 재계산
+                equippedItems[slotIndex] = null;
                 OnEquipmentChanged?.Invoke();
-                Debug.Log($"{itemToUnequip.itemName} 장착 해제 완료!");
             }
-            else
-            {
-                Debug.Log("가방이 꽉 차서 장비를 해제할 수 없습니다!");
-            }
+            else Debug.Log("가방 꽉 차서 못 뺌");
         }
     }
 
-    // 통합 스탯 보너스 계산기
+    public void MoveOrSwapSlot(int fromIndex, int toIndex)
+    {
+        var fromSlot = slots[fromIndex];
+        var toSlot = slots[toIndex];
+
+        if (toSlot.item != null && toSlot.item == fromSlot.item && toSlot.item.itemType != ItemType.Equipment)
+        {
+            int canAdd = toSlot.item.GetMaxStack() - toSlot.count;
+            int toAdd = Mathf.Min(canAdd, fromSlot.count);
+            toSlot.count += toAdd;
+            fromSlot.count -= toAdd;
+            if (fromSlot.count <= 0) fromSlot.Clear();
+        }
+        else
+        {
+            ItemData tempItem = toSlot.item;
+            int tempCount = toSlot.count;
+            toSlot.item = fromSlot.item;
+            toSlot.count = fromSlot.count;
+            fromSlot.item = tempItem;
+            fromSlot.count = tempCount;
+        }
+    }
+
     public float GetTotalBonus(string targetType, string statType)
     {
         float total = 0f;
-
-        // 하나의 배열만 순회
         foreach (var equip in equippedItems)
         {
             if (equip != null) total += ExtractStat(equip, targetType, statType);
         }
-
         return total;
     }
 
-    // [수정] 각 폼(대상)에 맞는 스탯을 영리하게 뽑아오기
     private float ExtractStat(ItemData equip, string targetType, string statType)
     {
-        if (targetType == "Player" || targetType == "Human") // 기존 PlayerState 호환
+        if (targetType == "Player" || targetType == "Human")
         {
             switch (statType)
             {
@@ -231,5 +159,53 @@ public class InventoryManager : MonoBehaviour
     public void ForceStatUpdate()
     {
         OnEquipmentChanged?.Invoke();
+    }
+
+    public bool HasItems(ItemData data, int amount)
+    {
+        int currentCount = 0;
+        foreach (var slot in slots)
+        {
+            if (slot.item == data) currentCount += slot.count;
+        }
+        return currentCount >= amount;
+    }
+
+    public void HandleDeathPenalty()
+    {
+        foreach (var slot in slots)
+        {
+            if (slot.item != null && slot.item.itemType != ItemType.Equipment)
+            {
+                int loss = Mathf.FloorToInt(slot.count * 0.25f);
+                if (loss > 0)
+                {
+                    slot.count -= loss;
+                    Debug.Log($"{slot.item.itemName} 아이템을 {loss}개 잃었습니다.");
+                }
+                if (slot.count <= 0) slot.Clear();
+            }
+        }
+    }
+
+    public void ConsumeItems(ItemData data, int amount)
+    {
+        for (int i = 0; i < slots.Count; i++)
+        {
+            if (slots[i].item == data)
+            {
+                if (slots[i].count >= amount)
+                {
+                    slots[i].count -= amount;
+                    if (slots[i].count <= 0) slots[i].Clear();
+                    return;
+                }
+                else
+                {
+                    amount -= slots[i].count;
+                    slots[i].Clear();
+                }
+            }
+        }
     }
 }

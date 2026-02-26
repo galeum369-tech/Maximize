@@ -1,14 +1,20 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-// [추가] 상점의 한 칸(진열대)을 나타내는 클래스
+// 조합/구매에 필요한 재료 정보
+[System.Serializable]
+public class CraftIngredient
+{
+    public ItemData item;
+    public int amount;
+}
+
+// 상점 진열대 구조
 [System.Serializable]
 public class ShopEntry
 {
     public ItemData resultItem; // 유저가 받게 될 아이템
     public int buyPrice;        // 유저가 내야 할 골드
-
-    // 여기서 재료를 설정!
     public List<CraftIngredient> requiredMaterials = new List<CraftIngredient>();
 }
 
@@ -17,12 +23,15 @@ public class ShopManager : MonoBehaviour
     public static ShopManager Instance { get; private set; }
 
     [Header("상점 판매 목록 (진열대)")]
-    // [수정] ItemData 리스트가 아니라 ShopEntry 리스트로 변경!
     public List<ShopEntry> shopEntries = new List<ShopEntry>();
 
     private void Awake()
     {
-        if (Instance == null) { Instance = this; DontDestroyOnLoad(gameObject); }
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
         else Destroy(gameObject);
     }
 
@@ -63,7 +72,10 @@ public class ShopManager : MonoBehaviour
 
             Debug.Log($"{entry.resultItem.itemName} 구매 완료!");
         }
-        else Debug.Log("가방이 꽉 차서 살 수 없어!");
+        else
+        {
+            Debug.Log("가방이 꽉 차서 살 수 없어!");
+        }
     }
 
     // [판매 로직]
@@ -72,7 +84,6 @@ public class ShopManager : MonoBehaviour
         ItemSlot invSlot = InventoryManager.Instance.slots[inventoryIndex];
         if (invSlot.item == null) return;
 
-        // [수정] 이제 sellPrice를 읽어옴
         int goldToGive = invSlot.item.sellPrice;
 
         GameManager.Instance.currentMoney += goldToGive;

@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 
 public enum UITab { Inventory, Settings }
-public enum UIZone { Inventory, Equipment, Storage, Shop } // [추가] Storage 구역 추가
+public enum UIZone { Inventory, Equipment, Storage, Shop }
 
 public class InventoryUI : MonoBehaviour
 {
@@ -26,36 +26,31 @@ public class InventoryUI : MonoBehaviour
     public ItemTooltipUI tooltip;
     public StatDisplayUI statDisplay;
 
-    // ==========================================
-    // [추가] 모드 스위칭용 부모 오브젝트 연결
-    // ==========================================
     [Header("판넬 스위칭 (오른쪽 영역)")]
-    public GameObject equipmentPanelRoot; // 장비+퀵슬롯 묶음
-    public GameObject storagePanelRoot;   // 창고 스크롤뷰 묶음
-    public bool isStorageMode = false;    // 현재 창고를 열었는지 여부
+    public GameObject equipmentPanelRoot;
+    public GameObject storagePanelRoot;
+    public bool isStorageMode = false;
+
     [Header("판넬 스위칭 (상점 모드)")]
-    public GameObject shopPanelRoot;   // 상점 스크롤뷰 묶음
-    public bool isShopMode = false;    // 현재 상점을 열었는지 여부
+    public GameObject shopPanelRoot;
+    public bool isShopMode = false;
 
     [Header("상점 UI")]
     public Transform shopSlotParent;
     private List<InventorySlotUI> shopUiSlots = new List<InventorySlotUI>();
     private int shopFocusIndex = 0;
-    private int shopColumns = 5; // 창고랑 똑같이 세팅
+    private int shopColumns = 5;
 
     [Header("장비/퀵슬롯 UI (오른쪽 판넬)")]
     public InventorySlotUI[] equipSlots = new InventorySlotUI[4];
     public InventorySlotUI[] quickSlotUIs = new InventorySlotUI[3];
     private ItemSlot[] tempEquipData = new ItemSlot[4] { new ItemSlot(), new ItemSlot(), new ItemSlot(), new ItemSlot() };
 
-    // ==========================================
-    // [추가] 창고 슬롯 UI 리스트
-    // ==========================================
     [Header("창고 UI")]
-    public Transform storageSlotParent; // Grid Layout Group이 있는 부모
+    public Transform storageSlotParent;
     private List<InventorySlotUI> storageUiSlots = new List<InventorySlotUI>();
     private int storageFocusIndex = 0;
-    private int storageColumns = 5; // 창고 가로 칸 수 (UI 세팅에 맞게 조절해)
+    private int storageColumns = 5;
 
     [Header("조작 및 연출")]
     public Image floatingIcon;
@@ -140,28 +135,31 @@ public class InventoryUI : MonoBehaviour
                 if (rightFocusIndex < 4) targetTransform = equipSlots[rightFocusIndex].transform;
                 else targetTransform = quickSlotUIs[rightFocusIndex - 4].transform;
             }
-            else // Storage Zone
+            else if (currentZone == UIZone.Storage)
             {
                 if (storageUiSlots.Count > storageFocusIndex)
                     targetTransform = storageUiSlots[storageFocusIndex].transform;
-                else targetTransform = storageSlotParent; // 안전빵
+                else targetTransform = storageSlotParent;
+            }
+            else
+            {
+                if (shopUiSlots.Count > shopFocusIndex)
+                    targetTransform = shopUiSlots[shopFocusIndex].transform;
+                else targetTransform = shopSlotParent;
             }
 
             floatingIcon.transform.position = targetTransform.position + offset;
         }
     }
 
-    // ==========================================
-    // [추가] 창고 상호작용 시 호출되는 전용 오픈 함수
-    // ==========================================
     public void OpenStorageUI()
     {
         isStorageMode = true;
-        currentZone = UIZone.Inventory; // 시작 포커스는 무조건 왼쪽 가방
-        grabbedIndex = -1; // 혹시 쥐고 있던 거 초기화
+        currentZone = UIZone.Inventory;
+        grabbedIndex = -1;
 
-        // 판넬 스위칭
         if (equipmentPanelRoot != null) equipmentPanelRoot.SetActive(false);
+        if (shopPanelRoot != null) shopPanelRoot.SetActive(false);
         if (storagePanelRoot != null) storagePanelRoot.SetActive(true);
 
         if (!isOpen) ToggleUI();
@@ -199,19 +197,14 @@ public class InventoryUI : MonoBehaviour
             if (tooltip != null) tooltip.Hide();
             if (currentInput != null) currentInput.OpenUI(false);
 
-            // [추가] 닫을 때는 창고 모드 해제하고 장비창으로 원상복구
             isStorageMode = false;
-            if (equipmentPanelRoot != null) equipmentPanelRoot.SetActive(true);
             if (storagePanelRoot != null) storagePanelRoot.SetActive(false);
-            currentZone = UIZone.Inventory;
 
             isShopMode = false;
             if (shopPanelRoot != null) shopPanelRoot.SetActive(false);
 
-            // ToggleZone() 내부:
-            if (isStorageMode) currentZone = (currentZone == UIZone.Inventory) ? UIZone.Storage : UIZone.Inventory;
-            else if (isShopMode) currentZone = (currentZone == UIZone.Inventory) ? UIZone.Shop : UIZone.Inventory; // 이거 추가!
-            else currentZone = (currentZone == UIZone.Inventory) ? UIZone.Equipment : UIZone.Inventory;
+            if (equipmentPanelRoot != null) equipmentPanelRoot.SetActive(true);
+            currentZone = UIZone.Inventory;
         }
     }
 
@@ -239,15 +232,9 @@ public class InventoryUI : MonoBehaviour
     {
         if (!isOpen || currentTab != UITab.Inventory) return;
 
-        // [수정] 창고 모드일 때는 Inventory <-> Storage 로 스위칭
-        if (isStorageMode)
-        {
-            currentZone = (currentZone == UIZone.Inventory) ? UIZone.Storage : UIZone.Inventory;
-        }
-        else
-        {
-            currentZone = (currentZone == UIZone.Inventory) ? UIZone.Equipment : UIZone.Inventory;
-        }
+        if (isStorageMode) currentZone = (currentZone == UIZone.Inventory) ? UIZone.Storage : UIZone.Inventory;
+        else if (isShopMode) currentZone = (currentZone == UIZone.Inventory) ? UIZone.Shop : UIZone.Inventory;
+        else currentZone = (currentZone == UIZone.Inventory) ? UIZone.Equipment : UIZone.Inventory;
 
         UpdateFocusVisuals();
     }
@@ -276,9 +263,6 @@ public class InventoryUI : MonoBehaviour
 
                 rightFocusIndex = Mathf.Clamp(rightFocusIndex, 0, 6);
             }
-            // ==========================================
-            // [추가] 창고 목록 포커스 이동
-            // ==========================================
             else if (currentZone == UIZone.Storage)
             {
                 int maxStorage = StorageManager.Instance.storageSlots.Count;
@@ -294,7 +278,7 @@ public class InventoryUI : MonoBehaviour
             }
             else if (currentZone == UIZone.Shop)
             {
-                int maxShop = ShopManager.Instance.shopItems.Count;
+                int maxShop = ShopManager.Instance.shopEntries.Count;
                 if (maxShop > 0)
                 {
                     if (dir.x > 0) shopFocusIndex++;
@@ -321,9 +305,6 @@ public class InventoryUI : MonoBehaviour
 
         if (currentTab == UITab.Inventory)
         {
-            // ==========================================
-            // [추가] 창고 모드일 때는 들고 옮기는 로직 대신 '빠른 보관/출금' 사용
-            // ==========================================
             if (isStorageMode) ExecuteStorageAction();
             else if (isShopMode) ExecuteShopAction();
             else
@@ -336,14 +317,10 @@ public class InventoryUI : MonoBehaviour
         else if (currentTab == UITab.Settings) ExecuteSettingsAction();
     }
 
-    // ==========================================
-    // [추가] 창고 빠른 보관/출금 로직
-    // ==========================================
     private void ExecuteStorageAction()
     {
         if (currentZone == UIZone.Inventory)
         {
-            // 인벤 -> 창고로 넣기
             var invSlot = InventoryManager.Instance.slots[invFocusIndex];
             if (invSlot.item != null)
             {
@@ -353,11 +330,9 @@ public class InventoryUI : MonoBehaviour
         }
         else if (currentZone == UIZone.Storage)
         {
-            // 창고 -> 인벤으로 빼기
             if (StorageManager.Instance.storageSlots.Count > storageFocusIndex)
             {
                 StorageManager.Instance.WithdrawItem(storageFocusIndex);
-                // 빼고 나서 리스트가 줄어들었을 때 포커스가 오바되지 않게 잡아줌
                 int maxStorage = Mathf.Max(0, StorageManager.Instance.storageSlots.Count - 1);
                 storageFocusIndex = Mathf.Clamp(storageFocusIndex, 0, maxStorage);
                 RefreshUI();
@@ -370,7 +345,6 @@ public class InventoryUI : MonoBehaviour
     {
         if (currentZone == UIZone.Inventory)
         {
-            // 가방 -> 판매
             var invSlot = InventoryManager.Instance.slots[invFocusIndex];
             if (invSlot.item != null)
             {
@@ -379,8 +353,7 @@ public class InventoryUI : MonoBehaviour
         }
         else if (currentZone == UIZone.Shop)
         {
-            // 상점 -> 구매
-            if (ShopManager.Instance.shopItems.Count > shopFocusIndex)
+            if (ShopManager.Instance.shopEntries.Count > shopFocusIndex)
             {
                 ShopManager.Instance.BuyItem(shopFocusIndex);
             }
@@ -389,7 +362,6 @@ public class InventoryUI : MonoBehaviour
         if (statDisplay != null) statDisplay.RefreshStats();
     }
 
-    // 기존 인벤토리/장비 로직 (변경 없음)
     private void ExecuteInventoryAction(bool isDoubleClick)
     {
         if (currentZone == UIZone.Equipment)
@@ -410,10 +382,9 @@ public class InventoryUI : MonoBehaviour
                 {
                     if (grabbedSlot.item.itemType == ItemType.Equipment)
                     {
-                        ItemData equip = grabbedSlot.item as ItemData;
-                        if ((int)equip.equipType == rightFocusIndex)
+                        if ((int)grabbedSlot.item.equipType == rightFocusIndex)
                         {
-                            InventoryManager.Instance.EquipItem(equip);
+                            InventoryManager.Instance.EquipItem(grabbedSlot.item);
                             grabbedSlot.count--;
                             if (grabbedSlot.count <= 0) grabbedSlot.Clear();
                             DropGrabbedItem();
@@ -444,8 +415,7 @@ public class InventoryUI : MonoBehaviour
                 {
                     if (currentSlotData.item.itemType == ItemType.Equipment)
                     {
-                        ItemData equip = currentSlotData.item as ItemData;
-                        InventoryManager.Instance.EquipItem(equip);
+                        InventoryManager.Instance.EquipItem(currentSlotData.item);
                         currentSlotData.count--;
                         if (currentSlotData.count <= 0) currentSlotData.Clear();
                     }
@@ -520,23 +490,18 @@ public class InventoryUI : MonoBehaviour
             else uiSlots[i].iconImage.color = Color.white;
         }
 
-        // ==========================================
-        // [수정] 모드에 따라 갱신할 UI 분기
-        // ==========================================
         if (isStorageMode)
         {
             if (StorageManager.Instance != null)
             {
                 var sSlots = StorageManager.Instance.storageSlots;
 
-                // 데이터 개수만큼 UI 슬롯이 부족하면 생성
                 while (storageUiSlots.Count < sSlots.Count)
                 {
                     GameObject go = Instantiate(slotPrefab, storageSlotParent);
                     storageUiSlots.Add(go.GetComponent<InventorySlotUI>());
                 }
 
-                // 슬롯 갱신 및 남는 UI 비활성화
                 for (int i = 0; i < storageUiSlots.Count; i++)
                 {
                     if (i < sSlots.Count)
@@ -555,9 +520,9 @@ public class InventoryUI : MonoBehaviour
         {
             if (ShopManager.Instance != null)
             {
-                var sItems = ShopManager.Instance.shopItems;
+                var sEntries = ShopManager.Instance.shopEntries;
 
-                while (shopUiSlots.Count < sItems.Count)
+                while (shopUiSlots.Count < sEntries.Count)
                 {
                     GameObject go = Instantiate(slotPrefab, shopSlotParent);
                     shopUiSlots.Add(go.GetComponent<InventorySlotUI>());
@@ -565,13 +530,12 @@ public class InventoryUI : MonoBehaviour
 
                 for (int i = 0; i < shopUiSlots.Count; i++)
                 {
-                    if (i < sItems.Count)
+                    if (i < sEntries.Count)
                     {
                         shopUiSlots[i].gameObject.SetActive(true);
-                        // 슬롯UI 재활용 (가짜 ItemSlot 만들어서 던져줌)
                         ItemSlot tempSlot = new ItemSlot();
-                        tempSlot.item = sItems[i];
-                        tempSlot.count = 1; // 상점엔 수량 무제한 느낌으로 1 고정
+                        tempSlot.item = sEntries[i].resultItem;
+                        tempSlot.count = 1;
                         shopUiSlots[i].UpdateSlot(tempSlot);
                     }
                     else shopUiSlots[i].gameObject.SetActive(false);
@@ -605,7 +569,7 @@ public class InventoryUI : MonoBehaviour
         foreach (var slot in uiSlots) slot.SetFocus(false);
         foreach (var slot in equipSlots) slot.SetFocus(false);
         foreach (var slot in quickSlotUIs) slot.SetFocus(false);
-        foreach (var slot in storageUiSlots) slot.SetFocus(false); // [추가]
+        foreach (var slot in storageUiSlots) slot.SetFocus(false);
         foreach (var slot in shopUiSlots) slot.SetFocus(false);
 
         ItemData focusedItem = null;
@@ -631,23 +595,23 @@ public class InventoryUI : MonoBehaviour
         }
         else if (currentZone == UIZone.Storage)
         {
-            // [추가] 창고 포커스 테두리 켜주기
             if (storageUiSlots.Count > storageFocusIndex && storageUiSlots[storageFocusIndex].gameObject.activeSelf)
             {
                 storageUiSlots[storageFocusIndex].SetFocus(true);
                 focusedItem = StorageManager.Instance.storageSlots[storageFocusIndex].item;
             }
         }
-        else if (currentZone == UIZone.Shop)
-        {
-            if (shopUiSlots.Count > shopFocusIndex && shopUiSlots[shopFocusIndex].gameObject.activeSelf)
-            {
-                shopUiSlots[shopFocusIndex].SetFocus(true);
-                focusedItem = ShopManager.Instance.shopItems[shopFocusIndex];
-            }
-        }
 
-        if (focusedItem != null && tooltip != null) tooltip.Show(focusedItem);
-        else if (tooltip != null) tooltip.Hide();
+        if (currentZone == UIZone.Shop && shopUiSlots.Count > shopFocusIndex && shopUiSlots[shopFocusIndex].gameObject.activeSelf)
+        {
+            shopUiSlots[shopFocusIndex].SetFocus(true);
+            var currentEntry = ShopManager.Instance.shopEntries[shopFocusIndex];
+            if (tooltip != null) tooltip.Show(currentEntry.resultItem, currentEntry);
+        }
+        else
+        {
+            if (focusedItem != null && tooltip != null) tooltip.Show(focusedItem);
+            else if (tooltip != null) tooltip.Hide();
+        }
     }
 }

@@ -176,7 +176,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: 6f2e75f161af3284bb5902204444c0ab, type: 2}
-  amount: 1
+  minAmount: 1
+  maxAmount: 5
   pullRange: 2
   pullSpeed: 10
   eatRange: 0.5
