@@ -3,6 +3,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewPlayerData", menuName = "ScriptableObjects/PlayerData")]
 public class PlayerData : ScriptableObject
 {
+    public void ResetData()
+    {
+        humanLevel = 1;
+        mechaLevel = 1;
+        droneLevel = 1;
+
+        // 만약 SO 안에 다른 체력이나 돈 같은 유동적인 데이터가 있다면 여기서 다 초기화!
+    }
+
     [Header("보유 재화")]
     public int money;
 

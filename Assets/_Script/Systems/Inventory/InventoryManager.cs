@@ -17,6 +17,7 @@ public class ItemSlot
     }
 }
 
+[DefaultExecutionOrder(-100)]
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
@@ -27,7 +28,7 @@ public class InventoryManager : MonoBehaviour
 
     // [핵심 수정] 인간/메카 배열을 하나로 통합!
     [Header("장착된 장비 (0:Core, 1:Frame, 2:Gear, 3:Chip)")]
-    public EquipmentData[] equippedItems = new EquipmentData[4];
+    public ItemData[] equippedItems = new ItemData[4];
 
     // 장비가 바뀌었을 때 각 State들에게 스탯 재계산하라고 알리는 이벤트
     public event Action OnEquipmentChanged;
@@ -135,7 +136,7 @@ public class InventoryManager : MonoBehaviour
     }
 
     // [수정] 통합 장비 장착 처리 (isMechaMode 파라미터 삭제)
-    public void EquipItem(EquipmentData equip)
+    public void EquipItem(ItemData equip)
     {
         int slotIndex = (int)equip.equipType;
 
@@ -155,7 +156,7 @@ public class InventoryManager : MonoBehaviour
     // [수정] 통합 장비 해제 (isMechaMode 파라미터 삭제)
     public void UnequipItem(int equipSlotIndex)
     {
-        EquipmentData itemToUnequip = equippedItems[equipSlotIndex];
+        ItemData itemToUnequip = equippedItems[equipSlotIndex];
 
         if (itemToUnequip != null)
         {
@@ -193,7 +194,7 @@ public class InventoryManager : MonoBehaviour
     }
 
     // [수정] 각 폼(대상)에 맞는 스탯을 영리하게 뽑아오기
-    private float ExtractStat(EquipmentData equip, string targetType, string statType)
+    private float ExtractStat(ItemData equip, string targetType, string statType)
     {
         if (targetType == "Player" || targetType == "Human") // 기존 PlayerState 호환
         {
@@ -225,5 +226,10 @@ public class InventoryManager : MonoBehaviour
             }
         }
         return 0f;
+    }
+
+    public void ForceStatUpdate()
+    {
+        OnEquipmentChanged?.Invoke();
     }
 }

@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public Vector3 savedFieldPosition;   // 던전 진입 전 필드 위치 기억
     public bool hasSavedPosition;
 
+    public PlayerData playerData; 
+
     [Header("플레이어 참조 (자석 효과용)")]
     private Transform activePlayerTransform; // 현재 활성화된 (인간 or 메카) 트랜스폼
 
@@ -41,6 +43,11 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+
+        if (playerData != null)
+        {
+            playerData.ResetData();
         }
     }
 

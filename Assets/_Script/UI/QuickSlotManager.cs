@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections; // 코루틴을 사용하기 위해 추가
 
 public class QuickSlotManager : MonoBehaviour
 {
@@ -47,22 +48,109 @@ public class QuickSlotManager : MonoBehaviour
     private void UseItem(int index)
     {
         var slot = quickSlots[index];
-        if (slot.item != null && slot.item is ConsumableData consumable)
+        if (slot.item != null && slot.item is ItemData consumable)
         {
-            Debug.Log($"{consumable.itemName} 사용! 체력 {consumable.healAmount} 회복!");
+            // 현재 메카인지 인간인지 확인
+            bool isMecha = PlayerTransformManager.Instance.IsMechaMode;
 
-            if (PlayerTransformManager.Instance.IsMechaMode)
-                PlayerTransformManager.Instance.mechaObject.GetComponent<MechaState>().currentHp += consumable.healAmount;
-            else
-                PlayerTransformManager.Instance.humanObject.GetComponent<PlayerState>().currentHp += consumable.healAmount;
+            // 아이템 타입에 따라 효과 분기 처리
+            switch (consumable.consumableType)
+            {
+                case ConsumableType.HealHP:
+                    ApplyHealHP(consumable, isMecha);
+                    break;
+                case ConsumableType.HealEnergy:
+                    ApplyHealEnergy(consumable, isMecha);
+                    break;
+                case ConsumableType.Buff:
+                    // 버프는 코루틴으로 실행하여 지속시간 후 해제되도록 함
+                    StartCoroutine(BuffCoroutine(consumable, isMecha));
+                    break;
+            }
 
+            // 공통 로직: 개수 차감 및 슬롯 비우기
             slot.count--;
-            if (slot.count <= 0) slot.Clear(); // 다 쓰면 빈칸으로 만들기
+            if (slot.count <= 0) slot.Clear();
 
             RefreshQuickSlotUI();
 
+            // 인벤토리가 열려있다면 즉시 갱신
             if (InventoryUI.Instance != null && InventoryUI.Instance.isOpen)
                 InventoryUI.Instance.RefreshUI();
+        }
+    }
+
+    // --- 개별 효과 적용 함수들 ---
+
+    private void ApplyHealHP(ItemData data, bool isMecha)
+    {
+        Debug.Log($"{data.itemName} 사용! 체력 {data.effectValue} 회복!");
+
+        if (isMecha)
+        {
+            var mState = PlayerTransformManager.Instance.mechaObject.GetComponent<MechaState>();
+            // 최대 체력을 넘지 않도록 Min으로 제한
+            mState.currentHp = Mathf.Min(mState.currentHp + data.effectValue, mState.FinalMaxHP);
+            UIManager.Instance?.UpdateHP(mState.currentHp, mState.FinalMaxHP);
+        }
+        else
+        {
+            var pState = PlayerTransformManager.Instance.humanObject.GetComponent<PlayerState>();
+            pState.currentHp = Mathf.Min(pState.currentHp + data.effectValue, pState.FinalMaxHP);
+            UIManager.Instance?.UpdateHP(pState.currentHp, pState.FinalMaxHP);
+        }
+    }
+
+    private void ApplyHealEnergy(ItemData data, bool isMecha)
+    {
+        Debug.Log($"{data.itemName} 사용! 에너지 {data.effectValue} 회복!");
+        // 차후 에너지(EP/SP) 시스템 연동 시 여기에 로직 추가
+    }
+
+    // 버프 지속을 처리하는 코루틴
+    private IEnumerator BuffCoroutine(ItemData data, bool isMecha)
+    {
+        Debug.Log($"{data.itemName} 사용! {data.buffStatType} 스탯이 {data.effectDuration}초 동안 {data.effectValue} 증가!");
+
+        // 1. 버프 수치 적용 및 스탯 강제 갱신
+        ApplyBuffValue(data.buffStatType, data.effectValue, isMecha);
+        InventoryManager.Instance.ForceStatUpdate();
+
+        // 2. 지속 시간(초) 만큼 대기
+        yield return new WaitForSeconds(data.effectDuration);
+
+        // 3. 시간이 지나면 버프 수치를 다시 빼서 원상복구
+        Debug.Log($"{data.itemName} 버프 종료!");
+        ApplyBuffValue(data.buffStatType, -data.effectValue, isMecha);
+        InventoryManager.Instance.ForceStatUpdate();
+    }
+
+    // 대상 폼에 맞춰 실제 버프 변수 증감 처리
+    private void ApplyBuffValue(BuffStatType buffType, float amount, bool isMecha)
+    {
+        if (isMecha)
+        {
+            var mState = PlayerTransformManager.Instance.mechaObject.GetComponent<MechaState>();
+            if (mState == null) return;
+
+            switch (buffType)
+            {
+                case BuffStatType.Atk: mState.buffAtk += amount; break;
+                case BuffStatType.Def: mState.buffDef += amount; break;
+                case BuffStatType.Spd: mState.buffSpd += amount; break;
+            }
+        }
+        else
+        {
+            var pState = PlayerTransformManager.Instance.humanObject.GetComponent<PlayerState>();
+            if (pState == null) return;
+
+            switch (buffType)
+            {
+                case BuffStatType.Atk: pState.buffAtk += amount; break;
+                case BuffStatType.Def: pState.buffDef += amount; break;
+                case BuffStatType.Spd: pState.buffSpd += amount; break;
+            }
         }
     }
 
@@ -84,12 +172,11 @@ public class QuickSlotManager : MonoBehaviour
         }
     }
 
-    // [핵심 1] 인벤토리에서 아이템을 가져와서 퀵슬롯에 '물리적'으로 장착 (이동/스왑)
+    // [핵심 1] 인벤토리에서 퀵슬롯으로 장착
     public void EquipToQuickSlot(int index, ItemSlot bagSlot)
     {
         if (quickSlots[index].item != null)
         {
-            // 이미 퀵슬롯에 뭐가 있다면 가방 아이템과 스왑 (자리 바꾸기)
             ItemSlot temp = new ItemSlot();
             temp.item = quickSlots[index].item;
             temp.count = quickSlots[index].count;
@@ -102,7 +189,6 @@ public class QuickSlotManager : MonoBehaviour
         }
         else
         {
-            // 비어있으면 쏙 넣고 가방칸을 완전히 비움 (장비랑 똑같이!)
             quickSlots[index].item = bagSlot.item;
             quickSlots[index].count = bagSlot.count;
             bagSlot.Clear();
@@ -110,16 +196,15 @@ public class QuickSlotManager : MonoBehaviour
         RefreshQuickSlotUI();
     }
 
-    // [핵심 2] 퀵슬롯 해제 시 가방으로 안전하게 반환
+    // [핵심 2] 퀵슬롯 해제 시 가방으로 반환
     public void UnequipQuickSlot(int index)
     {
         if (quickSlots[index].item != null)
         {
-            // 가방에 AddItem을 통해 반환을 시도
             bool success = InventoryManager.Instance.AddItem(quickSlots[index].item, quickSlots[index].count);
             if (success)
             {
-                quickSlots[index].Clear(); // 가방에 들어갔을 때만 퀵슬롯 지우기
+                quickSlots[index].Clear();
                 RefreshQuickSlotUI();
                 Debug.Log($"퀵슬롯 {index + 1}번 해제! 인벤토리로 돌아감.");
             }
@@ -130,7 +215,7 @@ public class QuickSlotManager : MonoBehaviour
         }
     }
 
-    // [핵심 3] 땅에서 아이템을 먹었을 때 퀵슬롯에 같은 게 있으면 가방보다 '먼저' 채워주기
+    // [핵심 3] 아이템 획득 시 퀵슬롯 우선 보충
     public int AddToQuickSlotFirst(ItemData data, int amount)
     {
         for (int i = 0; i < 3; i++)
@@ -143,9 +228,9 @@ public class QuickSlotManager : MonoBehaviour
                 amount -= toAdd;
 
                 RefreshQuickSlotUI();
-                if (amount <= 0) break; // 다 채웠으면 종료
+                if (amount <= 0) break;
             }
         }
-        return amount; // 남은 갯수를 리턴 (이 남은 갯수가 가방으로 들어감)
+        return amount;
     }
 }

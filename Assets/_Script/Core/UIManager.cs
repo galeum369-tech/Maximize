@@ -33,6 +33,27 @@ public class UIManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
+    private void Start()
+    {
+        // [핵심 추가] 게임 매니저의 골드 변경 이벤트를 구독!
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnMoneyChanged += UpdateGold;
+
+            // 씬 시작 시 현재 가지고 있는 돈으로 초기화
+            UpdateGold(GameManager.Instance.currentMoney);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        // [핵심 추가] 파괴될 때 구독 해제
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnMoneyChanged -= UpdateGold;
+        }
+    }
+
     // 체력바 갱신
     public void UpdateHP(float currentHp, float maxHp)
     {

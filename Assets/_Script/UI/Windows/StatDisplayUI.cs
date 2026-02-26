@@ -8,6 +8,7 @@ public class StatDisplayUI : MonoBehaviour
     public TextMeshProUGUI atkText;
     public TextMeshProUGUI defText;
     public TextMeshProUGUI spdText;
+    public TextMeshProUGUI droneAtkText; // [추가] 드론 공격력 텍스트
     public TextMeshProUGUI moneyText;
 
     private void OnEnable()
@@ -21,7 +22,7 @@ public class StatDisplayUI : MonoBehaviour
 
         bool isMecha = PlayerTransformManager.Instance.IsMechaMode;
 
-        // 현재 모드에 따라 State 스크립트를 가져와서 수치 표시
+        // 1. 본체 스탯 표시
         if (isMecha)
         {
             var mState = PlayerTransformManager.Instance.mechaObject.GetComponent<MechaState>();
@@ -45,9 +46,20 @@ public class StatDisplayUI : MonoBehaviour
             }
         }
 
-        if (GameManager.Instance != null)
+        // 2. [추가] 드론 스탯 표시
+        if (droneAtkText != null && PlayerTransformManager.Instance.droneObject != null)
         {
-            moneyText.text = $"Money {GameManager.Instance.currentMoney:N0}";
+            var dState = PlayerTransformManager.Instance.droneObject.GetComponent<DroneState>();
+            if (dState != null)
+            {
+                droneAtkText.text = $"DRONE ATK: {dState.currentAtk:F0}";
+            }
+        }
+
+        // 3. 재화 갱신
+        if (moneyText != null && GameManager.Instance != null)
+        {
+            moneyText.text = $"Money: {GameManager.Instance.currentMoney}";
         }
     }
 }
