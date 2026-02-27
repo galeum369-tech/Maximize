@@ -35,6 +35,7 @@ Transform:
   - {fileID: 6692382851269209266}
   - {fileID: 4354410048664680274}
   - {fileID: 9136311922676065943}
+  - {fileID: 8245243539539385939}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7351297086480704798
@@ -5369,6 +5370,68 @@ CompositeCollider2D:
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
   m_CompositeGameObject: {fileID: 5851709807004121262}
+--- !u!1001 &1812175918388246248
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7888709049149885781}
+    m_Modifications:
+    - target: {fileID: 7731230532441745595, guid: 82697d954fd4ee841ad411e00e8bc4d3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731230532441745595, guid: 82697d954fd4ee841ad411e00e8bc4d3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731230532441745595, guid: 82697d954fd4ee841ad411e00e8bc4d3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731230532441745595, guid: 82697d954fd4ee841ad411e00e8bc4d3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731230532441745595, guid: 82697d954fd4ee841ad411e00e8bc4d3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731230532441745595, guid: 82697d954fd4ee841ad411e00e8bc4d3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731230532441745595, guid: 82697d954fd4ee841ad411e00e8bc4d3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731230532441745595, guid: 82697d954fd4ee841ad411e00e8bc4d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731230532441745595, guid: 82697d954fd4ee841ad411e00e8bc4d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731230532441745595, guid: 82697d954fd4ee841ad411e00e8bc4d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8519466295279696301, guid: 82697d954fd4ee841ad411e00e8bc4d3, type: 3}
+      propertyPath: m_Name
+      value: LootBox
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 82697d954fd4ee841ad411e00e8bc4d3, type: 3}
+--- !u!4 &8245243539539385939 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7731230532441745595, guid: 82697d954fd4ee841ad411e00e8bc4d3, type: 3}
+  m_PrefabInstance: {fileID: 1812175918388246248}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5199334961324369800
 PrefabInstance:
   m_ObjectHideFlags: 0

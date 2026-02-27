@@ -186,7 +186,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 3, y: 63}
-  - name: Frame_3
+  - name: Laser
     originalName: 
     pivot: {x: 0.5, y: -0.045454547}
     alignment: 9
@@ -249,7 +249,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 3, y: 153}
-  - name: Frame_6
+  - name: Rapid
     originalName: 
     pivot: {x: 0.5, y: -0.045454547}
     alignment: 9
@@ -270,7 +270,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 3, y: 183}
-  - name: Frame_7
+  - name: deroneCanon
     originalName: 
     pivot: {x: 0.5, y: -0.045454547}
     alignment: 9
@@ -417,7 +417,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 33, y: 153}
-  - name: Frame_14
+  - name: MechCanon
     originalName: 
     pivot: {x: 0.5, y: -0.045454547}
     alignment: 9

@@ -11,8 +11,8 @@ public class Portal : MonoBehaviour
     public GameState targetState;
 
     [Header("UI 연출")]
-    public UnityEvent onPlayerEnter; // "F키를 눌러 이동" 메시지 켜기
-    public UnityEvent onPlayerExit;  // 메시지 끄기
+    public UnityEvent onPlayerEnter;
+    public UnityEvent onPlayerExit;
 
     private PlayerInputHandler playerInput;
 
@@ -24,7 +24,7 @@ public class Portal : MonoBehaviour
             if (playerInput != null)
             {
                 playerInput.OnInteract += EnterPortal;
-                onPlayerEnter?.Invoke(); // UI 표시
+                onPlayerEnter?.Invoke();
                 Debug.Log($"{portalType} 진입: F키로 상호작용 가능");
             }
         }
@@ -36,7 +36,17 @@ public class Portal : MonoBehaviour
         {
             playerInput.OnInteract -= EnterPortal;
             playerInput = null;
-            onPlayerExit?.Invoke(); // UI 숨기기
+            onPlayerExit?.Invoke();
+        }
+    }
+
+    // [핵심 추가] 안전장치
+    private void OnDisable()
+    {
+        if (playerInput != null)
+        {
+            playerInput.OnInteract -= EnterPortal;
+            playerInput = null;
         }
     }
 
@@ -45,10 +55,12 @@ public class Portal : MonoBehaviour
         if (playerInput != null) playerInput.OnInteract -= EnterPortal;
         onPlayerExit?.Invoke();
 
-        // 던전으로 갈 때만 현재 위치를 기억 (마을 복귀용)
         if (portalType == PortalType.ToDungeon)
         {
-            GameManager.Instance.SavePosition(playerInput.transform.position);
+            if (GameManager.Instance != null && GameManager.Instance.GetActivePlayer() != null)
+            {
+                GameManager.Instance.SavePosition(GameManager.Instance.GetActivePlayer().position);
+            }
         }
 
         SceneControlManager.Instance.LoadTargetScene(targetSceneName, targetState);

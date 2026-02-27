@@ -196,4 +196,12 @@ public class PlayerSkillController : MonoBehaviour
 
         Debug.Log("메카닉 해제! 파일럿 복귀 완료.");
     }
+
+    // [추가] 외부(마을 진입 등)에서 에너지를 0으로 만들 때 부르는 함수
+    // ==========================================
+    public void ResetMechaEnergy()
+    {
+        currentMechaEnergy = 0f;
+        UpdateEnergyUI(); // 이미 있는 UI 갱신 함수 호출
+    }
 }

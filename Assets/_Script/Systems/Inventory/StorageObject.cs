@@ -5,7 +5,7 @@ using UnityEngine.Events;
 public class StorageObject : MonoBehaviour
 {
     [Header("UI 연출")]
-    public UnityEvent onPlayerEnter; // "F키를 눌러 창고 열기" 텍스트 띄우기용
+    public UnityEvent onPlayerEnter;
     public UnityEvent onPlayerExit;
 
     private PlayerInputHandler playerInput;
@@ -34,13 +34,19 @@ public class StorageObject : MonoBehaviour
         }
     }
 
+    // [핵심 추가] 안전장치
+    private void OnDisable()
+    {
+        if (playerInput != null)
+        {
+            playerInput.OnInteract -= OpenStorage;
+            playerInput = null;
+        }
+    }
+
     private void OpenStorage()
     {
-        // 상호작용 성공 시 인벤토리를 창고 모드로 염!
         Debug.Log("창고 UI 오픈!");
-        if (InventoryUI.Instance != null)
-        {
-            InventoryUI.Instance.OpenStorageUI();
-        }
+        if (InventoryUI.Instance != null) InventoryUI.Instance.OpenStorageUI();
     }
 }

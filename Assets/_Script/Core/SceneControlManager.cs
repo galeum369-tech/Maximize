@@ -32,14 +32,12 @@ public class SceneControlManager : MonoBehaviour
         AsyncOperation op = SceneManager.LoadSceneAsync(sceneName);
         while (!op.isDone) yield return null;
 
-        // --- [핵심 수정: WarpTo 함수 활용] ---
         if (PlayerTransformManager.Instance != null)
         {
-            Vector3 targetPos = Vector3.zero; // 기본 스폰 지점
+            Vector3 targetPos = Vector3.zero;
 
             if (stateAfterLoad == GameState.Dungeon)
             {
-                // 던전 진입 시 무조건 (0, 0, 0)
                 targetPos = Vector3.zero;
                 Debug.Log("던전 진입: 스폰 위치 (0,0,0)");
             }
@@ -47,14 +45,12 @@ public class SceneControlManager : MonoBehaviour
             {
                 if (GameManager.Instance.hasSavedPosition)
                 {
-                    // 던전 -> 필드 복귀: 저장해둔 포탈 좌표
                     targetPos = GameManager.Instance.savedFieldPosition;
                     GameManager.Instance.ClearSavedPosition();
                     Debug.Log("필드 복귀: 저장된 포탈 앞 스폰");
                 }
                 else
                 {
-                    // 마을 -> 필드 진입: 기본 (0, 0, 0)
                     targetPos = Vector3.zero;
                     Debug.Log("필드 진입: 기본 위치 스폰");
                 }
@@ -62,9 +58,14 @@ public class SceneControlManager : MonoBehaviour
             else if (stateAfterLoad == GameState.Village)
             {
                 targetPos = Vector3.zero;
+                Debug.Log("마을 진입: 스폰 위치 (0,0,0)");
+
+                // ==========================================
+                // [핵심 추가] 마을로 들어왔을 때 플레이어 체력/에너지 초기화!
+                // ==========================================
+                PlayerTransformManager.Instance.ResetPlayerStatsForVillage();
             }
 
-            // 부모와 자식 좌표를 한 번에 딱! 맞춰서 이동시킴
             PlayerTransformManager.Instance.WarpTo(targetPos);
         }
     }

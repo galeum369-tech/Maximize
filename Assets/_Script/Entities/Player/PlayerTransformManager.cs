@@ -42,19 +42,12 @@ public class PlayerTransformManager : MonoBehaviour
         {
             CameraFollowManager.Instance.SnapToTarget();
         }
-
-        Debug.Log($"[Warp] 플레이어 그룹 정렬 및 카메라 스냅 완료!");
     }
 
-    public void ToggleMode()
-    {
-        if (!IsMechaMode) ToHuman();
-        else ToMecha();
-    }
-
-    // --- 인간 -> 메카 변신 ---
     public void ToMecha(bool isInit = false)
     {
+        IsMechaMode = true;
+
         if (!isInit)
         {
             mechaObject.transform.position = humanObject.transform.position;
@@ -62,30 +55,17 @@ public class PlayerTransformManager : MonoBehaviour
             if (droneObject != null) droneObject.transform.position = mechaObject.transform.position;
         }
 
-        MechaState mState = mechaObject.GetComponent<MechaState>();
-        if (mState != null)
-        {
-            if (isInit)
-            {
-                mState.RecalculateFinalStats();
-                mState.currentHp = mState.FinalMaxHP;
-            }
-            UIManager.Instance?.UpdateHP(mState.currentHp, mState.FinalMaxHP);
-        }
-
         humanObject.SetActive(false);
-        droneObject.SetActive(false);
         mechaObject.SetActive(true);
+        if (droneObject != null) droneObject.SetActive(true);
 
-        IsMechaMode = true;
-        Debug.Log(">>> 메카닉 소환 완료!");
+        Debug.Log(">>> 메카 탑승 완료!");
 
         if (GameManager.Instance != null)
         {
             GameManager.Instance.RegisterPlayer(mechaObject.transform);
         }
 
-        // [추가] 변신 즉시 카메라를 메카 위치로 순간이동!
         if (CameraFollowManager.Instance != null)
         {
             CameraFollowManager.Instance.SnapToTarget();
@@ -94,11 +74,15 @@ public class PlayerTransformManager : MonoBehaviour
         var mechaInput = mechaObject.GetComponent<PlayerInputHandler>();
         if (InventoryUI.Instance != null) InventoryUI.Instance.SetInputHandler(mechaInput);
         if (QuickSlotManager.Instance != null) QuickSlotManager.Instance.SetInputHandler(mechaInput);
+
+        if (InventoryManager.Instance != null) InventoryManager.Instance.ForceStatUpdate();
+        RefreshOpenUIs();
     }
 
-    // --- 메카 -> 인간 변신 ---
     public void ToHuman(bool isInit = false)
     {
+        IsMechaMode = false;
+
         if (!isInit)
         {
             humanObject.transform.position = mechaObject.transform.position;
@@ -110,13 +94,6 @@ public class PlayerTransformManager : MonoBehaviour
         humanObject.SetActive(true);
         if (droneObject != null) droneObject.SetActive(isDroneActiveInHuman);
 
-        PlayerState pState = humanObject.GetComponent<PlayerState>();
-        if (pState != null)
-        {
-            UIManager.Instance?.UpdateHP(pState.currentHp, pState.FinalMaxHP);
-        }
-
-        IsMechaMode = false;
         Debug.Log(">>> 파일럿 복귀 완료!");
 
         if (GameManager.Instance != null)
@@ -124,7 +101,6 @@ public class PlayerTransformManager : MonoBehaviour
             GameManager.Instance.RegisterPlayer(humanObject.transform);
         }
 
-        // [추가] 변신(또는 씬 시작) 즉시 카메라를 인간 위치로 순간이동!
         if (CameraFollowManager.Instance != null)
         {
             CameraFollowManager.Instance.SnapToTarget();
@@ -133,5 +109,54 @@ public class PlayerTransformManager : MonoBehaviour
         var humanInput = humanObject.GetComponent<PlayerInputHandler>();
         if (InventoryUI.Instance != null) InventoryUI.Instance.SetInputHandler(humanInput);
         if (QuickSlotManager.Instance != null) QuickSlotManager.Instance.SetInputHandler(humanInput);
+
+        if (InventoryManager.Instance != null) InventoryManager.Instance.ForceStatUpdate();
+        RefreshOpenUIs();
+    }
+
+    public void RefreshOpenUIs()
+    {
+        if (InventoryUI.Instance != null && InventoryUI.Instance.isOpen)
+        {
+            InventoryUI.Instance.RefreshUI();
+            if (InventoryUI.Instance.statDisplay != null)
+                InventoryUI.Instance.statDisplay.RefreshStats();
+        }
+    }
+
+    // ==========================================
+    // [핵심 추가] 마을 귀환 시 체력 회복 & 에너지 초기화
+    // ==========================================
+    public void ResetPlayerStatsForVillage()
+    {
+        // 1. 인간 폼 풀피 회복
+        if (humanObject != null)
+        {
+            PlayerState pState = humanObject.GetComponent<PlayerState>();
+            if (pState != null)
+            {
+                pState.currentHp = pState.FinalMaxHP;
+                if (!IsMechaMode) UIManager.Instance?.UpdateHP(pState.currentHp, pState.FinalMaxHP);
+            }
+        }
+
+        // 2. 메카 폼 풀피 회복
+        if (mechaObject != null)
+        {
+            MechaState mState = mechaObject.GetComponent<MechaState>();
+            if (mState != null)
+            {
+                mState.currentHp = mState.FinalMaxHP;
+                if (IsMechaMode) UIManager.Instance?.UpdateHP(mState.currentHp, mState.FinalMaxHP);
+            }
+        }
+
+        // 3. 메카 변신 에너지 게이지 강제 초기화
+        if (PlayerSkillController.Instance != null)
+        {
+            PlayerSkillController.Instance.ResetMechaEnergy();
+        }
+
+        Debug.Log("마을 도착: 플레이어 체력 회복 및 에너지 초기화 완료!");
     }
 }

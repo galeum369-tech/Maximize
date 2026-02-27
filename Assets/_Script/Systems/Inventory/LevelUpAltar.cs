@@ -5,7 +5,7 @@ using UnityEngine.Events;
 public class LevelUpAltar : MonoBehaviour
 {
     [Header("UI 연출")]
-    public UnityEvent onPlayerEnter; // "F키를 눌러 레벨업" 텍스트 띄우기용
+    public UnityEvent onPlayerEnter;
     public UnityEvent onPlayerExit;
 
     private PlayerInputHandler playerInput;
@@ -34,12 +34,19 @@ public class LevelUpAltar : MonoBehaviour
         }
     }
 
+    // [핵심 추가] 안전장치
+    private void OnDisable()
+    {
+        if (playerInput != null)
+        {
+            playerInput.OnInteract -= OpenAltar;
+            playerInput = null;
+        }
+    }
+
     private void OpenAltar()
     {
         Debug.Log("레벨업 창 오픈!");
-        if (LevelUpUI.Instance != null)
-        {
-            LevelUpUI.Instance.OpenUI();
-        }
+        if (LevelUpUI.Instance != null) LevelUpUI.Instance.OpenUI();
     }
 }

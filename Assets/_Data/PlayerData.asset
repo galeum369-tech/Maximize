@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   money: 0
-  humanLevel: 1
-  mechaLevel: 1
-  droneLevel: 1
+  humanLevel: 13
+  mechaLevel: 6
+  droneLevel: 4
   baseAtk: 10
   baseHp: 100
   baseDef: 5

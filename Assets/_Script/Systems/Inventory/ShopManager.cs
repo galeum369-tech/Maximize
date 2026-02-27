@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-// 조합/구매에 필요한 재료 정보
 [System.Serializable]
 public class CraftIngredient
 {
@@ -9,12 +8,11 @@ public class CraftIngredient
     public int amount;
 }
 
-// 상점 진열대 구조
 [System.Serializable]
 public class ShopEntry
 {
-    public ItemData resultItem; // 유저가 받게 될 아이템
-    public int buyPrice;        // 유저가 내야 할 골드
+    public ItemData resultItem;
+    public int buyPrice;
     public List<CraftIngredient> requiredMaterials = new List<CraftIngredient>();
 }
 
@@ -27,15 +25,10 @@ public class ShopManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
+        if (Instance == null) { Instance = this; DontDestroyOnLoad(gameObject); }
         else Destroy(gameObject);
     }
 
-    // [구매 로직]
     public void BuyItem(int shopIndex)
     {
         if (shopIndex < 0 || shopIndex >= shopEntries.Count) return;
@@ -43,14 +36,12 @@ public class ShopManager : MonoBehaviour
         ShopEntry entry = shopEntries[shopIndex];
         if (entry == null || entry.resultItem == null) return;
 
-        // 1. 골드 검사
         if (GameManager.Instance.currentMoney < entry.buyPrice)
         {
             Debug.Log("골드가 부족해!");
             return;
         }
 
-        // 2. 재료 검사
         foreach (var ingredient in entry.requiredMaterials)
         {
             if (!InventoryManager.Instance.HasItems(ingredient.item, ingredient.amount))
@@ -60,7 +51,6 @@ public class ShopManager : MonoBehaviour
             }
         }
 
-        // 3. 가방 공간 확인 및 지급
         if (InventoryManager.Instance.AddItem(entry.resultItem, 1))
         {
             GameManager.Instance.UseMoney(entry.buyPrice);
@@ -72,13 +62,9 @@ public class ShopManager : MonoBehaviour
 
             Debug.Log($"{entry.resultItem.itemName} 구매 완료!");
         }
-        else
-        {
-            Debug.Log("가방이 꽉 차서 살 수 없어!");
-        }
+        else Debug.Log("가방이 꽉 차서 살 수 없어!");
     }
 
-    // [판매 로직]
     public void SellItem(int inventoryIndex)
     {
         ItemSlot invSlot = InventoryManager.Instance.slots[inventoryIndex];
@@ -86,7 +72,8 @@ public class ShopManager : MonoBehaviour
 
         int goldToGive = invSlot.item.sellPrice;
 
-        GameManager.Instance.currentMoney += goldToGive;
+        // [핵심 수정] 변수에 직접 더하지 않고 AddMoney 이벤트를 호출! (UI 즉시 갱신됨)
+        GameManager.Instance.AddMoney(goldToGive);
         Debug.Log($"{invSlot.item.itemName} 판매 완료! (+{goldToGive} G)");
 
         invSlot.count--;
