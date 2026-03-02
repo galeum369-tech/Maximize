@@ -64,7 +64,7 @@ public class UIManager : MonoBehaviour
     // 골드 갱신
     public void UpdateGold(int currentGold)
     {
-        if (goldText != null) goldText.text = $"💰 {currentGold:N0}";
+        if (goldText != null) goldText.text = $" {currentGold:N0}";
     }
 
     // 메카 변신 게이지 갱신 (때릴 때마다 호출)

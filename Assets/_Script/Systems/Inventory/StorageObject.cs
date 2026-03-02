@@ -34,7 +34,7 @@ public class StorageObject : MonoBehaviour
         }
     }
 
-    // [핵심 추가] 안전장치
+    // [핵심 해결책] 창고도 똑같이 추가!
     private void OnDisable()
     {
         if (playerInput != null)

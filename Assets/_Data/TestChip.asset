@@ -10,27 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97257e2ca86f24b4abc818473aaae4bb, type: 3}
-  m_Name: TestCore
+  m_Name: TestChip
   m_EditorClassIdentifier: 
-  itemName: "\uD14C\uC2A4\uD2B8 \uCF54\uC5B4"
-  id: 2001
-  icon: {fileID: 21300000, guid: 2c523fa3ca4e1fc4b9a5713e504e6cce, type: 3}
+  itemName: "\uD14C\uC2A4\uD2B8 \uCE69"
+  id: 2004
+  icon: {fileID: 21300000, guid: 615f3cdaa1374bd4db14286066f31cde, type: 3}
   itemType: 0
   rarity: 0
   sellPrice: 200
-  description: "\uD14C\uC2A4\uD2B8 \uC6A9\uB3C4\uC758 \uCF54\uC5B4\uC774\uB2E4.\n\uC678\uD615\uC740
-    \uC9C4\uC8FC\uAC19\uC9C0\uB9CC \uC9C4\uC8FC\uB294 \uC544\uB2CC\uB4EF \uD558\uB2E4.
-    \n\uC8FC\uB85C \uACF5\uACA9\uB825\uC744 \uB192\uC5EC\uC900\uB2E4."
-  equipType: 0
-  humanAtkBonus: 20
-  humanHpBonus: 0
+  description: "\uD14C\uC2A4\uD2B8 \uC6A9\uB3C4\uC758 \uCE69\uC774\uB2E4.\n\uC678\uD615\uC740
+    \uB098\uBB34\uAC19\uC9C0\uB9CC \uB098\uBB34\uB294 \uC544\uB2CC\uB4EF \uD558\uB2E4.
+    \n\uC8FC\uB85C \uCCB4\uB825\uB97C \uB192\uC5EC\uC900\uB2E4."
+  equipType: 3
+  humanAtkBonus: 0
+  humanHpBonus: 100
   humanDefBonus: 0
   humanSpdBonus: 0
-  mechaAtkBonus: 25
-  mechaHpBonus: 0
+  mechaAtkBonus: 0
+  mechaHpBonus: 200
   mechaDefBonus: 0
   mechaSpdBonus: 0
-  droneAtkBonus: 10
+  droneAtkBonus: 0
   droneFireRateBonus: 0
   droneRangeBonus: 0
   consumableType: 0

@@ -39,25 +39,16 @@ public class EnemyFSM : MonoBehaviour
 
     private void UpdateState()
     {
-        if (owner.player == null)
-        {
-            if (GameManager.Instance != null && GameManager.Instance.GetActivePlayer() != null)
-            {
-                owner.player = GameManager.Instance.GetActivePlayer();
-            }
-            else
-            {
-                GameObject pObj = GameObject.FindGameObjectWithTag("Player");
-                if (pObj != null) owner.player = pObj.transform;
-            }
+        // [핵심 추가] 현재 타겟이 꺼졌거나(변신해서), 타겟이 바뀌었는지 확인
+        Transform activePlayer = GameManager.Instance.GetActivePlayer();
 
-            if (owner.player == null)
-            {
-                currentState = EnemyState.Idle;
-                owner.currentState = currentState;
-                owner.StopMove();
-                return;
-            }
+        // 1. 타겟 갱신 로직
+        if (owner.player == null || !owner.player.gameObject.activeInHierarchy || owner.player != activePlayer)
+        {
+            owner.player = activePlayer; // 강제로 최신 플레이어(메카/휴먼)로 교체
+
+            // 만약 그래도 없으면 리턴
+            if (owner.player == null) return;
         }
 
         float dist = Vector2.Distance(transform.position, owner.player.position);

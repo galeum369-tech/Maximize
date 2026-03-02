@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement; // [필수] 씬 이동 감지
 using System.Collections.Generic;
 
 public enum UITab { Inventory, Settings }
@@ -17,7 +18,7 @@ public class InventoryUI : MonoBehaviour
 
     private PlayerInputHandler currentInput;
 
-    [Header("참조")]
+    [Header("참조 (자동 연결됨)")]
     public GameObject inventoryRoot;
     public Transform slotParent;
     public GameObject slotPrefab;
@@ -26,12 +27,11 @@ public class InventoryUI : MonoBehaviour
     public ItemTooltipUI tooltip;
     public StatDisplayUI statDisplay;
 
-    [Header("판넬 스위칭 (오른쪽 영역)")]
+    [Header("판넬 스위칭")]
     public GameObject equipmentPanelRoot;
     public GameObject storagePanelRoot;
     public bool isStorageMode = false;
 
-    [Header("판넬 스위칭 (상점 모드)")]
     public GameObject shopPanelRoot;
     public bool isShopMode = false;
 
@@ -41,7 +41,7 @@ public class InventoryUI : MonoBehaviour
     private int shopFocusIndex = 0;
     private int shopColumns = 5;
 
-    [Header("장비/퀵슬롯 UI (오른쪽 판넬)")]
+    [Header("장비/퀵슬롯 UI")]
     public InventorySlotUI[] equipSlots = new InventorySlotUI[4];
     public InventorySlotUI[] quickSlotUIs = new InventorySlotUI[3];
     private ItemSlot[] tempEquipData = new ItemSlot[4] { new ItemSlot(), new ItemSlot(), new ItemSlot(), new ItemSlot() };
@@ -65,23 +65,101 @@ public class InventoryUI : MonoBehaviour
     private int settingsCount = 3;
 
     public bool isOpen = false;
-
     private float lastZPressTime = 0f;
     private float doubleClickThreshold = 0.3f;
 
     private void Awake()
     {
-        Instance = this;
-        inventoryRoot.SetActive(false);
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        // 초기화 시 비활성화
+        if (inventoryRoot != null) inventoryRoot.SetActive(false);
         if (floatingIcon != null) floatingIcon.gameObject.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        // 씬 로드 이벤트 구독 (이사 갈 때마다 짐 챙기기)
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    // ==========================================
+    // [핵심 해결책] 씬이 로드되면 끊어진 UI 연결을 다시 복구한다!
+    // ==========================================
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // 연결이 끊겼는지(null이거나 Missing 상태인지) 확인하고 다시 찾음
+        if (inventoryRoot == null) inventoryRoot = GameObject.Find("InventoryRoot");
+
+        // 1. 패널 루트 찾기 (이름으로 찾음)
+        if (shopPanelRoot == null) shopPanelRoot = FindObjectByName("ShopPanelRoot");
+        if (storagePanelRoot == null) storagePanelRoot = FindObjectByName("StoragePanelRoot");
+        if (equipmentPanelRoot == null) equipmentPanelRoot = FindObjectByName("EquipmentPanelRoot");
+
+        // 2. 슬롯 부모(Grid Content) 찾기
+        // 주의: 슬롯 부모들은 각 패널의 자식으로 있을 테니 경로를 잘 찾아야 함
+        if (shopPanelRoot != null && shopSlotParent == null)
+            shopSlotParent = shopPanelRoot.GetComponentInChildren<GridLayoutGroup>()?.transform;
+
+        if (storagePanelRoot != null && storageSlotParent == null)
+            storageSlotParent = storagePanelRoot.GetComponentInChildren<GridLayoutGroup>()?.transform;
+
+        // 3. 메인 인벤토리 슬롯 부모 찾기
+        if (inventoryRoot != null && slotParent == null)
+        {
+            // InventoryRoot 안에 있는 첫 번째 Grid Layout Group을 가방 슬롯으로 가정
+            // (구조에 따라 다를 수 있으니 주의. 보통 InventoryPage -> ScrollView -> Viewport -> Content)
+            Transform content = UIUtils.FindChildRecursive(inventoryRoot.transform, "Content");
+            if (content != null) slotParent = content;
+        }
+
+        Debug.Log("[InventoryUI] UI 재연결 완료!");
+
+        // 씬 넘어가면 UI는 기본적으로 닫힘 상태로 시작
+        isOpen = false;
+        if (inventoryRoot != null) inventoryRoot.SetActive(false);
+    }
+
+    // 이름으로 오브젝트 찾는 헬퍼 함수
+    private GameObject FindObjectByName(string name)
+    {
+        GameObject obj = GameObject.Find(name);
+        if (obj == null)
+        {
+            // 비활성화된 오브젝트는 GameObject.Find로 못 찾으므로 전체 검색 (비용이 좀 들지만 씬 로드 시 1회니까 괜찮음)
+            foreach (GameObject go in Resources.FindObjectsOfTypeAll(typeof(GameObject)) as GameObject[])
+            {
+                if (go.hideFlags == HideFlags.None && go.name == name)
+                    return go;
+            }
+        }
+        return obj;
     }
 
     private void Start()
     {
-        for (int i = 0; i < InventoryManager.Instance.maxSlotCount; i++)
+        // 최초 슬롯 생성 (이미 있으면 스킵)
+        if (uiSlots.Count == 0 && slotPrefab != null && slotParent != null)
         {
-            GameObject go = Instantiate(slotPrefab, slotParent);
-            uiSlots.Add(go.GetComponent<InventorySlotUI>());
+            for (int i = 0; i < InventoryManager.Instance.maxSlotCount; i++)
+            {
+                GameObject go = Instantiate(slotPrefab, slotParent);
+                uiSlots.Add(go.GetComponent<InventorySlotUI>());
+            }
         }
     }
 
@@ -126,9 +204,9 @@ public class InventoryUI : MonoBehaviour
         if (grabbedIndex != -1 && floatingIcon != null && floatingIcon.gameObject.activeSelf)
         {
             Vector3 offset = new Vector3(20f, -20f, 0f);
-            Transform targetTransform;
+            Transform targetTransform = transform; // 기본값
 
-            if (currentZone == UIZone.Inventory)
+            if (currentZone == UIZone.Inventory && invFocusIndex < uiSlots.Count)
                 targetTransform = uiSlots[invFocusIndex].transform;
             else if (currentZone == UIZone.Equipment)
             {
@@ -139,13 +217,13 @@ public class InventoryUI : MonoBehaviour
             {
                 if (storageUiSlots.Count > storageFocusIndex)
                     targetTransform = storageUiSlots[storageFocusIndex].transform;
-                else targetTransform = storageSlotParent;
+                else if (storageSlotParent != null) targetTransform = storageSlotParent;
             }
-            else
+            else if (currentZone == UIZone.Shop)
             {
                 if (shopUiSlots.Count > shopFocusIndex)
                     targetTransform = shopUiSlots[shopFocusIndex].transform;
-                else targetTransform = shopSlotParent;
+                else if (shopSlotParent != null) targetTransform = shopSlotParent;
             }
 
             floatingIcon.transform.position = targetTransform.position + offset;
@@ -182,6 +260,8 @@ public class InventoryUI : MonoBehaviour
 
     private void ToggleUI()
     {
+        if (inventoryRoot == null) return; // 안전장치
+
         isOpen = !isOpen;
         inventoryRoot.SetActive(isOpen);
 
@@ -221,8 +301,8 @@ public class InventoryUI : MonoBehaviour
         int nextTab = ((int)currentTab + dir + tabCount) % tabCount;
         currentTab = (UITab)nextTab;
 
-        inventoryPage.SetActive(currentTab == UITab.Inventory);
-        settingsPage.SetActive(currentTab == UITab.Settings);
+        if (inventoryPage != null) inventoryPage.SetActive(currentTab == UITab.Inventory);
+        if (settingsPage != null) settingsPage.SetActive(currentTab == UITab.Settings);
 
         currentZone = UIZone.Inventory;
         RefreshUI();
@@ -482,64 +562,75 @@ public class InventoryUI : MonoBehaviour
 
     public void RefreshUI()
     {
+        if (inventoryRoot == null) return; // 안전장치
+
         var dataSlots = InventoryManager.Instance.slots;
-        for (int i = 0; i < uiSlots.Count; i++)
+        // 슬롯 개수가 안 맞으면 다시 생성 (재연결 시 필요할 수 있음)
+        if (uiSlots.Count == 0 && slotPrefab != null && slotParent != null)
         {
-            uiSlots[i].UpdateSlot(dataSlots[i]);
-            if (i == grabbedIndex) uiSlots[i].iconImage.color = new Color(1, 1, 1, 0.5f);
-            else uiSlots[i].iconImage.color = Color.white;
-        }
-
-        if (isStorageMode)
-        {
-            if (StorageManager.Instance != null)
+            // 기존 슬롯 다 지우고 다시
+            foreach (Transform child in slotParent) Destroy(child.gameObject);
+            uiSlots.Clear();
+            for (int i = 0; i < InventoryManager.Instance.maxSlotCount; i++)
             {
-                var sSlots = StorageManager.Instance.storageSlots;
-
-                while (storageUiSlots.Count < sSlots.Count)
-                {
-                    GameObject go = Instantiate(slotPrefab, storageSlotParent);
-                    storageUiSlots.Add(go.GetComponent<InventorySlotUI>());
-                }
-
-                for (int i = 0; i < storageUiSlots.Count; i++)
-                {
-                    if (i < sSlots.Count)
-                    {
-                        storageUiSlots[i].gameObject.SetActive(true);
-                        storageUiSlots[i].UpdateSlot(sSlots[i]);
-                    }
-                    else
-                    {
-                        storageUiSlots[i].gameObject.SetActive(false);
-                    }
-                }
+                GameObject go = Instantiate(slotPrefab, slotParent);
+                uiSlots.Add(go.GetComponent<InventorySlotUI>());
             }
         }
-        else if (isShopMode)
+
+        for (int i = 0; i < uiSlots.Count; i++)
         {
-            if (ShopManager.Instance != null)
+            if (uiSlots[i] != null)
             {
-                var sEntries = ShopManager.Instance.shopEntries;
+                uiSlots[i].UpdateSlot(dataSlots[i]);
+                if (i == grabbedIndex) uiSlots[i].iconImage.color = new Color(1, 1, 1, 0.5f);
+                else uiSlots[i].iconImage.color = Color.white;
+            }
+        }
 
-                while (shopUiSlots.Count < sEntries.Count)
+        // --- 상점/창고/장비 UI 갱신 ---
+        // (UI 오브젝트가 존재할 때만 갱신하도록 null 체크 추가)
+        if (isStorageMode && StorageManager.Instance != null && storageSlotParent != null)
+        {
+            var sSlots = StorageManager.Instance.storageSlots;
+            // UI 슬롯 부족하면 채우기
+            while (storageUiSlots.Count < sSlots.Count)
+            {
+                GameObject go = Instantiate(slotPrefab, storageSlotParent);
+                storageUiSlots.Add(go.GetComponent<InventorySlotUI>());
+            }
+            // 갱신
+            for (int i = 0; i < storageUiSlots.Count; i++)
+            {
+                if (storageUiSlots[i] == null) continue;
+                if (i < sSlots.Count)
                 {
-                    GameObject go = Instantiate(slotPrefab, shopSlotParent);
-                    shopUiSlots.Add(go.GetComponent<InventorySlotUI>());
+                    storageUiSlots[i].gameObject.SetActive(true);
+                    storageUiSlots[i].UpdateSlot(sSlots[i]);
                 }
-
-                for (int i = 0; i < shopUiSlots.Count; i++)
+                else storageUiSlots[i].gameObject.SetActive(false);
+            }
+        }
+        else if (isShopMode && ShopManager.Instance != null && shopSlotParent != null)
+        {
+            var sEntries = ShopManager.Instance.shopEntries;
+            while (shopUiSlots.Count < sEntries.Count)
+            {
+                GameObject go = Instantiate(slotPrefab, shopSlotParent);
+                shopUiSlots.Add(go.GetComponent<InventorySlotUI>());
+            }
+            for (int i = 0; i < shopUiSlots.Count; i++)
+            {
+                if (shopUiSlots[i] == null) continue;
+                if (i < sEntries.Count)
                 {
-                    if (i < sEntries.Count)
-                    {
-                        shopUiSlots[i].gameObject.SetActive(true);
-                        ItemSlot tempSlot = new ItemSlot();
-                        tempSlot.item = sEntries[i].resultItem;
-                        tempSlot.count = 1;
-                        shopUiSlots[i].UpdateSlot(tempSlot);
-                    }
-                    else shopUiSlots[i].gameObject.SetActive(false);
+                    shopUiSlots[i].gameObject.SetActive(true);
+                    ItemSlot tempSlot = new ItemSlot();
+                    tempSlot.item = sEntries[i].resultItem;
+                    tempSlot.count = 1;
+                    shopUiSlots[i].UpdateSlot(tempSlot);
                 }
+                else shopUiSlots[i].gameObject.SetActive(false);
             }
         }
         else
@@ -566,49 +657,57 @@ public class InventoryUI : MonoBehaviour
 
     private void UpdateFocusVisuals()
     {
-        foreach (var slot in uiSlots) slot.SetFocus(false);
-        foreach (var slot in equipSlots) slot.SetFocus(false);
-        foreach (var slot in quickSlotUIs) slot.SetFocus(false);
-        foreach (var slot in storageUiSlots) slot.SetFocus(false);
-        foreach (var slot in shopUiSlots) slot.SetFocus(false);
+        // 모든 슬롯 포커스 끄기 (null 체크 포함)
+        foreach (var slot in uiSlots) if (slot != null) slot.SetFocus(false);
+        foreach (var slot in equipSlots) if (slot != null) slot.SetFocus(false);
+        foreach (var slot in quickSlotUIs) if (slot != null) slot.SetFocus(false);
+        foreach (var slot in storageUiSlots) if (slot != null) slot.SetFocus(false);
+        foreach (var slot in shopUiSlots) if (slot != null) slot.SetFocus(false);
 
         ItemData focusedItem = null;
 
-        if (currentZone == UIZone.Inventory)
+        if (currentZone == UIZone.Inventory && uiSlots.Count > invFocusIndex)
         {
             uiSlots[invFocusIndex].SetFocus(true);
             focusedItem = InventoryManager.Instance.slots[invFocusIndex].item;
         }
         else if (currentZone == UIZone.Equipment)
         {
-            if (rightFocusIndex < 4)
+            if (rightFocusIndex < 4 && equipSlots[rightFocusIndex] != null)
             {
                 equipSlots[rightFocusIndex].SetFocus(true);
                 focusedItem = tempEquipData[rightFocusIndex].item;
             }
-            else
+            else if (rightFocusIndex >= 4)
             {
                 int quickIndex = rightFocusIndex - 4;
-                quickSlotUIs[quickIndex].SetFocus(true);
-                focusedItem = QuickSlotManager.Instance.quickSlots[quickIndex].item;
+                if (quickSlotUIs[quickIndex] != null)
+                {
+                    quickSlotUIs[quickIndex].SetFocus(true);
+                    focusedItem = QuickSlotManager.Instance.quickSlots[quickIndex].item;
+                }
             }
         }
         else if (currentZone == UIZone.Storage)
         {
-            if (storageUiSlots.Count > storageFocusIndex && storageUiSlots[storageFocusIndex].gameObject.activeSelf)
+            if (storageUiSlots.Count > storageFocusIndex && storageUiSlots[storageFocusIndex] != null && storageUiSlots[storageFocusIndex].gameObject.activeSelf)
             {
                 storageUiSlots[storageFocusIndex].SetFocus(true);
                 focusedItem = StorageManager.Instance.storageSlots[storageFocusIndex].item;
             }
         }
-
-        if (currentZone == UIZone.Shop && shopUiSlots.Count > shopFocusIndex && shopUiSlots[shopFocusIndex].gameObject.activeSelf)
+        else if (currentZone == UIZone.Shop)
         {
-            shopUiSlots[shopFocusIndex].SetFocus(true);
-            var currentEntry = ShopManager.Instance.shopEntries[shopFocusIndex];
-            if (tooltip != null) tooltip.Show(currentEntry.resultItem, currentEntry);
+            if (shopUiSlots.Count > shopFocusIndex && shopUiSlots[shopFocusIndex] != null && shopUiSlots[shopFocusIndex].gameObject.activeSelf)
+            {
+                shopUiSlots[shopFocusIndex].SetFocus(true);
+                var currentEntry = ShopManager.Instance.shopEntries[shopFocusIndex];
+                if (tooltip != null) tooltip.Show(currentEntry.resultItem, currentEntry);
+            }
         }
-        else
+
+        // 상점 외에는 일반 툴팁 표시
+        if (currentZone != UIZone.Shop)
         {
             if (focusedItem != null && tooltip != null) tooltip.Show(focusedItem);
             else if (tooltip != null) tooltip.Hide();

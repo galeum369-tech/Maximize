@@ -33,7 +33,7 @@ public class ShopObject : MonoBehaviour
         }
     }
 
-    // [핵심 추가] 씬이 넘어가거나 오브젝트가 꺼질 때 강제로 구독 해제!
+    // [핵심 해결책] 이 부분이 빠져있었어! 씬 이동 시 강제 연결 해제
     private void OnDisable()
     {
         if (playerInput != null)

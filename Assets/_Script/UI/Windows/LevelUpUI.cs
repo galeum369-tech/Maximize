@@ -2,15 +2,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement; // [필수] 씬 이동 감지
 
 public class LevelUpUI : MonoBehaviour
 {
     public static LevelUpUI Instance { get; private set; }
 
-    [Header("참조")]
+    [Header("참조 (자동 연결됨)")]
     public GameObject uiRoot;
 
-    // [수정] 이제 인스펙터에서 안 넣어도 됨! (HideInInspector 처리)
     [HideInInspector] public PlayerData playerData;
 
     [Header("UI 포커스 연출")]
@@ -36,23 +36,93 @@ public class LevelUpUI : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // 씬 넘어가도 매니저는 생존
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         if (uiRoot != null) uiRoot.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        // 씬 로드 이벤트 구독
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    // ==========================================
+    // [핵심] 씬이 로드되면 끊어진 UI 연결을 이름으로 찾아서 복구!
+    // ==========================================
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // 1. UI Root 찾기 (이름이 정확해야 함!)
+        if (uiRoot == null) uiRoot = GameObject.Find("LevelUpPanelRoot");
+
+        if (uiRoot == null) return; // UI가 없는 씬일 수도 있으니 안전장치
+
+        // 2. 자식 컴포넌트들 다시 찾아서 연결 (UIUtils 활용)
+        // (텍스트)
+        humanLvText = FindText("HumanLvText");
+        humanCostText = FindText("HumanCostText");
+
+        mechaLvText = FindText("MechaLvText");
+        mechaCostText = FindText("MechaCostText");
+
+        droneLvText = FindText("DroneLvText");
+        droneCostText = FindText("DroneCostText");
+
+        currentMoneyText = FindText("CurrentMoneyText");
+
+        // (포커스 아웃라인)
+        focusOutlines[0] = FindChildObject("FocusOutline_Human");
+        focusOutlines[1] = FindChildObject("FocusOutline_Mecha");
+        focusOutlines[2] = FindChildObject("FocusOutline_Drone");
+
+        // 3. 초기화 (꺼두기)
+        uiRoot.SetActive(false);
+        Debug.Log("[LevelUpUI] UI 재연결 완료!");
+    }
+
+    // 텍스트 컴포넌트 찾는 헬퍼 함수
+    private TextMeshProUGUI FindText(string name)
+    {
+        if (uiRoot == null) return null;
+        Transform t = UIUtils.FindChildRecursive(uiRoot.transform, name);
+        return t != null ? t.GetComponent<TextMeshProUGUI>() : null;
+    }
+
+    // 일반 오브젝트 찾는 헬퍼 함수
+    private GameObject FindChildObject(string name)
+    {
+        if (uiRoot == null) return null;
+        Transform t = UIUtils.FindChildRecursive(uiRoot.transform, name);
+        return t != null ? t.gameObject : null;
     }
 
     public void OpenUI()
     {
-        // ==========================================
-        // [핵심 1] UI를 열 때 활성화된 플레이어의 상태창에서 PlayerData를 자동으로 훔쳐옴!
-        // ==========================================
+        // [핵심 1] PlayerData 자동 획득
         if (playerData == null && PlayerTransformManager.Instance != null)
         {
-            // 인간 폼에 무조건 baseData가 있으니 거기서 빼옴
-            PlayerState pState = PlayerTransformManager.Instance.humanObject.GetComponent<PlayerState>();
-            if (pState != null) playerData = pState.baseData;
+            if (PlayerTransformManager.Instance.humanObject != null)
+            {
+                PlayerState pState = PlayerTransformManager.Instance.humanObject.GetComponent<PlayerState>();
+                if (pState != null) playerData = pState.baseData;
+            }
         }
 
-        uiRoot.SetActive(true);
+        if (uiRoot != null) uiRoot.SetActive(true);
         currentFocusIndex = 0;
         RefreshUI();
 
@@ -72,7 +142,8 @@ public class LevelUpUI : MonoBehaviour
 
     public void CloseUI()
     {
-        uiRoot.SetActive(false);
+        if (uiRoot != null) uiRoot.SetActive(false);
+
         if (currentInput != null)
         {
             currentInput.OpenUI(false);
@@ -88,12 +159,15 @@ public class LevelUpUI : MonoBehaviour
     {
         if (dir.y < 0) currentFocusIndex++;
         else if (dir.y > 0) currentFocusIndex--;
+
         currentFocusIndex = Mathf.Clamp(currentFocusIndex, 0, 2);
         UpdateFocusVisuals();
     }
 
     private void HandleSubmit()
     {
+        if (playerData == null) return;
+
         switch (currentFocusIndex)
         {
             case 0:
@@ -114,6 +188,7 @@ public class LevelUpUI : MonoBehaviour
     private void RefreshUI()
     {
         if (playerData == null || GameManager.Instance == null) return;
+        if (humanLvText == null) return; // UI 연결 안됐으면 패스
 
         currentMoneyText.text = $"보유 골드: {GameManager.Instance.currentMoney:N0} G";
 
@@ -147,18 +222,12 @@ public class LevelUpUI : MonoBehaviour
     private void ProcessUpgradeSuccess()
     {
         Debug.Log("레벨업 성공!");
-        RefreshUI(); // 현재 레벨업 창 텍스트 즉시 갱신
+        RefreshUI();
 
-        // ==========================================
-        // [핵심 2] 스탯 강제 갱신! 
-        // 이걸 부르면 현재 켜져있는 폼(인간 or 메카)이 스탯을 다시 계산하고, HUD 체력바도 새로 고침!
-        // ==========================================
+        // [핵심 2] 스탯 강제 갱신!
         if (InventoryManager.Instance != null)
         {
             InventoryManager.Instance.ForceStatUpdate();
         }
-
-        // 인벤토리가 열려있는 상태는 아니겠지만, 나중에 인벤토리를 열면
-        // StatDisplayUI의 OnEnable()이 작동해서 자동으로 최신 스탯이 반영됨.
     }
 }

@@ -24,4 +24,8 @@ MonoBehaviour:
   dropMoneyMax: 50
   lootTable:
   - itemPrefab: {fileID: 6296394134905697865, guid: f0cb41343d996fb46ba522aa36ffa64c, type: 3}
-    dropChance: 100
+    dropChance: 15
+  - itemPrefab: {fileID: 6296394134905697865, guid: 4e774e494f4dd604ca26e797997f9444, type: 3}
+    dropChance: 5
+  - itemPrefab: {fileID: 6296394134905697865, guid: 261b37f04232d6c44b5becf241061338, type: 3}
+    dropChance: 30

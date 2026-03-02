@@ -34,7 +34,7 @@ public class LevelUpAltar : MonoBehaviour
         }
     }
 
-    // [핵심 추가] 안전장치
+    // [핵심 해결책] 제단도 추가!
     private void OnDisable()
     {
         if (playerInput != null)

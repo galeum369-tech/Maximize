@@ -26,8 +26,20 @@ public class InventoryManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
-        for (int i = 0; i < maxSlotCount; i++) slots.Add(new ItemSlot());
+        // [수정] 싱글턴 보호 로직 추가
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // 나를 파괴하지 마!
+
+            // 최초 생성 시에만 슬롯 생성
+            for (int i = 0; i < maxSlotCount; i++) slots.Add(new ItemSlot());
+        }
+        else
+        {
+            // 이미 아이템을 들고 있는 원본(Instance)이 있다면, 새로 생긴 나는 사라진다.
+            Destroy(gameObject);
+        }
     }
 
     public bool AddItem(ItemData itemToAdd, int amount)

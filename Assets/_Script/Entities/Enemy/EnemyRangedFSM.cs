@@ -24,13 +24,20 @@ public class EnemyRangedFSM : MonoBehaviour
 
     private void Update()
     {
-        // 1. 플레이어 찾기 (없으면 대기)
-        if (player == null)
+        // [핵심 추가] 타겟 갱신 로직 (위와 동일)
+        if (GameManager.Instance != null)
         {
-            if (GameManager.Instance != null)
-                player = GameManager.Instance.GetActivePlayer();
-            return;
+            Transform activeTarget = GameManager.Instance.GetActivePlayer();
+
+            // 내 타겟이 없거나, 꺼졌거나, 실제 플레이어랑 다르면 갱신
+            if (player == null || !player.gameObject.activeInHierarchy || player != activeTarget)
+            {
+                player = activeTarget;
+            }
         }
+
+        // 플레이어 없으면 아무것도 안 함
+        if (player == null) return;
 
         // 2. 플레이어와의 거리 계산
         float distance = Vector2.Distance(transform.position, player.position);
